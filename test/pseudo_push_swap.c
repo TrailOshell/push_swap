@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:18:20 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/27 22:25:29 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/27 23:52:42 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ typedef struct s_node
 	//struct	s_node *prev;
 }	t_node;
 
-typedef struct s_process 
+typedef struct s_stack 
 {
 	struct s_node *a;
 	struct s_node *b;
-} t_process;
+} t_stack;
 
-void start_process(t_process *process)
+void start_stack(t_stack *stack)
 {
 
 }
@@ -35,15 +35,14 @@ t_node	*nodenew(int num)
 {
 	t_node	*new;
 
-	new = malloc(sizeof(t_node));
-	if (!new)
+	new = malloc(sizeof(t_node)); if (!new)
 		return (0);
 	new->val = num;
 	new->next = NULL;
 	return (new);
 }
 
-void input_argument(t_process *process, char *input)
+void input_argument(t_stack *stack, char *input)
 {
 	t_node *head;
 	t_node *node;
@@ -56,32 +55,32 @@ void input_argument(t_process *process, char *input)
 		if(*input != ' ')
 		{
 			len = ft_strlen(ft_strchr(input, ' '));
-			//if (!process->a)
-			process->a = nodenew(ft_atoi(ft_substr(input, 0, len)));
+			//if (!stack->a)
+			stack->a = nodenew(ft_atoi(ft_substr(input, 0, len)));
 			//else
-			//	process->a->next = nodenew(ft_atoi(ft_substr(input, 0, len)));
-			process->a = process->a->next;
+			//	stack->a->next = nodenew(ft_atoi(ft_substr(input, 0, len)));
+			stack->a = stack->a->next;
 			input = input + len;
 		}
 		input++;
 	}
-	process->a = head;
+	stack->a = head;
 }
 
-do_pa (t_process *process)
+do_pa (t_stack *stack)
 {
     t_node *head_a;
     t_node *head_b;
     
     //stack_a make new head
-    head_a->val = process->b->val;
+    head_a->val = stack->b->val;
 	//stack_a connect new head to old head
-    head_a->next = process->a->next;
+    head_a->next = stack->a->next;
 
 	//stack_b track new head
-	head_b = process->b->next;
+	head_b = stack->b->next;
 	//stack_b remove old head
-	dellst(process->b);
+	dellst(stack->b);
 }
 
 void	printNode(t_node *node, char *text)
