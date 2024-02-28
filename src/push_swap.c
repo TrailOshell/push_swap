@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 21:23:12 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:04:21 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ void	print_node(t_node *node, char *text)
 	printf("\n");
 }
 
+void	input_stack_b(t_stack *stack, char **input)
+{
+	int		num;
+
+	//input++;
+	while (*input)
+	{
+		num = atoi(*input);
+		add_node_last(stack, 'b', nodenew(num));
+		input++;
+	}
+}
+
 void	push_swap(char **argv)
 {
 	t_stack	*stack;
@@ -35,7 +48,15 @@ void	push_swap(char **argv)
 	stack = NULL;
 	stack = start_stack(stack);
 	input_stack(stack, argv);
-	print_node(stack->a, "stack a");
+	input_stack_b(stack, (char *[4]){(char [99]){"6"},
+		(char [99]){"13"}, (char [99]){"14"}, NULL});
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	do_sa(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	do_sb(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	do_ss(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
 	//printf("last_a = %d\n", stack->last_a->val);
 }
 
