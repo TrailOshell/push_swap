@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:27:08 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:38:55 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	debug_operations(t_stack *stack)
 	do_ss(stack);
 	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
+	//do_pa(stack);
+	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	//printf("-------- ---- ---- --- - - -- - --\n");
+	//do_pb(stack);
+	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	//printf("-------- ---- ---- --- - - -- - --\n");
 	do_ra(stack);
 	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");

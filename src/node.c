@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 21:23:30 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:35:29 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ void	add_node_last(t_stack *stack, char stack_name, t_node *add)
 			tmp = tmp->next;
 		tmp->next = add;
 	}
+}
+
+void	add_node_head(t_stack *stack, char stack_name, t_node *add)
+{
+	
+}
+
+void	del_node_head(t_stack *stack, char stack_name, t_node *add)
+{
+	
 }
 
 t_node	*nodenew(int num)

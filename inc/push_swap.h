@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:19:48 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:34:16 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	input_stack(t_stack *stack, char **argv);
 //	node files
 //node.c
 void	add_node_last(t_stack *stack, char stack_name, t_node *add);
+void	add_node_head(t_stack *stack, char stack_name, t_node *add);
+void	del_node_head(t_stack *stack, char stack_name, t_node *add);
 t_node	*nodenew(int num);
 
 //	operations files
@@ -53,8 +55,8 @@ void	do_sa(t_stack *stack);
 void	do_sb(t_stack *stack);
 void	do_ss(t_stack *stack);
 //do_push.c
-//void do_pa(t_stack *stack);
-//void do_pb(t_stack *stack);
+void do_pa(t_stack *stack);
+void do_pb(t_stack *stack);
 //do_rotate.c
 void do_ra(t_stack *stack);
 void do_rb(t_stack *stack);

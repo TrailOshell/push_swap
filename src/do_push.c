@@ -1,45 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_rotate.c                                        :+:      :+:    :+:   */
+/*   do_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 22:17:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:18:56y tsomchan         ###   ########.fr       */
+/*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
+/*   Updated: 2024/02/28 22:39:40 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void do_rotate(t_node *node)
+void	do_pa (t_stack *stack)
 {
-	int tmp;
+    t_node *head_a;
+    t_node *head_b;
+    
+    //stack_a make new head
+    head_a->val = stack->b->val;
+	//stack_a connect new head to old head
+    head_a->next = stack->a->next;
 
-	tmp = node->val;
-	while (node->next)
-	{
-		node->val = node->next->val;
-		node = node->next;
-	}
-	node->val = tmp;
+	//stack_b track new head
+	head_b = stack->b->next;
+	//stack_b remove old head
+	dellst(stack->b);
+	write(1, "pa\n", 3);
 }
 
-void do_ra(t_stack *stack)
+void	do_pb (t_stack *stack)
 {
-	do_rotate(stack->a);
-	write(1, "ra\n", 3);
-}
-
-void do_rb(t_stack *stack)
-{
-	do_rotate(stack->b);
-	write(1, "rb\n", 3);
-}
-
-void do_rr(t_stack *stack)
-{
-	do_rotate(stack->a);
-	do_rotate(stack->b);
-	write(1, "rr\n", 3);
+	write(1, "pb\n", 3);
 }
