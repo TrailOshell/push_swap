@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 19:16:04 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:12:52 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	input_stack(t_stack *stack, char **argv);
 
 //node files
 //node.c
+void	add_node_last(t_node **stack_node, t_node *add);
 t_node	*nodenew(int num);
 
 //operations files

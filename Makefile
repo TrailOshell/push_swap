@@ -16,14 +16,14 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
-SRC		=	push_swap.c stack.c
+SRC		=	push_swap.c stack.c node.c
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 
 AR		=	ar rc
-CC		=	cc
+CC		=	cc -g
 #CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 RM_RF	= 	rm -rf
@@ -79,8 +79,7 @@ clear:
 	@clear
 
 norm: clear
-	@norminette $(SRC)
-	make $@ -C $(LIB_PTH)
+	@norminette $(addprefix $(SRC_PTH), $(SRC))
 
 TRASH = .DS_Store
 

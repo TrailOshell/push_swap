@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 19:15:32 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:10:22 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,36 @@ t_stack	*start_stack(t_stack *stack)
 
 void	input_stack(t_stack *stack, char **argv)
 {
-	t_node	*head;
-	t_node	*node;
-	int		len;
+	int		num;
 
-	head = node;
-	while(**argv)
+	argv++;
+	while (*argv)
 	{
-		/*
-		if(*argv != ' ')
-		{
-			len = ft_strlen(ft_strchr(argv, ' '));
-			//if (!stack->a)
-			stack.a = nodenew(ft_atoi(ft_substr(argv, 0, len)));
-			//else
-			//	stack->a->next = nodenew(ft_atoi(ft_substr(argv, 0, len)));
-			stack.a = stack.a->next;
-			argv = argv + len;
-		}
+		num = atoi(*argv);
+		add_node_last(&stack->a, nodenew(num));
+		print_node(stack->a, "stack a");
 		argv++;
-		*/
 	}
-	stack->a = head;
 }
+
+/*
+if(*argv != ' ')
+{
+	len = ft_strlen(ft_strchr(argv, ' '));
+	//if (!stack->a)
+	stack.a = nodenew(ft_atoi(ft_substr(argv, 0, len)));
+	//else
+	//	stack->a->next = nodenew(ft_atoi(ft_substr(argv, 0, len)));
+	stack.a = stack.a->next;
+	argv = argv + len;
+}
+argv++;
+*/
+
+/* input_stack()
+	//t_node	*head;
+	//t_node	*node;
+
+	//head = node;
+	//stack->a = head;
+*/
