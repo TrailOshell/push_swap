@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 18:49:12 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:16:04 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ typedef struct s_stack
 }	t_stack;
 
 //push_swap.c
-//push_swap();
+void	push_swap(char **argv);
 
 //stack files
-//void start_stack(t_stack *stack);
-//void input_argv(t_stack *stack, char *input)
+//stack.c
+t_stack	*start_stack(t_stack *stack);
+void	input_stack(t_stack *stack, char **argv);
 
 //node files
-//t_node	*nodenew(int num)
+//node.c
+t_node	*nodenew(int num);
 
 //operations files
 //do_swap.c

@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap.a
+NAME	=	push_swap
 INC_PTH	=	inc/
 INC		=	$(addprefix $(INC_PTH), push_swap.h)
 
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
-SRC		=	push_swap.c
+SRC		=	push_swap.c stack.c
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
@@ -94,6 +94,7 @@ log: clear
 
 push:
 	@git push
+	@git push intra
 	@clear && git log --name-status -1
 
 git_add:
@@ -110,6 +111,6 @@ git: clean_more git_add push
 
 test: all
 	clear
-	./$(NAME)
+	./$(NAME) 5 3 2 42 0 -1
 
 .PHONY += test
