@@ -15,10 +15,12 @@ INC_PTH	=	inc/
 INC		=	$(addprefix $(INC_PTH), push_swap.h)
 
 SRC_PTH	=	src/
-SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
+#SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
+SRC		=	push_swap.c
 
 OBJ_PTH	=	obj/
-OBJ		=	$(SRC:.c=.o)
+#OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
+OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 
 AR		=	ar rc
 CC		=	cc
@@ -47,17 +49,16 @@ WHITE		=	\033[1;37m
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	#$(AR) $@ $^
 	$(CC) $(CFLAGS) $^ -o $@
 	@echo "$(D_GREEN)$(NAME) compiled$(NC)"
 
-$(OBJ_PTH)%.o: $(SRC_PTH)%.c | $(OBJ_PTH)
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(OBJ_PTH)%.o: $(SRC_PTH)%.c $(INC)| $(OBJ_PTH)
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 	@echo "$(D_YELLOW)compiled $<$(NC)"
 
 $(OBJ_PTH):
 	mkdir -p $(OBJ_PTH)
-	@echo "$(D_YELLOW)compiled $@/$(NC)"
+	@echo "$(D_YELLOW)compiled $@$(NC)"
 
 clean:
 	$(RM) $(OBJ)
@@ -89,7 +90,7 @@ clean_more:
 #	git
 
 log: clear
-	@git log --name-status -2
+	@git log --name-status -3
 
 push:
 	@git push

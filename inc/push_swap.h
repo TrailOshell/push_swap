@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 00:31:00 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:49:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stddef.h>
+# include <stdlib.h>
+
+//ONLY for testing
+# include <stdio.h>
 
 typedef struct s_node
 {
