@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 21:53:27 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 22:19:48 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	do_ss(t_stack *stack);
 //void do_pa(t_stack *stack);
 //void do_pb(t_stack *stack);
 //do_rotate.c
-//void do_ra(t_stack *stack);
-//void do_rb(t_stack *stack);
-//void do_rr(t_stack *stack);
+void do_ra(t_stack *stack);
+void do_rb(t_stack *stack);
+void do_rr(t_stack *stack);
 //do_reverse.c
-//void do_rra(t_stack *stack);
-//void do_rrb(t_stack *stack);
-//void do_rrr(t_stack *stack);
+void do_rra(t_stack *stack);
+void do_rrb(t_stack *stack);
+void do_rrr(t_stack *stack);
 
 //	sorting/algorithm files
 

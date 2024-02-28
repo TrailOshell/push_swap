@@ -16,7 +16,7 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
-SRC		=	push_swap.c stack.c node.c do_swap.c
+SRC		=	push_swap.c stack.c node.c do_swap.c do_rotate.c do_reverse.c
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
@@ -108,8 +108,10 @@ git: clean_more git_add push
 
 # testing
 
+t: test
+
 test: all
 	clear
 	./$(NAME) 5 3 2 42 0 -1
 
-.PHONY += test
+.PHONY += t test

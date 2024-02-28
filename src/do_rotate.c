@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_swap.c                                          :+:      :+:    :+:   */
+/*   do_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 21:36:47 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:16:08 by tsomchan         ###   ########.fr       */
+/*   Created: 2024/02/28 22:17:05 by tsomchan          #+#    #+#             */
+/*   Updated: 2024/02/28 22:19:03 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	do_swap(t_node *node)
+void do_rotate(t_node *node)
 {
-	int		tmp;
+	int tmp;
 
-	if (node->val && node->next->val)
+	tmp = node->val;
+	while (node->next)
 	{
-		tmp = node->next->val;
-		node->next->val = node->val;
-		node->val = tmp;
+		node->val = node->next->val;
+		node = node->next;
 	}
+	node->val = tmp;
 }
 
-void	do_sa(t_stack *stack)
+void do_ra(t_stack *stack)
 {
-	do_swap(stack->a);
-	write(1, "sa\n", 3);
+	do_rotate(stack->a);
+	write(1, "ra\n", 3);
 }
 
-void	do_sb(t_stack *stack)
+void do_rb(t_stack *stack)
 {
-	do_swap(stack->b);
-	write(1, "sb\n", 3);
+	do_rotate(stack->b);
+	write(1, "rb\n", 3);
 }
 
-void	do_ss(t_stack *stack)
+void do_rr(t_stack *stack)
 {
-	do_swap(stack->a);
-	do_swap(stack->b);
-	write(1, "ss\n", 3);
+	do_rotate(stack->a);
+	do_rotate(stack->b);
+	write(1, "rr\n", 3);
 }
