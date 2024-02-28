@@ -23,7 +23,7 @@ OBJ_PTH	=	obj/
 OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 
 AR		=	ar rc
-CC		=	cc -g
+CC		=	cc
 #CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 RM_RF	= 	rm -rf

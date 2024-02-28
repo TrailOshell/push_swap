@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 20:10:22 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:52:02 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_stack	*start_stack(t_stack *stack)
 		stack = malloc(sizeof(t_stack));
 	stack->a = NULL;
 	stack->b = NULL;
+	stack->last_a = NULL;
+	stack->last_b = NULL;
 	return (stack);
 }
 
@@ -29,8 +31,7 @@ void	input_stack(t_stack *stack, char **argv)
 	while (*argv)
 	{
 		num = atoi(*argv);
-		add_node_last(&stack->a, nodenew(num));
-		print_node(stack->a, "stack a");
+		add_node_last(stack, 'a', nodenew(num));
 		argv++;
 	}
 }
@@ -50,6 +51,8 @@ argv++;
 */
 
 /* input_stack()
+	print_node(stack->a, "stack a");
+	
 	//t_node	*head;
 	//t_node	*node;
 

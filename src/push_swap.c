@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 20:06:58 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/28 21:23:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	push_swap(char **argv)
 	stack = start_stack(stack);
 	input_stack(stack, argv);
 	print_node(stack->a, "stack a");
+	//printf("last_a = %d\n", stack->last_a->val);
 }
 
 int	main(int argc, char **argv)
