@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 20:52:02 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:04:01 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	input_stack(t_stack *stack, char **argv)
 	argv++;
 	while (*argv)
 	{
-		num = atoi(*argv);
+		num = atoi_push_swap(*argv);
 		add_node_last(stack, 'a', nodenew(num));
 		argv++;
 	}

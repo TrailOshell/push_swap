@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:34:16 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:38:26 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void do_rrr(t_stack *stack);
 //	sorting/algorithm files
 
 //	util files
-//int atoi_push_swap();
+int	atoi_push_swap(char *str);
 
 //	test functions
 //void	printNode(t_node *node, char *text)

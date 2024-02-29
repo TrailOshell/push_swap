@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 17:09:30 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:03:52 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,9 @@ void	input_stack_b(t_stack *stack, char **input)
 {
 	int		num;
 
-	//input++;
 	while (*input)
 	{
-		num = atoi(*input);
+		num = atoi_push_swap(*input);
 		add_node_last(stack, 'b', nodenew(num));
 		input++;
 	}
@@ -43,7 +42,7 @@ void	debug_operations(t_stack *stack)
 {
 	printf("| OPERATIONS |\n");
 	input_stack_b(stack, (char *[4]){(char [99]){"6"},
-		(char [99]){"13"}, (char [99]){"14"}, NULL});
+		(char [99]){"13"}, (char [99]){"-2147483648"}, NULL});
 	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
 	//do_sa(stack);
@@ -94,8 +93,7 @@ void	push_swap(char **argv)
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2)
-		return (0);
+	if (argc < 2) return (0);
 	push_swap(argv);
 }
 
