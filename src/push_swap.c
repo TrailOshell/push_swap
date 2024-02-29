@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 18:41:47 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:06:01 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,12 @@ void	push_swap(char **argv)
 
 	stack = NULL;
 	stack = start_stack(stack);
-	//input_stack(stack, argv);
-	//debug_operations(stack);
+	input_stack(stack, argv);
+	debug_operations(stack);
 	//debug_operations_1_node(stack);
 	//debug_push_empty_a(stack);
 	//debug_push_empty_b(stack);
+	end_stack(stack);
 }
 
 int	main(int argc, char **argv)

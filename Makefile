@@ -114,8 +114,10 @@ test: all
 	clear
 	./$(NAME) 5 3 2 42 0 -1
 
-t1: all
+v: val
+
+val: all
 	clear
-	./$(NAME) 42
+	valgrind ./$(NAME) 5 3 2 42 0 -1
 
 .PHONY += t test

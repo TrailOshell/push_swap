@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 17:38:26 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:56:18 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	push_swap(char **argv);
 //stack.c
 t_stack	*start_stack(t_stack *stack);
 void	input_stack(t_stack *stack, char **argv);
+void	end_stack(t_stack *stack);
 
 //	node files
 //node.c
