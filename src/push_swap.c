@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 18:03:52 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:41:47 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,66 @@ void	debug_operations(t_stack *stack)
 	//printf("-------- ---- ---- --- - - -- - --\n");
 }
 
+void	debug_operations_1_node(t_stack *stack)
+{
+	printf("| OPERATIONS 1 NODE |\n");
+	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, (char [99]){"1"}, NULL});
+	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_sa(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_sb(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_ss(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_ra(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_rb(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_rr(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_rra(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_rrb(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_rrr(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+}
+
+void	debug_push_empty_a(t_stack *stack)
+{
+	printf("| PUSH EMPTY A |\n");
+	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, NULL});
+	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_pb(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+}
+
+void	debug_push_empty_b(t_stack *stack)
+{
+	printf("| PUSH EMPTY B |\n");
+	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, (char [99]){"1"}, NULL});
+	input_stack_b(stack, (char *[4]){NULL});
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+	do_pa(stack);
+	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
+}
+
 void	push_swap(char **argv)
 {
 	t_stack	*stack;
@@ -87,8 +147,11 @@ void	push_swap(char **argv)
 
 	stack = NULL;
 	stack = start_stack(stack);
-	input_stack(stack, argv);
-	debug_operations(stack);
+	//input_stack(stack, argv);
+	//debug_operations(stack);
+	//debug_operations_1_node(stack);
+	//debug_push_empty_a(stack);
+	//debug_push_empty_b(stack);
 }
 
 int	main(int argc, char **argv)

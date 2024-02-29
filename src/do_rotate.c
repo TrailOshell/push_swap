@@ -16,6 +16,8 @@ void do_rotate(t_node *node)
 {
 	int tmp;
 
+	if (!node->next)
+		return ;
 	tmp = node->val;
 	while (node->next)
 	{

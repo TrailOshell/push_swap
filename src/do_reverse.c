@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:06:17 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:14:02 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:16:47 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void do_reverse(t_node *node)
 	int tmp1;
 	int tmp2;
 
+	if (!node->next)
+		return ;
 	head = node;
 	tmp2 = node->val;
 	node = node->next;

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:36:47 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/28 22:39:08 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:25:04 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ void	do_swap(t_node *node)
 {
 	int		tmp;
 
-	if (node->val && node->next->val)
-	{
-		tmp = node->next->val;
-		node->next->val = node->val;
-		node->val = tmp;
-	}
+	if (!node->next)
+		return ;
+	tmp = node->next->val;
+	node->next->val = node->val;
+	node->val = tmp;
+	//if (node->val && node->next->val)
+	//{
+	//	tmp = node->next->val;
+	//	node->next->val = node->val;
+	//	node->val = tmp;
+	//}
 }
 
 void	do_sa(t_stack *stack)

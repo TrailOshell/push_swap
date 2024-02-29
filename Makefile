@@ -114,4 +114,8 @@ test: all
 	clear
 	./$(NAME) 5 3 2 42 0 -1
 
+t1: all
+	clear
+	./$(NAME) 42
+
 .PHONY += t test
