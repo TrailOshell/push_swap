@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 19:01:06 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:26:42 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,6 @@ void	input_stack(t_stack *stack, char **argv)
 	}
 }
 
-//void delstack(t_stack *stack)
-//{
-//	t_node *tmp;
-
-//	if (!stack)
-//		return ;
-//	tmp = NULL;
-//	while (stack->a)
-//	{
-//		tmp = stack->a->next;
-//		free(stack->a);
-//		stack->a = tmp;
-//	}
-//	while (stack->b)
-//	{
-//		tmp = stack->b->next;
-//		free(stack->b);
-//		stack->b = tmp;
-//	}
-//}
-
 void end_stack(t_stack *stack)
 {
 	t_node *tmp;
@@ -79,6 +58,27 @@ void end_stack(t_stack *stack)
 	}
 	free(stack);
 }
+
+//void delstack(t_stack *stack)
+//{
+//	t_node *tmp;
+
+//	if (!stack)
+//		return ;
+//	tmp = NULL;
+//	while (stack->a)
+//	{
+//		tmp = stack->a->next;
+//		free(stack->a);
+//		stack->a = tmp;
+//	}
+//	while (stack->b)
+//	{
+//		tmp = stack->b->next;
+//		free(stack->b);
+//		stack->b = tmp;
+//	}
+//}
 
 /*
 if(*argv != ' ')
