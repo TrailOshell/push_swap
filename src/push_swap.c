@@ -20,10 +20,18 @@ void	print_node(t_node *node, char *text)
 	{
 		printf("%d", node->val);
 		if (node->next)
-			printf(",");
+			printf(", ");
 		node = node->next;
-	} printf("]");
+	}
+	printf("]");
 	printf("\n");
+}
+
+void	print_stack(t_stack *stack)
+{
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
+	printf("-------- ---- ---- --- - - -- - --\n");
 }
 
 void	input_stack_b(t_stack *stack, char **input)
@@ -41,8 +49,7 @@ void	input_stack_b(t_stack *stack, char **input)
 void	debug_op(t_stack *stack, void (*do_f)(t_stack *))
 {
 	do_f(stack);
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
+	print_stack(stack);
 }
 
 void	debug_operations(t_stack *stack)
@@ -50,7 +57,8 @@ void	debug_operations(t_stack *stack)
 	printf("| OPERATIONS |\n");
 	input_stack_b(stack, (char *[4]){(char [99]){"6"},
 		(char [99]){"13"}, (char [99]){"-2147483648"}, NULL});
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
 	debug_op(stack, &do_sa);
 	debug_op(stack, &do_sb);
@@ -68,9 +76,11 @@ void	debug_operations(t_stack *stack)
 void	debug_operations_1_node(t_stack *stack)
 {
 	printf("| OPERATIONS 1 NODE |\n");
-	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, (char [99]){"1"}, NULL});
+	input_stack(stack, (char *[4]){(char [99]){"argv[0]"},
+		(char [99]){"1"}, NULL});
 	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
 	debug_op(stack, &do_sa);
 	debug_op(stack, &do_sb);
@@ -88,7 +98,8 @@ void	debug_push_empty_a(t_stack *stack)
 	printf("| PUSH EMPTY A |\n");
 	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, NULL});
 	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
 	debug_op(stack, &do_pb);
 }
@@ -96,13 +107,16 @@ void	debug_push_empty_a(t_stack *stack)
 void	debug_push_empty_b(t_stack *stack)
 {
 	printf("| PUSH EMPTY B |\n");
-	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, (char [99]){"1"}, NULL});
+	input_stack(stack, (char *[4]){(char [99]){"argv[0]"},
+		(char [99]){"1"}, NULL});
 	input_stack_b(stack, (char *[4]){NULL});
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
 	debug_op(stack, &do_pa);
 	do_pa(stack);
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
 }
 
@@ -114,19 +128,28 @@ void	push_swap(char **argv)
 	stack = NULL;
 	stack = start_stack(stack);
 	input_stack(stack, argv);
-	debug_operations(stack);
-	//debug_operations_1_node(stack);
-	//debug_push_empty_a(stack);
-	//debug_push_empty_b(stack);
+	if (!stack->iserror)
+	{
+		debug_operations(stack);
+		//debug_operations_1_node(stack);
+		//debug_push_empty_a(stack);
+		//debug_push_empty_b(stack);
+	}
+	else
+		write(1, "Error!\n", 7);
 	end_stack(stack);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2) return (0);
+	if (argc < 2)
+		return (0);
 	push_swap(argv);
 }
 
+/*
+	printf("stack->iserror = %d$\n", stack->iserror);
+*/
 /*
 	//printf("%p\n", stack);
 	//node = malloc(sizeof(t_node));
