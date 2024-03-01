@@ -135,7 +135,7 @@ void	push_swap(char **argv)
 		//debug_push_empty_b(stack);
 	}
 	else
-		write(1, "Error!\n", 7);
+		write(1, "Error\n", 7);
 	end_stack(stack);
 }
 
