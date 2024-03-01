@@ -60,8 +60,7 @@ void	debug_operations(t_stack *stack)
 	print_node(stack->a, "stack a");
 	print_node(stack->b, "stack b");
 	printf("-------- ---- ---- --- - - -- - --\n");
-	debug_op(stack, &do_sa);
-	debug_op(stack, &do_sb);
+	debug_op(stack, &do_sa); debug_op(stack, &do_sb);
 	debug_op(stack, &do_ss);
 	debug_op(stack, &do_pa);
 	debug_op(stack, &do_pb);

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 17:26:28 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:01:57 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,11 @@ void	input_stack(t_stack *stack, char **argv)
 	argv++;
 	while (*argv)
 	{
-		if (notnbr_error(*argv))
-		{
-			stack->iserror = 1;
+		if (notnbr_error(stack, *argv))
 			return ;
-		}
 		num = atoi_push_swap(*argv);
 		if (dupnbr_error(stack, num))
-		{
-			stack->iserror = 1;
 			return ;
-		}
 		add_node_last(stack, 'a', nodenew(num));
 		argv++;
 	}
