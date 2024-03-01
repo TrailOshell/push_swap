@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 18:37:02 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/01 18:56:50 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	do_push(t_stack *stack, char push_stack)
 {
 	t_node	**head_push;
 	t_node	**head_pull;
-	t_node 	*tmp;
+	t_node	*tmp;
 
 	if (push_stack == 'a')
 	{
@@ -36,13 +36,13 @@ void	do_push(t_stack *stack, char push_stack)
 	*head_push = tmp;
 }
 
-void	do_pa (t_stack *stack)
+void	do_pa(t_stack *stack)
 {
 	do_push(stack, 'a');
 	write(1, "pa\n", 3);
 }
 
-void	do_pb (t_stack *stack)
+void	do_pb(t_stack *stack)
 {
 	do_push(stack, 'b');
 	write(1, "pb\n", 3);
