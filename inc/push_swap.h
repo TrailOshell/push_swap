@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 17:05:55 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:27:48 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		atoi_push_swap(char *str);
 //	error functions
 // error.c
 int		notnbr_error(char *argv);
+int		dupnbr_error(t_stack *stack, int num);
 
 //	test functions
 //void	printNode(t_node *node, char *text)

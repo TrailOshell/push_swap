@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 17:17:19 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:27:20 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ int	notnbr_error(char *argv)
 	return (0);
 }
 
-int	duplicate_input_error(t_stack *stack)
+int	dupnbr_error(t_stack *stack, int num)
 {
+	while (stack->a)
+	{
+		if (stack->a->val == num)
+			return (1);
+		stack->a = stack->a->next;
+	}
 	return (0);
 }
 
