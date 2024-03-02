@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 18:01:50 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/02 20:30:10 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ typedef struct s_stack
 	struct s_node	*b;
 	struct s_node	*last_a;
 	struct s_node	*last_b;
+	struct s_node	*c;
+	struct s_node	*target;
 	int				iserror;
+	int				min;
+	int				min_prev;
 }	t_stack;
 
 //	push_swap.c
@@ -41,12 +45,14 @@ void	push_swap(char **argv);
 //	stack files
 // stack.c
 t_stack	*start_stack(t_stack *stack);
-void	input_stack(t_stack *stack, char **argv);
+// void	input_stack(t_stack *stack, char **input);
+void	input_stack(t_stack *stack, t_node **stack_name, char **input);
 void	end_stack(t_stack *stack);
 
 //	node files
 // node.c
-void	add_node_last(t_stack *stack, char stack_name, t_node *add);
+// void	add_node_last(t_stack *stack, char stack_name, t_node *add);
+void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add);
 void	add_node_head(t_stack *stack, char stack_name, t_node *add);
 void	del_node_head(t_stack *stack, char stack_name, t_node *add);
 t_node	*nodenew(int num);

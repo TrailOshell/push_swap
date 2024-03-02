@@ -34,18 +34,6 @@ void	print_stack(t_stack *stack)
 	printf("-------- ---- ---- --- - - -- - --\n");
 }
 
-void	input_stack_b(t_stack *stack, char **input)
-{
-	int		num;
-
-	while (*input)
-	{
-		num = atoi_push_swap(*input);
-		add_node_last(stack, 'b', nodenew(num));
-		input++;
-	}
-}
-
 void	debug_op(t_stack *stack, void (*do_f)(t_stack *))
 {
 	do_f(stack);
@@ -55,35 +43,16 @@ void	debug_op(t_stack *stack, void (*do_f)(t_stack *))
 void	debug_operations(t_stack *stack)
 {
 	printf("| OPERATIONS |\n");
-	input_stack_b(stack, (char *[4]){(char [99]){"6"},
+	// input_stack_b(stack, (char *[4]){(char [99]){"6"},
+	// 	(char [99]){"13"}, (char [99]){"-2147483648"}, NULL});
+	input_stack(stack, &(stack->b), (char *[4]){(char [99]){"6"},
 		(char [99]){"13"}, (char [99]){"-2147483648"}, NULL});
-	print_node(stack->a, "stack a");
-	print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
-	debug_op(stack, &do_sa); debug_op(stack, &do_sb);
-	debug_op(stack, &do_ss);
-	debug_op(stack, &do_pa);
-	debug_op(stack, &do_pb);
-	debug_op(stack, &do_ra);
-	debug_op(stack, &do_rb);
-	debug_op(stack, &do_rr);
-	debug_op(stack, &do_rra);
-	debug_op(stack, &do_rrb);
-	debug_op(stack, &do_rrr);
-}
-
-void	debug_operations_1_node(t_stack *stack)
-{
-	printf("| OPERATIONS 1 NODE |\n");
-	input_stack(stack, (char *[4]){(char [99]){"argv[0]"},
-		(char [99]){"1"}, NULL});
-	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
-	print_node(stack->a, "stack a");
-	print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
+	print_stack(stack);
 	debug_op(stack, &do_sa);
 	debug_op(stack, &do_sb);
 	debug_op(stack, &do_ss);
+	debug_op(stack, &do_pa);
+	debug_op(stack, &do_pb);
 	debug_op(stack, &do_ra);
 	debug_op(stack, &do_rb);
 	debug_op(stack, &do_rr);
@@ -92,32 +61,52 @@ void	debug_operations_1_node(t_stack *stack)
 	debug_op(stack, &do_rrr);
 }
 
-void	debug_push_empty_a(t_stack *stack)
-{
-	printf("| PUSH EMPTY A |\n");
-	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, NULL});
-	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
-	print_node(stack->a, "stack a");
-	print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
-	debug_op(stack, &do_pb);
-}
+// void	debug_operations_1_node(t_stack *stack)
+// {
+// 	printf("| OPERATIONS 1 NODE |\n");
+// 	input_stack(stack, (char *[4]){(char [99]){"argv[0]"},
+// 		(char [99]){"1"}, NULL});
+// 	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
+// 	print_node(stack->a, "stack a");
+// 	print_node(stack->b, "stack b");
+// 	printf("-------- ---- ---- --- - - -- - --\n");
+// 	debug_op(stack, &do_sa);
+// 	debug_op(stack, &do_sb);
+// 	debug_op(stack, &do_ss);
+// 	debug_op(stack, &do_ra);
+// 	debug_op(stack, &do_rb);
+// 	debug_op(stack, &do_rr);
+// 	debug_op(stack, &do_rra);
+// 	debug_op(stack, &do_rrb);
+// 	debug_op(stack, &do_rrr);
+// }
 
-void	debug_push_empty_b(t_stack *stack)
-{
-	printf("| PUSH EMPTY B |\n");
-	input_stack(stack, (char *[4]){(char [99]){"argv[0]"},
-		(char [99]){"1"}, NULL});
-	input_stack_b(stack, (char *[4]){NULL});
-	print_node(stack->a, "stack a");
-	print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
-	debug_op(stack, &do_pa);
-	do_pa(stack);
-	print_node(stack->a, "stack a");
-	print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
-}
+// void	debug_push_empty_a(t_stack *stack)
+// {
+// 	printf("| PUSH EMPTY A |\n");
+// 	input_stack(stack, (char *[4]){(char [99]){"argv[0]"}, NULL});
+// 	input_stack_b(stack, (char *[4]){(char [99]){"6"}, NULL});
+// 	print_node(stack->a, "stack a");
+// 	print_node(stack->b, "stack b");
+// 	printf("-------- ---- ---- --- - - -- - --\n");
+// 	debug_op(stack, &do_pb);
+// }
+
+// void	debug_push_empty_b(t_stack *stack)
+// {
+// 	printf("| PUSH EMPTY B |\n");
+// 	input_stack(stack, (char *[4]){(char [99]){"argv[0]"},
+// 		(char [99]){"1"}, NULL});
+// 	input_stack_b(stack, (char *[4]){NULL});
+// 	print_node(stack->a, "stack a");
+// 	print_node(stack->b, "stack b");
+// 	printf("-------- ---- ---- --- - - -- - --\n");
+// 	debug_op(stack, &do_pa);
+// 	do_pa(stack);
+// 	print_node(stack->a, "stack a");
+// 	print_node(stack->b, "stack b");
+// 	printf("-------- ---- ---- --- - - -- - --\n");
+// }
 
 void	push_swap(char **argv)
 {
@@ -126,7 +115,7 @@ void	push_swap(char **argv)
 
 	stack = NULL;
 	stack = start_stack(stack);
-	input_stack(stack, argv);
+	input_stack(stack, &(stack->a), ++argv);
 	if (!stack->iserror)
 	{
 		debug_operations(stack);
@@ -160,40 +149,4 @@ int	main(int argc, char **argv)
 	stack->a->val = 42;
 	printf("%d", stack->a->val);
 	//printf("last_a = %d\n", stack->last_a->val);
-*/
-
-/*
-	//do_sa(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_sb(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_ss(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	do_pa(stack);
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
-	do_pb(stack);
-	print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	printf("-------- ---- ---- --- - - -- - --\n");
-	//do_ra(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_rb(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_rr(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_rra(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_rrb(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
-	//do_rrr(stack);
-	//print_node(stack->a, "stack a"); print_node(stack->b, "stack b");
-	//printf("-------- ---- ---- --- - - -- - --\n");
 */

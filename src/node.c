@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 19:04:24 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/02 20:31:58 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	add_node_last(t_stack *stack, char stack_name, t_node *add)
+//currently not using t_stack *stack
+void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add)
 {
 	t_node	**head;
 	t_node	*tmp;
 
-	if (stack_name == 'a')
-		head = &(stack->a);
-	else
-		head = &(stack->b);
+	head = stack_name;
 	if (!*head)
 		*head = add;
 	else
@@ -43,16 +41,6 @@ t_node	*nodenew(int num)
 	new->next = NULL;
 	return (new);
 }
-
-//void	add_node_head(t_stack *stack, char stack_name, t_node *add)
-//{
-	
-//}
-
-//void	del_node_head(t_stack *stack, char stack_name, t_node *add)
-//{
-	
-//}
 
 //void	delnode(t_node *node)
 //{

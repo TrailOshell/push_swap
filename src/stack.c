@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 18:01:57 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/02 20:32:09 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,28 @@ t_stack	*start_stack(t_stack *stack)
 	return (stack);
 }
 
-void	input_stack(t_stack *stack, char **argv)
+void	input_stack(t_stack *stack, t_node **stack_name, char **input)
 {
 	int		num;
 
-	argv++;
-	while (*argv)
+	while (*input)
 	{
-		if (notnbr_error(stack, *argv))
+		if (notnbr_error(stack, *input))
 			return ;
-		num = atoi_push_swap(*argv);
+		num = atoi_push_swap(*input);
 		if (dupnbr_error(stack, num))
 			return ;
-		add_node_last(stack, 'a', nodenew(num));
-		argv++;
+		add_node_last(stack, stack_name, nodenew(num));
+		input++;
 	}
+}
+
+t_stack	*get_order_stack(t_stack *stack)
+{
+	t_stack	*tmp;
+	t_stack	*order;
+
+	return(order);
 }
 
 void	end_stack(t_stack *stack)
