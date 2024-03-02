@@ -43,8 +43,6 @@ void	debug_op(t_stack *stack, void (*do_f)(t_stack *))
 void	debug_operations(t_stack *stack)
 {
 	printf("| OPERATIONS |\n");
-	// input_stack_b(stack, (char *[4]){(char [99]){"6"},
-	// 	(char [99]){"13"}, (char [99]){"-2147483648"}, NULL});
 	input_stack(stack, &(stack->b), (char *[4]){(char [99]){"6"},
 		(char [99]){"13"}, (char [99]){"-2147483648"}, NULL});
 	print_stack(stack);
