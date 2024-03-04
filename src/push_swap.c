@@ -162,14 +162,16 @@ void	push_swap(char **argv)
 	//printf("stack->a->next = %d", stack->a->next->val);
 	if (!stack->iserror)
 	{
-		debug_operations(stack);
-		debug_operations_1_node(stack);
-		debug_push_empty_a(stack);
-		debug_push_empty_b(stack);
-		debug_push_1_a(stack);
+		//debug_operations(stack);
+		//debug_operations_1_node(stack);
+		//debug_push_empty_a(stack);
+		//debug_push_empty_b(stack);
+		//debug_push_1_a(stack);
 	}
 	else
 		write(1, "Error\n", 7);
+	get_order_stack(stack, argv);
+	print_node(stack->order, "print order");
 	end_stack(stack);
 }
 
