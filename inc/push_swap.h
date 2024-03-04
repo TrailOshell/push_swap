@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 17:43:03 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 19:35:46 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 
 //	ONLY for testing
 # include <stdio.h>
+
+# define BLACK "\033[1;30m"
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define YELLOW "\033[1;33m"
+# define BLUE "\033[1;34m"
+# define PURPLE "\033[1;35m"
+# define CYAN "\033[1;36m"
+# define WHITE "\033[1;37m"
+# define RESET_C "\033[0m"
 
 typedef struct s_node
 {
@@ -88,5 +98,8 @@ int		dupnbr_error(t_stack *stack, int num);
 
 //	test functions
 void	print_node(t_node *node, char *text);
+//void	set_color(char *color);
+//char	*strtocolor(char *str);
+//void	printcolor(char *s, char *color);
 
 #endif
