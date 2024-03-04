@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/02 20:32:09 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:46:25 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,25 @@ void	input_stack(t_stack *stack, t_node **stack_name, char **input)
 
 	while (*input)
 	{
+		//printf("input start\n");
 		if (notnbr_error(stack, *input))
+		{
+			//printf("notnbr_error()\n");
 			return ;
+		}
 		num = atoi_push_swap(*input);
+		//printf("atoi\n");
+		//printf("num = %d\n");
 		if (dupnbr_error(stack, num))
+		{
+			//printf("dupnbr_error()\n");
 			return ;
+		}
+		//printf("run add_node_last()\n");
 		add_node_last(stack, stack_name, nodenew(num));
+		//printf("run add_node_last() end\n");
 		input++;
+		//printf("input++\n");
 	}
 }
 
@@ -51,24 +63,20 @@ t_stack	*get_order_stack(t_stack *stack)
 void	end_stack(t_stack *stack)
 {
 	t_node	*tmp;
+	t_node	*head;
 
 	if (!stack)
 		return ;
 	tmp = NULL;
+	head = stack->a;
 	while (stack->a)
-	{
-		tmp = stack->a->next;
-		free(stack->a);
-		stack->a = tmp;
-	}
+		nodedel(&stack->a);
 	while (stack->b)
-	{
-		tmp = stack->b->next;
-		free(stack->b);
-		stack->b = tmp;
-	}
+		nodedel(&stack->b);
 	free(stack);
 }
+
+//	print_node(stack->a, "deleting the stack...");
 
 /* input_stack()
 

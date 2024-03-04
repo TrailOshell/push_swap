@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/02 20:31:58 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:28:20tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@ void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add)
 
 	head = stack_name;
 	if (!*head)
+	{
 		*head = add;
+		tmp = add;
+	}
 	else
 	{
-		tmp = *head;
-		while (tmp->next)
-			tmp = tmp->next;
+		head = stack_name;
+		tmp = (*head)->prev;
 		tmp->next = add;
+		(*head)->prev = add;
 	}
+	add->next = *head;
+	add->prev = tmp;
 }
 
 t_node	*nodenew(int num)
@@ -39,14 +44,33 @@ t_node	*nodenew(int num)
 		return (0);
 	new->val = num;
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
-//void	delnode(t_node *node)
-//{
-//	free(node);
-//}
+void	nodedel(t_node **node)
+{
+	t_node	*tmp;
+	t_node	*last;
 
+	tmp = *node;
+	last = (*node)->prev;
+	if ((*node)->next == *node)
+	{
+		free(*node);
+		*node = NULL;
+	}
+	else
+	{
+		*node = (*node)->next;
+		last->next = *node;
+		(*node)->prev = last;
+		free(tmp);
+		tmp = NULL;
+	}
+}
+
+//	printf("%d\n", (*node)->val);
 /* nodenew()
 	//printf("nodenew %d\n", new->val);
 */

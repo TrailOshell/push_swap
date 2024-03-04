@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 18:03:35 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:24:30 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,22 @@ int	notnbr_error(t_stack *stack, char *argv)
 
 int	dupnbr_error(t_stack *stack, int num)
 {
+	t_node	*head;
 	t_node	*tmp;
 
+	head = stack->a;
 	tmp = stack->a;
 	while (tmp)
 	{
+		//printf("run\n");
 		if (tmp->val == num)
 		{
 			stack->iserror = 1;
 			return (1);
 		}
 		tmp = tmp->next;
+		if (tmp == head)
+			break ;
 	}
 	return (0);
 }
