@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 18:56:50 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:45:05 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,48 @@ void	do_push(t_stack *stack, char push_stack)
 	}
 	if (!*head_pull)
 		return ;
+
 	tmp = *head_pull;
-	*head_pull = (*head_pull)->next;
+	//	linking new stack pull
+	if ((*head_pull)->next == *head_pull)
+	{
+		//(*head_pull)->next = NULL;
+		//(*head_pull)->prev = NULL;
+		*head_pull = NULL;
+	}
+	else
+	{
+		*head_pull = (*head_pull)->next;
+		(*head_pull)->prev = tmp->prev;
+		tmp->prev->next = *head_pull;
+	}
+	// linking new stack a
+	(*head_push)->prev->next = tmp;
 	tmp->next = *head_push;
+	tmp->prev = (*head_push)->prev;
+	(*head_push)->prev = tmp;
 	*head_push = tmp;
+
+	//t_node	**head_push;
+	//t_node	**head_pull;
+	//t_node	*tmp;
+
+	//if (push_stack == 'a')
+	//{
+	//	head_push = &(stack->a);
+	//	head_pull = &(stack->b);
+	//}
+	//else if (push_stack == 'b')
+	//{
+	//	head_push = &(stack->b);
+	//	head_pull = &(stack->a);
+	//}
+	//if (!*head_pull)
+	//	return ;
+	//tmp = *head_pull;
+	//*head_pull = (*head_pull)->next;
+	//tmp->next = *head_push;
+	//*head_push = tmp;
 }
 
 void	do_pa(t_stack *stack)

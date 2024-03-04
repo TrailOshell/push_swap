@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:06:17 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 19:16:25 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:25:09 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	do_reverse(t_node **node)
 {
-	t_node	*tmp;
-	t_node	*first;
-	t_node	*last;
+	*node = (*node)->prev;
+	//t_node	*tmp;
+	//t_node	*first;
+	//t_node	*last;
 
-	tmp = *node;
-	last = *node;
-	while (last->next->next)
-		last = last->next;
-	first = last->next;
-	*node = first;
-	first->next = tmp;
-	last->next = NULL;
+	//tmp = *node;
+	//last = *node;
+	//while (last->next->next)
+	//	last = last->next;
+	//first = last->next;
+	//*node = first;
+	//first->next = tmp;
+	//last->next = NULL;
 }
 
 void	do_rra(t_stack *stack)

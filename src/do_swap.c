@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:36:47 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/01 16:27:24 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:56:03 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	do_swap(t_node *node)
 {
 	int		tmp;
 
-	if (!node->next)
+	if (node->next == node)
 		return ;
 	tmp = node->next->val;
 	node->next->val = node->val;

@@ -14,18 +14,24 @@
 
 void	do_rotate(t_node **node)
 {
-	t_node	*tmp;
-	t_node	*first;
-	t_node	*last;
+	//t_node	*tmp;
+	//t_node	*last;
+	//t_node	*first;
 
-	tmp = *node;
-	while (tmp->next)
-		tmp = tmp->next;
-	last = *node;
-	first = (*node)->next;
-	*node = first;
-	tmp->next = last;
-	last->next = NULL;
+	//tmp = (*node)->prev;
+	*node = (*node)->next;
+	//(*node)->prev = last;
+	//last->prev = tmp;
+	//tmp->next = last;
+
+	//tmp = *node;
+	//while (tmp->next)
+	//	tmp = tmp->next;
+	//last = *node;
+	//first = (*node)->next;
+	//*node = first;
+	//tmp->next = last;
+	//last->next = NULL;
 }
 
 void	do_ra(t_stack *stack)
