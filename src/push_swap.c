@@ -181,7 +181,9 @@ void	push_swap(char **argv)
 	//get_order_stack(stack, argv);
 	print_node(stack->order, "print order");
 	find_median(stack, &(stack->a));
-	printf("median val = %d", stack->median);
+	printf("median val = %d\n", stack->median);
+	push_till_median(stack, &(stack->a));
+	print_stack(stack);
 	//print_node_connect(stack->median, "median_node");
 	end_stack(stack);
 }

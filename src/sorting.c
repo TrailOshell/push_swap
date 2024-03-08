@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/08 19:06:35 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:36:43 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,61 @@ void	find_median(t_stack *stack, t_node **stack_name)
 		node_current++;
 	}
 	stack->median = tmp->val;
+}
+
+int	check_median_push(t_stack *stack, t_node *stack_name, int median)
+{
+	t_node	*tmp;
+
+	tmp = stack_name;
+	//while (tmp->next != stack_name)
+	while (tmp)
+	{
+		if (tmp->val <= median)
+		{
+			stack->target = tmp;
+			return (1);
+		}
+		tmp = tmp->next;
+		if (tmp == stack_name)
+			break ;
+	}
+	return (0);
+}
+
+int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
+{
+	t_node	*tmp;
+	int		count;
+
+	count = 0;
+	tmp = stack_name;
+	while (tmp)
+	{
+		if (tmp->val == node->val)
+			break ;
+		count++;
+		tmp = tmp->next;
+		if (tmp == stack_name)
+			break ;
+	}
+	if (count <= (count_nodes(stack_name) / 2))
+		return (1);
+	return (0);
+}
+
+void	push_till_median(t_stack *stack, t_node **stack_name)
+{
+	t_node	*median_node;
+
+	find_median(stack, stack_name);
+	while (check_median_push(stack, *stack_name, stack->median))
+	{
+		if (stack->target == (*stack_name)->next)
+		{
+			
+		}
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 18:45:05 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:38:34 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,3 +100,36 @@ void	do_pb(t_stack *stack)
 	//stack_b remove old head
 	dellst(stack->b);
 	*/
+
+/*
+void	do_push(t_stack *stack, char push_stack)
+{
+	// linking new stack a
+	(*head_push)->prev->next = tmp;
+	tmp->next = *head_push;
+	tmp->prev = (*head_push)->prev;
+	(*head_push)->prev = tmp;
+	*head_push = tmp;
+
+	//t_node	**head_push;
+	//t_node	**head_pull;
+	//t_node	*tmp;
+
+	//if (push_stack == 'a')
+	//{
+	//	head_push = &(stack->a);
+	//	head_pull = &(stack->b);
+	//}
+	//else if (push_stack == 'b')
+	//{
+	//	head_push = &(stack->b);
+	//	head_pull = &(stack->a);
+	//}
+	//if (!*head_pull)
+	//	return ;
+	//tmp = *head_pull;
+	//*head_pull = (*head_pull)->next;
+	//tmp->next = *head_push;
+	//*head_push = tmp;
+}
+*/

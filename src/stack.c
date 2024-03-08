@@ -21,6 +21,7 @@ t_stack	*start_stack(t_stack *stack)
 	stack->last_a = NULL;
 	stack->last_b = NULL;
 	stack->order = NULL;
+	stack->target = NULL;
 	stack->iserror = 0;
 	stack->median = 0;
 	return (stack);
