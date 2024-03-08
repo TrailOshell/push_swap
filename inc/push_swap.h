@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/08 17:55:58 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:04:56 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ typedef struct s_stack
 	struct s_node	*order;
 	struct s_node	*target;
 	int				iserror;
-	int				min;
-	int				min_prev;
+	int				median;
+	//int				min;
+	//int				min_prev;
 }	t_stack;
 
 //	push_swap.c
@@ -55,9 +56,9 @@ void	push_swap(char **argv);
 //	stack files
 // stack.c
 t_stack	*start_stack(t_stack *stack);
-// void	input_stack(t_stack *stack, char **input);
 void	input_stack(t_stack *stack, t_node **stack_name, char **input);
-t_node	*get_order_stack(t_stack *stack, char **argv);
+void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe);
+//t_node	*get_order_stack(t_stack *stack, char **argv);
 void	end_stack(t_stack *stack);
 
 //	node files
@@ -67,6 +68,7 @@ void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add);
 t_node	*nodenew(int num);
 void	nodedel(t_node **node);
 void	swap_nodes_value(t_node **node_1, t_node **node_2);
+int		count_nodes(t_node *node);
 
 //	operations files
 // do_swap.c
@@ -90,6 +92,12 @@ void	do_rrr(t_stack *stack);
 //	util files
 // util.c
 int		atoi_push_swap(char *str);
+
+//	sorting files
+// sorting.c
+t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
+void	find_median(t_stack *stack, t_node **stack_name);
+
 
 //	error functions
 // error.c

@@ -79,6 +79,21 @@ void	swap_nodes_value(t_node **node_1, t_node **node_2)
 	(*node_2)->val = tmp_val;
 }
 
+int	count_nodes(t_node *node)
+{
+	t_node	*tmp;
+	int		count;	
+
+	tmp = node;
+	count = 0;
+	while (tmp->next != node)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
+}
+
 //	printf("%d\n", (*node)->val);
 /* nodenew()
 	//printf("nodenew %d\n", new->val);

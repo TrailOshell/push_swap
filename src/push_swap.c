@@ -150,6 +150,13 @@ void	debug_push_1_a(t_stack *stack)
 	debug_op(stack, &do_pb);
 }
 
+void	print_node_connect(t_node *node, char *node_text)
+{
+	printf("%s->val = %d ", node_text, node->val);
+	printf("%s->next = %d ", node_text, node->next->val);
+	printf("%s->prev = %d\n", node_text, node->prev->val);
+}
+
 void	push_swap(char **argv)
 {
 	t_stack	*stack;
@@ -170,8 +177,12 @@ void	push_swap(char **argv)
 	}
 	else
 		write(1, "Error\n", 7);
-	get_order_stack(stack, argv);
+	current_stack_order(stack, &(stack->a));
+	//get_order_stack(stack, argv);
 	print_node(stack->order, "print order");
+	find_median(stack, &(stack->a));
+	printf("median val = %d", stack->median);
+	//print_node_connect(stack->median, "median_node");
 	end_stack(stack);
 }
 

@@ -20,8 +20,9 @@ t_stack	*start_stack(t_stack *stack)
 	stack->b = NULL;
 	stack->last_a = NULL;
 	stack->last_b = NULL;
-	stack->iserror = 0;
 	stack->order = NULL;
+	stack->iserror = 0;
+	stack->median = 0;
 	return (stack);
 }
 
@@ -47,6 +48,8 @@ void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe)
 	t_node	*tmp;
 
 	head = stack_origin;
+	while (*stack_dupe)
+		nodedel(&(*stack_dupe));
 	while (stack_origin)
 	{
 		add_node_last(stack, stack_dupe, nodenew(stack_origin->val));
@@ -56,33 +59,33 @@ void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe)
 	}
 }
 
-t_node	*get_order_stack(t_stack *stack, char **argv)
-{
-	t_node	*head;
-	t_node	*min_node;
-	t_node	*min_prev;
-	t_node	*tmp;
+//t_node	*get_order_stack(t_stack *stack, char **argv)
+//{
+//	t_node	*head;
+//	t_node	*min_node;
+//	t_node	*min_prev;
+//	t_node	*tmp;
 
-	dupe_stack(stack, stack->a, &(stack->order));
-	min_prev = NULL;
-	head = stack->order;
-	while (head->next != stack->order)
-	{
-		min_node = head;
-		tmp = head;
-		while (tmp->next != head)
-		{
-			tmp = tmp->next;
-			if (tmp->val < min_node->val
-				&& (!min_prev || tmp->val > min_prev->val))
-				min_node = tmp;
-		}
-		swap_nodes_value(&(min_node), &(head));
-		min_prev = head;
-		head = head->next;
-	}
-	return (stack->order);
-}
+//	dupe_stack(stack, stack->a, &(stack->order));
+//	min_prev = NULL;
+//	head = stack->order;
+//	while (head->next != stack->order)
+//	{
+//		min_node = head;
+//		tmp = head;
+//		while (tmp->next != head)
+//		{
+//			tmp = tmp->next;
+//			if (tmp->val < min_node->val
+//				&& (!min_prev || tmp->val > min_prev->val))
+//				min_node = tmp;
+//		}
+//		swap_nodes_value(&(min_node), &(head));
+//		min_prev = head;
+//		head = head->next;
+//	}
+//	return (stack->order);
+//}
 
 void	end_stack(t_stack *stack)
 {
@@ -97,6 +100,8 @@ void	end_stack(t_stack *stack)
 		nodedel(&stack->a);
 	while (stack->b)
 		nodedel(&stack->b);
+	while (stack->order)
+		nodedel(&stack->order);
 	free(stack);
 }
 
