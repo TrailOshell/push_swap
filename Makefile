@@ -122,6 +122,14 @@ test: all
 	./$(NAME) $(input_basic)
 #	./$(NAME) $(input_100)
 
+100: all
+	clear
+	./$(NAME) $(input_100)
+
+500: all
+	clear
+	./$(NAME) $(input_500)
+
 v: val
 
 val: all
