@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 21:57:07 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:18:57by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	input_stack(t_stack *stack, t_node **stack_name, char **input)
 
 void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe)
 {
-	t_node *head;
-	t_node *tmp;
+	t_node	*head;
+	t_node	*tmp;
 
 	head = stack_origin;
 	while (stack_origin)
@@ -60,30 +60,27 @@ t_node	*get_order_stack(t_stack *stack, char **argv)
 {
 	t_node	*head;
 	t_node	*min_node;
+	t_node	*min_prev;
 	t_node	*tmp;
 
-	//printf("stack->order->next = %d", stack->order->next->val);
-	//printf("stack->order->val = %d", (*stack)->order->val);
-	//printf("%s\n", *argv);
-	//input_stack(*stack, &((*stack)->order), argv);
 	dupe_stack(stack, stack->a, &(stack->order));
+	min_prev = NULL;
 	head = stack->order;
-	while (stack->order)
+	while (head->next != stack->order)
 	{
 		min_node = head;
 		tmp = head;
-		while (tmp)
+		while (tmp->next != head)
 		{
-			if (min_node->val > tmp->val)
-				min_node = tmp;
 			tmp = tmp->next;
-			//if (tmp = tmp)
-				break ;
+			if (tmp->val < min_node->val
+				&& (!min_prev || tmp->val > min_prev->val))
+				min_node = tmp;
 		}
-		if (head = stack->order)
-			break ;
+		swap_nodes_value(&(min_node), &(head));
+		min_prev = head;
+		head = head->next;
 	}
-	printf("run get order\n");
 	return (stack->order);
 }
 
@@ -104,6 +101,19 @@ void	end_stack(t_stack *stack)
 }
 
 //	print_node(stack->a, "deleting the stack...");
+
+/* t_node	*get_order_stack(t_stack *stack, char **argv)
+	//printf("stack->order->next = %d", stack->order->next->val);
+	//printf("stack->order->val = %d", (*stack)->order->val);
+	//printf("%s\n", *argv);
+	//input_stack(*stack, &((*stack)->order), argv);
+			
+			printf("%d ", min_node->val);
+			printf("> ");
+			printf("tmp->val = %d ", tmp->val);
+			printf("min_node->val = %d\n", min_node->val);
+			if (min_prev) printf("min_prev->val = %d ", min_prev->val);
+*/
 
 /* input_stack()
 

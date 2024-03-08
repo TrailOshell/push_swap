@@ -70,6 +70,15 @@ void	nodedel(t_node **node)
 	}
 }
 
+void	swap_nodes_value(t_node **node_1, t_node **node_2)
+{
+	int		tmp_val;
+
+	tmp_val = (*node_1)->val;
+	(*node_1)->val = (*node_2)->val;
+	(*node_2)->val = tmp_val;
+}
+
 //	printf("%d\n", (*node)->val);
 /* nodenew()
 	//printf("nodenew %d\n", new->val);

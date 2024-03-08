@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 21:52:06 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:55:58 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ void	end_stack(t_stack *stack);
 // node.c
 // void	add_node_last(t_stack *stack, char stack_name, t_node *add);
 void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add);
-void	add_node_head(t_stack *stack, char stack_name, t_node *add);
-void	del_node_head(t_stack *stack, char stack_name, t_node *add);
 t_node	*nodenew(int num);
 void	nodedel(t_node **node);
+void	swap_nodes_value(t_node **node_1, t_node **node_2);
 
 //	operations files
 // do_swap.c
