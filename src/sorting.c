@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 16:32:05 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:53:47y tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,26 @@ int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
 	return (0);
 }
 
+void	set_operations(char stack_char, void (*swap)(t_stack),
+						void (*rotate)(t_stack), void (*reverse)(t_stack),
+						void (*push)(t_stack *))
+{
+	if (stack_char == 'a')
+	{
+		swap = &(do_sa);
+		rotate = &(do_ra);
+		reverse = &(do_rra);
+		push = &(do_pb);
+	}
+	else if (stack_char == 'b')
+	{
+		swap = &(do_sb);
+		rotate = &(do_rb);
+		reverse = &(do_rrb);
+		push = &(do_pa);
+	}
+}
+
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 {
 	t_node	*head;
@@ -145,7 +165,6 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 		{
 			while (stack->target != head)
 			{
-				//printf("run\n");
 				head = head->next;
 				rotate(stack);
 			}
@@ -164,6 +183,125 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 		printf("%d\n", check_median_push(stack, *stack_name, stack->median));
 		print_stack(stack);
 	}
+}
+
+
+void	sort_3(t_stack *stack, t_node **stack_name)
+{
+	t_node	*head;
+	t_node	*max_node;
+	void	(*swap)(t_stack *);
+	void	(*rotate)(t_stack *);
+	void	(*reverse)(t_stack *);
+
+	if ((*stack_name) == stack->a)
+	{
+		swap = &(do_sa);
+		rotate = &(do_ra);
+		reverse = &(do_rra);
+	}
+	else if ((*stack_name) == stack->b)
+	{
+		swap = &(do_sb);
+		rotate = &(do_rb);
+		reverse = &(do_rrb);
+	}
+	max_node = *stack_name;
+	head = *stack_name;
+	while (head->next != *stack_name)
+	{
+		head = head->next;
+		if (max_node->val < head->val)
+			max_node = head;
+	}
+	if (max_node == *stack_name)
+		rotate(stack);
+	else if (max_node == (*stack_name)->next)
+		reverse(stack);
+	*stack_name = max_node->next;
+	if ((*stack_name)->val > (*stack_name)->next->val)
+		swap(stack);
+}
+
+void	sort_3_descend(t_stack *stack, t_node **stack_name)
+{
+	t_node	*head;
+	t_node	*min_node;
+	void	(*swap)(t_stack *);
+	void	(*rotate)(t_stack *);
+	void	(*reverse)(t_stack *);
+
+	if ((*stack_name) == stack->a)
+	{
+		swap = &(do_sa);
+		rotate = &(do_ra);
+		reverse = &(do_rra);
+	}
+	else if ((*stack_name) == stack->b)
+	{
+		swap = &(do_sb);
+		rotate = &(do_rb);
+		reverse = &(do_rrb);
+	}
+	min_node = *stack_name;
+	head = *stack_name;
+	while (head->next != *stack_name)
+	{
+		head = head->next;
+		if (min_node->val > head->val)
+			min_node = head;
+	}
+	if (min_node == *stack_name)
+		rotate(stack);
+	else if (min_node == (*stack_name)->next)
+		reverse(stack);
+	*stack_name = min_node->next;
+	if ((*stack_name)->val < (*stack_name)->next->val)
+		swap(stack);
+}
+
+void	push_max(t_stack *stack, t_node **stack_name)
+{
+	t_node	*head;
+	t_node	*max_node;
+	void	(*swap)(t_stack *);
+	void	(*rotate)(t_stack *);
+	void	(*reverse)(t_stack *);
+	void	(*push)(t_stack *);
+
+	if ((*stack_name) == stack->a)
+	{
+		swap = &(do_sa);
+		rotate = &(do_ra);
+		reverse = &(do_rra);
+		push = &(do_pb);
+	}
+	else if ((*stack_name) == stack->b)
+	{
+		swap = &(do_sb);
+		rotate = &(do_rb);
+		reverse = &(do_rrb);
+		push = &(do_pa);
+	}
+	max_node = *stack_name;
+	head = *stack_name;
+	while (head->next != *stack_name)
+	{
+		head = head->next;
+		if (max_node->val < head->val)
+			max_node = head;
+	}
+	if (max_node == *stack_name)
+		push(stack);
+	else if (max_node == (*stack_name)->next)
+	{
+		swap(stack);
+		push(stack);
+	}
+	//*stack_name = max_node->next;
+	printf("%srun\n%s", YELLOW, RESET_C);
+	//if ((*stack_name)->val < (*stack_name)->next->val)
+	//	swap(stack);
 }
 
 /*

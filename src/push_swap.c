@@ -186,6 +186,13 @@ void	push_swap(char **argv)
 	printf("median val = %d\n", stack->median);
 	push_till_median(stack, &(stack->a), 'a');
 	print_stack(stack);
+	sort_3(stack, &(stack->a));
+	print_stack(stack);
+	sort_3_descend(stack, &(stack->b));
+	print_stack(stack);
+	while (stack->b)
+		push_max(stack, &(stack->b));
+	print_stack(stack);
 	//print_node_connect(stack->median, "median_node");
 	end_stack(stack);
 }

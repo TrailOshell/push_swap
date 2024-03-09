@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 15:41:46 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:08:58 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,10 @@ int		atoi_push_swap(char *str);
 // sorting.c
 t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
 void	find_median(t_stack *stack, t_node **stack_name);
-//void	push_till_median(t_stack *stack, t_node **stack_name);
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char);
+void	sort_3(t_stack *stack, t_node **stack_name);
+void	sort_3_descend(t_stack *stack, t_node **stack_name);
+void	push_max(t_stack *stack, t_node **stack_name);
 
 
 //	error functions

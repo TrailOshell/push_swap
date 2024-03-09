@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 16:29:10 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:18:14 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	do_push(t_stack *stack, char push_stack)
 		*head_pull = (*head_pull)->next;
 		(*head_pull)->prev = tmp->prev;
 		tmp->prev->next = *head_pull;
+		printf("%s%d\n%s", PURPLE, (*head_pull)->val, RESET_C);
 	}
 	// linking new stack a
 	//printf("%srun\n%s", YELLOW, RESET_C);
