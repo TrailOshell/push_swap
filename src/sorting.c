@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/08 19:36:43 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:32:05 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,67 @@ int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
 	return (0);
 }
 
-void	push_till_median(t_stack *stack, t_node **stack_name)
+void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 {
-	t_node	*median_node;
+	t_node	*head;
+	void	(*swap)(t_stack *);
+	void	(*rotate)(t_stack *);
+	void	(*reverse)(t_stack *);
+	void	(*push)(t_stack *);
+	//t_node	*median_node;
 
+	if (stack_char == 'a')
+	{
+		swap = &(do_sa);
+		rotate = &(do_ra);
+		reverse = &(do_rra);
+		push = &(do_pb);
+	}
+	else if (stack_char == 'b')
+	{
+		swap = &(do_sb);
+		rotate = &(do_rb);
+		reverse = &(do_rrb);
+		push = &(do_pa);
+	}
 	find_median(stack, stack_name);
 	while (check_median_push(stack, *stack_name, stack->median))
 	{
-		if (stack->target == (*stack_name)->next)
+		printf("target = %d\n", stack->target->val);
+		head = *stack_name;
+		if (stack->target == (*stack_name))
 		{
-			
+			push(stack);
+			//print_stack(stack);
 		}
+		else if (stack->target == (*stack_name)->next)
+		{
+			swap(stack);
+			push(stack);
+			//print_stack(stack);
+		}
+		else if (isnear_head(stack, *stack_name, stack->target) == 1)
+		{
+			while (stack->target != head)
+			{
+				//printf("run\n");
+				head = head->next;
+				rotate(stack);
+			}
+			push(stack);
+			//print_stack(stack);
+		}
+		else if (isnear_head(stack, *stack_name, stack->target) == 0)
+		{
+			while (stack->target != head)
+			{
+				head = head->prev;
+				rotate(stack);
+			}
+			push(stack);
+		}
+		printf("%d\n", check_median_push(stack, *stack_name, stack->median));
+		print_stack(stack);
 	}
 }
 

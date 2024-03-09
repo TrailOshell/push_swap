@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/08 19:38:34 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/09 16:29:10 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	do_push(t_stack *stack, char push_stack)
 	}
 	if (!*head_pull)
 		return ;
-
 	tmp = *head_pull;
 	//	linking new stack pull
 	if ((*head_pull)->next == *head_pull)
@@ -46,10 +45,23 @@ void	do_push(t_stack *stack, char push_stack)
 		tmp->prev->next = *head_pull;
 	}
 	// linking new stack a
-	(*head_push)->prev->next = tmp;
-	tmp->next = *head_push;
-	tmp->prev = (*head_push)->prev;
-	(*head_push)->prev = tmp;
+	//printf("%srun\n%s", YELLOW, RESET_C);
+	//printf("%s%d\n%s", PURPLE, tmp->val, RESET_C);
+	//printf("%s%d\n%s", PURPLE, (*head_push)->prev->next->val, RESET_C);
+	tmp->next->prev = tmp->prev;
+	tmp->prev->next = tmp->next;
+	if (!*head_push)
+	{
+		tmp->next = tmp;
+		tmp->prev = tmp;
+	}
+	else
+	{
+		(*head_push)->prev->next = tmp;
+		tmp->next = *head_push;
+		tmp->prev = (*head_push)->prev;
+		(*head_push)->prev = tmp;
+	}
 	*head_push = tmp;
 
 	//t_node	**head_push;
