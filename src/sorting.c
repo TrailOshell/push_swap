@@ -161,7 +161,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 }
 
 
-void	sort_3(t_stack *stack, t_node **stack_name)
+void	sort_3_ascend(t_stack *stack, t_node **stack_name)
 {
 	t_node	*head;
 	t_node	*max_node;
