@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 18:08:58 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:24:03 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ typedef struct s_stack
 	int				median;
 	//int				min;
 	//int				min_prev;
+	void			(*swap)(struct s_stack *);
+	void			(*rotate)(struct s_stack *);
+	void			(*reverse)(struct s_stack *);
+	void			(*push)(struct s_stack *);
 }	t_stack;
 
 //	push_swap.c

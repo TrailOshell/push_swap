@@ -102,83 +102,58 @@ int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
 	return (0);
 }
 
-void	set_operations(char stack_char, void (*swap)(t_stack),
-						void (*rotate)(t_stack), void (*reverse)(t_stack),
-						void (*push)(t_stack *))
+void	set_operations(t_stack *stack, t_node *stack_name)
 {
-	if (stack_char == 'a')
+	if (stack_name == stack->a)
 	{
-		swap = &(do_sa);
-		rotate = &(do_ra);
-		reverse = &(do_rra);
-		push = &(do_pb);
+		stack->swap = &(do_sa);
+		stack->rotate = &(do_ra);
+		stack->reverse = &(do_rra);
+		stack->push = &(do_pb);
 	}
-	else if (stack_char == 'b')
+	else if (stack_name == stack->b)
 	{
-		swap = &(do_sb);
-		rotate = &(do_rb);
-		reverse = &(do_rrb);
-		push = &(do_pa);
+		stack->swap = &(do_sb);
+		stack->rotate = &(do_rb);
+		stack->reverse = &(do_rrb);
+		stack->push = &(do_pa);
 	}
 }
 
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 {
 	t_node	*head;
-	void	(*swap)(t_stack *);
-	void	(*rotate)(t_stack *);
-	void	(*reverse)(t_stack *);
-	void	(*push)(t_stack *);
-	//t_node	*median_node;
 
-	if (stack_char == 'a')
-	{
-		swap = &(do_sa);
-		rotate = &(do_ra);
-		reverse = &(do_rra);
-		push = &(do_pb);
-	}
-	else if (stack_char == 'b')
-	{
-		swap = &(do_sb);
-		rotate = &(do_rb);
-		reverse = &(do_rrb);
-		push = &(do_pa);
-	}
+	set_operations(stack, *stack_name);
 	find_median(stack, stack_name);
 	while (check_median_push(stack, *stack_name, stack->median))
 	{
 		printf("target = %d\n", stack->target->val);
 		head = *stack_name;
 		if (stack->target == (*stack_name))
-		{
-			push(stack);
-			//print_stack(stack);
-		}
+			stack->push(stack);
 		else if (stack->target == (*stack_name)->next)
 		{
-			swap(stack);
-			push(stack);
-			//print_stack(stack);
+			stack->swap(stack);
+			stack->push(stack);
 		}
 		else if (isnear_head(stack, *stack_name, stack->target) == 1)
 		{
 			while (stack->target != head)
 			{
 				head = head->next;
-				rotate(stack);
+				stack->rotate(stack);
 			}
-			push(stack);
-			//print_stack(stack);
+			stack->push(stack);
 		}
 		else if (isnear_head(stack, *stack_name, stack->target) == 0)
 		{
 			while (stack->target != head)
 			{
 				head = head->prev;
-				rotate(stack);
+				stack->rotate(stack);
 			}
-			push(stack);
+			stack->push(stack);
 		}
 		printf("%d\n", check_median_push(stack, *stack_name, stack->median));
 		print_stack(stack);
@@ -190,22 +165,8 @@ void	sort_3(t_stack *stack, t_node **stack_name)
 {
 	t_node	*head;
 	t_node	*max_node;
-	void	(*swap)(t_stack *);
-	void	(*rotate)(t_stack *);
-	void	(*reverse)(t_stack *);
 
-	if ((*stack_name) == stack->a)
-	{
-		swap = &(do_sa);
-		rotate = &(do_ra);
-		reverse = &(do_rra);
-	}
-	else if ((*stack_name) == stack->b)
-	{
-		swap = &(do_sb);
-		rotate = &(do_rb);
-		reverse = &(do_rrb);
-	}
+	set_operations(stack, *stack_name);
 	max_node = *stack_name;
 	head = *stack_name;
 	while (head->next != *stack_name)
@@ -215,34 +176,20 @@ void	sort_3(t_stack *stack, t_node **stack_name)
 			max_node = head;
 	}
 	if (max_node == *stack_name)
-		rotate(stack);
+		stack->rotate(stack);
 	else if (max_node == (*stack_name)->next)
-		reverse(stack);
+		stack->reverse(stack);
 	*stack_name = max_node->next;
 	if ((*stack_name)->val > (*stack_name)->next->val)
-		swap(stack);
+		stack->swap(stack);
 }
 
 void	sort_3_descend(t_stack *stack, t_node **stack_name)
 {
 	t_node	*head;
 	t_node	*min_node;
-	void	(*swap)(t_stack *);
-	void	(*rotate)(t_stack *);
-	void	(*reverse)(t_stack *);
 
-	if ((*stack_name) == stack->a)
-	{
-		swap = &(do_sa);
-		rotate = &(do_ra);
-		reverse = &(do_rra);
-	}
-	else if ((*stack_name) == stack->b)
-	{
-		swap = &(do_sb);
-		rotate = &(do_rb);
-		reverse = &(do_rrb);
-	}
+	set_operations(stack, *stack_name);
 	min_node = *stack_name;
 	head = *stack_name;
 	while (head->next != *stack_name)
@@ -252,37 +199,20 @@ void	sort_3_descend(t_stack *stack, t_node **stack_name)
 			min_node = head;
 	}
 	if (min_node == *stack_name)
-		rotate(stack);
+		stack->rotate(stack);
 	else if (min_node == (*stack_name)->next)
-		reverse(stack);
+		stack->reverse(stack);
 	*stack_name = min_node->next;
 	if ((*stack_name)->val < (*stack_name)->next->val)
-		swap(stack);
+		stack->swap(stack);
 }
 
 void	push_max(t_stack *stack, t_node **stack_name)
 {
 	t_node	*head;
 	t_node	*max_node;
-	void	(*swap)(t_stack *);
-	void	(*rotate)(t_stack *);
-	void	(*reverse)(t_stack *);
-	void	(*push)(t_stack *);
 
-	if ((*stack_name) == stack->a)
-	{
-		swap = &(do_sa);
-		rotate = &(do_ra);
-		reverse = &(do_rra);
-		push = &(do_pb);
-	}
-	else if ((*stack_name) == stack->b)
-	{
-		swap = &(do_sb);
-		rotate = &(do_rb);
-		reverse = &(do_rrb);
-		push = &(do_pa);
-	}
+	set_operations(stack, *stack_name);
 	max_node = *stack_name;
 	head = *stack_name;
 	while (head->next != *stack_name)
@@ -292,11 +222,11 @@ void	push_max(t_stack *stack, t_node **stack_name)
 			max_node = head;
 	}
 	if (max_node == *stack_name)
-		push(stack);
+		stack->push(stack);
 	else if (max_node == (*stack_name)->next)
 	{
-		swap(stack);
-		push(stack);
+		stack->swap(stack);
+		stack->push(stack);
 	}
 	//*stack_name = max_node->next;
 	printf("%srun\n%s", YELLOW, RESET_C);
