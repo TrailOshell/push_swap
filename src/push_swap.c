@@ -179,20 +179,32 @@ void	push_swap(char **argv)
 		write(1, "Error\n", 7);
 	current_stack_order(stack, &(stack->a));
 	//get_order_stack(stack, argv);
-	set_color(YELLOW);
-	print_node(stack->order, "print order");
-	set_color(RESET_C);
-	find_median(stack, &(stack->a));
-	printf("median val = %d\n", stack->median);
-	push_till_median(stack, &(stack->a), 'a');
-	print_stack(stack);
+	//set_color(YELLOW);
+	//print_node(stack->order, "print order");
+	//set_color(RESET_C);
+	//printf("count nodes = %d\n", count_nodes(stack->a));
+	while (count_nodes(stack->a) > 3)
+	{
+		find_median(stack, &(stack->a));
+		//printf("%srun push_till_median\n%s", YELLOW, RESET_C);
+		//printf("median val = %d\n", stack->median);
+		push_till_median(stack, &(stack->a), 'a');
+		//printf("count nodes = %d\n", count_nodes(stack->a));
+	}
+	//printf("stack a val = %d\n", stack->a->val);
+	//print_stack(stack);
+	//printf("%srun sort_3_ascend\n%s", YELLOW, RESET_C);
 	sort_3_ascend(stack, &(stack->a));
-	print_stack(stack);
-	sort_3_descend(stack, &(stack->b));
-	print_stack(stack);
-	while (stack->b)
+	//print_stack(stack);
+	//sort_3_descend(stack, &(stack->b));
+	//print_stack(stack);
+	//while (stack->b)
+	//while (count_nodes(stack->b) > 90)
+	while (count_nodes(stack->b))
+	{
 		push_max(stack, &(stack->b));
-	print_stack(stack);
+		//print_stack(stack);
+	}
 	//print_node_connect(stack->median, "median_node");
 	end_stack(stack);
 }

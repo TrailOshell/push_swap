@@ -85,7 +85,9 @@ int	count_nodes(t_node *node)
 	int		count;	
 
 	tmp = node;
-	count = 0;
+	if (!tmp)
+		return (0);
+	count = 1;
 	while (tmp->next != node)
 	{
 		tmp = tmp->next;

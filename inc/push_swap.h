@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 18:48:20 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:23:21 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int		notnbr_error(t_stack *stack, char *argv);
 int		dupnbr_error(t_stack *stack, int num);
 
 //	test functions
+void	print_stack(t_stack *stack);
 void	print_node(t_node *node, char *text);
 //void	set_color(char *color);
 //char	*strtocolor(char *str);

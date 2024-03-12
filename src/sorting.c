@@ -61,8 +61,7 @@ void	find_median(t_stack *stack, t_node **stack_name)
 	stack->median = tmp->val;
 }
 
-int	check_median_push(t_stack *stack, t_node *stack_name, int median)
-{
+int	check_median_push(t_stack *stack, t_node *stack_name, int median) {
 	t_node	*tmp;
 
 	tmp = stack_name;
@@ -84,22 +83,35 @@ int	check_median_push(t_stack *stack, t_node *stack_name, int median)
 int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
 {
 	t_node	*tmp;
+	t_node	*tmp2;
 	int		count;
 
 	count = 0;
 	tmp = stack_name;
-	while (tmp)
+	tmp2 = stack_name->prev;
+	while (tmp != tmp2)
 	{
 		if (tmp->val == node->val)
-			break ;
-		count++;
+			return (1);
+		else if (tmp2->val == node->val)
+			return (0);
 		tmp = tmp->next;
-		if (tmp == stack_name)
-			break ;
+		tmp2 = tmp2->prev;
 	}
-	if (count <= (count_nodes(stack_name) / 2))
-		return (1);
-	return (0);
+	return (1);
+
+	//while (tmp)
+	//{
+	//	if (tmp->val == node->val)
+	//		break ;
+	//	count++;
+	//	tmp = tmp->next;
+	//	if (tmp == stack_name)
+	//		break ;
+	//}
+	//if (count <= (count_nodes(stack_name) / 2))
+	//	return (1);
+	//return (0);
 }
 
 void	set_operations(t_stack *stack, t_node *stack_name)
@@ -128,7 +140,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 	find_median(stack, stack_name);
 	while (check_median_push(stack, *stack_name, stack->median))
 	{
-		printf("target = %d\n", stack->target->val);
+		//printf("target = %d\n", stack->target->val);
 		head = *stack_name;
 		if (stack->target == (*stack_name))
 			stack->push(stack);
@@ -151,12 +163,12 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->prev;
-				stack->rotate(stack);
+				stack->reverse(stack);
 			}
 			stack->push(stack);
 		}
-		printf("%d\n", check_median_push(stack, *stack_name, stack->median));
-		print_stack(stack);
+		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
+		//print_stack(stack);
 	}
 }
 
@@ -212,6 +224,7 @@ void	push_max(t_stack *stack, t_node **stack_name)
 	t_node	*head;
 	t_node	*max_node;
 
+	//printf("%srun push_max\n%s", YELLOW, RESET_C);
 	set_operations(stack, *stack_name);
 	max_node = *stack_name;
 	head = *stack_name;
@@ -221,15 +234,37 @@ void	push_max(t_stack *stack, t_node **stack_name)
 		if (max_node->val < head->val)
 			max_node = head;
 	}
-	if (max_node == *stack_name)
+	head = *stack_name;
+	//printf("%smax_node = %d\n%s", PURPLE, max_node->val, RESET_C);
+	//printf("%sstack head = %d\n%s", PURPLE, (*stack_name)->val, RESET_C);
+	//printf("%shead = %d\n%s", PURPLE, head->val, RESET_C);
+	if (max_node == head)
 		stack->push(stack);
-	else if (max_node == (*stack_name)->next)
+	else if (max_node == (head)->next)
 	{
 		stack->swap(stack);
 		stack->push(stack);
 	}
+	else if (isnear_head(stack, head, max_node) == 1)
+	{
+		while (max_node != head)
+		{
+			head = head->next;
+			stack->rotate(stack);
+		}
+		stack->push(stack);
+	}
+	else if (isnear_head(stack, head, max_node) == 0)
+	{
+		while (max_node != head)
+		{
+			head = head->prev;
+			stack->reverse(stack);
+		}
+		stack->push(stack);
+	}
 	//*stack_name = max_node->next;
-	printf("%srun\n%s", YELLOW, RESET_C);
+	//print_stack("stack");
 	//if ((*stack_name)->val < (*stack_name)->next->val)
 	//	swap(stack);
 }

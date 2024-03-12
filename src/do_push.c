@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 18:18:14 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:51:22 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	do_push(t_stack *stack, char push_stack)
 		*head_pull = (*head_pull)->next;
 		(*head_pull)->prev = tmp->prev;
 		tmp->prev->next = *head_pull;
-		printf("%s%d\n%s", PURPLE, (*head_pull)->val, RESET_C);
+		//printf("%s%d\n%s", PURPLE, (*head_pull)->val, RESET_C);
 	}
 	// linking new stack a
 	//printf("%srun\n%s", YELLOW, RESET_C);
@@ -124,25 +124,25 @@ void	do_push(t_stack *stack, char push_stack)
 	(*head_push)->prev = tmp;
 	*head_push = tmp;
 
-	//t_node	**head_push;
-	//t_node	**head_pull;
-	//t_node	*tmp;
+	t_node	**head_push;
+	t_node	**head_pull;
+	t_node	*tmp;
 
-	//if (push_stack == 'a')
-	//{
-	//	head_push = &(stack->a);
-	//	head_pull = &(stack->b);
-	//}
-	//else if (push_stack == 'b')
-	//{
-	//	head_push = &(stack->b);
-	//	head_pull = &(stack->a);
-	//}
-	//if (!*head_pull)
-	//	return ;
-	//tmp = *head_pull;
-	//*head_pull = (*head_pull)->next;
-	//tmp->next = *head_push;
-	//*head_push = tmp;
+	if (push_stack == 'a')
+	{
+		head_push = &(stack->a);
+		head_pull = &(stack->b);
+	}
+	else if (push_stack == 'b')
+	{
+		head_push = &(stack->b);
+		head_pull = &(stack->a);
+	}
+	if (!*head_pull)
+		return ;
+	tmp = *head_pull;
+	*head_pull = (*head_pull)->next;
+	tmp->next = *head_push;
+	*head_push = tmp;
 }
 */
