@@ -146,7 +146,10 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			stack->push(stack);
 		else if (stack->target == (*stack_name)->next)
 		{
-			stack->swap(stack);
+			if (stack->b && stack->b->val < stack->b->next->val)
+				do_ss(stack);
+			else
+				stack->swap(stack);
 			stack->push(stack);
 		}
 		else if (isnear_head(stack, *stack_name, stack->target) == 1)
@@ -154,7 +157,10 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->next;
-				stack->rotate(stack);
+				if (stack->b && stack->b->val < stack->b->prev->val)
+					do_rr(stack);
+				else
+					stack->rotate(stack);
 			}
 			stack->push(stack);
 		}
@@ -163,12 +169,15 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->prev;
-				stack->reverse(stack);
+				if (stack->b && stack->b->val > stack->b->prev->val)
+					do_rrr(stack);
+				else
+					stack->reverse(stack);
 			}
 			stack->push(stack);
 		}
 		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
-		//print_stack(stack);
+		print_stack(stack);
 	}
 }
 
@@ -224,7 +233,6 @@ void	push_max(t_stack *stack, t_node **stack_name)
 	t_node	*head;
 	t_node	*max_node;
 
-	//printf("%srun push_max\n%s", YELLOW, RESET_C);
 	set_operations(stack, *stack_name);
 	max_node = *stack_name;
 	head = *stack_name;
@@ -263,10 +271,46 @@ void	push_max(t_stack *stack, t_node **stack_name)
 		}
 		stack->push(stack);
 	}
-	//*stack_name = max_node->next;
-	//print_stack("stack");
-	//if ((*stack_name)->val < (*stack_name)->next->val)
-	//	swap(stack);
+}
+
+void	do_double_op(t_stack *stack)
+{
+	printf("run do_double_op()\n");
+	if (stack->target == (*stack_name))
+		stack->push(stack);
+	else if (stack->target == (*stack_name)->next)
+	{
+		if (stack->b && stack->b->val < stack->b->next->val)
+			do_ss(stack);
+		else
+			stack->swap(stack);
+		stack->push(stack);
+	}
+	else if (isnear_head(stack, *stack_name, stack->target) == 1)
+	{
+		while (stack->target != head)
+		{
+			head = head->next;
+			if (stack->b && stack->b->val < stack->b->prev->val)
+				do_rr(stack);
+			else
+				stack->rotate(stack);
+		}
+		stack->push(stack);
+	}
+	else if (isnear_head(stack, *stack_name, stack->target) == 0)
+	{
+		while (stack->target != head)
+		{
+			head = head->prev;
+			if (stack->b && stack->b->val > stack->b->prev->val)
+				do_rrr(stack);
+			else
+				stack->reverse(stack);
+		}
+		stack->push(stack);
+	}
+	print_stack(stack);
 }
 
 /*

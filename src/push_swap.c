@@ -186,7 +186,7 @@ void	push_swap(char **argv)
 	while (count_nodes(stack->a) > 3)
 	{
 		find_median(stack, &(stack->a));
-		//printf("%srun push_till_median\n%s", YELLOW, RESET_C);
+		printf("%srun push_till_median\n%s", YELLOW, RESET_C);
 		//printf("median val = %d\n", stack->median);
 		push_till_median(stack, &(stack->a), 'a');
 		//printf("count nodes = %d\n", count_nodes(stack->a));
@@ -202,8 +202,9 @@ void	push_swap(char **argv)
 	//while (count_nodes(stack->b) > 90)
 	while (count_nodes(stack->b))
 	{
+		printf("%srun push_max\n%s", YELLOW, RESET_C);
 		push_max(stack, &(stack->b));
-		//print_stack(stack);
+		print_stack(stack);
 	}
 	//print_node_connect(stack->median, "median_node");
 	end_stack(stack);
