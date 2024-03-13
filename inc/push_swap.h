@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/13 00:29:56 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:39:39 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,19 @@ typedef struct s_stack
 	void			(*rotate)(struct s_stack *);
 	void			(*reverse)(struct s_stack *);
 	void			(*push)(struct s_stack *);
+	struct s_log	*log;
 }	t_stack;
 
+typedef struct s_log
+{
+	int				id;
+	struct s_log	*next;
+	struct s_log	*prev;
+	char			*op;
+	char			*text;
+	struct s_node	*a;
+	struct s_node	*b;
+}	t_log;
 //	push_swap.c
 void	push_swap(char **argv);
 
@@ -62,7 +73,6 @@ void	push_swap(char **argv);
 t_stack	*start_stack(t_stack *stack);
 void	input_stack(t_stack *stack, t_node **stack_name, char **input);
 void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe);
-//t_node	*get_order_stack(t_stack *stack, char **argv);
 void	end_stack(t_stack *stack);
 
 //	node files
@@ -95,17 +105,22 @@ void	do_rrr(t_stack *stack);
 
 //	util files
 // util.c
+int		ps_strcmp(char *s1, char *s2);
+char	*ps_strdup(char *str);
 int		atoi_push_swap(char *str);
+void	set_operations(t_stack *stack, t_node *stack_name);
 
 //	sorting files
 // sorting.c
 t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
 void	find_median(t_stack *stack, t_node **stack_name);
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char);
-void	sort_3_ascend(t_stack *stack, t_node **stack_name);
-void	sort_3_descend(t_stack *stack, t_node **stack_name);
 void	push_max(t_stack *stack, t_node **stack_name);
 void	do_double_op(t_stack *stack);
+
+// sort_3.c
+void	sort_3_ascend(t_stack *stack, t_node **stack_name);
+void	sort_3_descend(t_stack *stack, t_node **stack_name);
 
 //	error functions
 // error.c
@@ -118,5 +133,11 @@ void	print_node(t_node *node, char *text);
 //void	set_color(char *color);
 //char	*strtocolor(char *str);
 //void	printcolor(char *s, char *color);
+
+// log.c
+t_log	*newlog(t_stack *stack, char *op, char *text);
+void	add_log(t_stack *stack, t_log *log);
+void	free_log(t_log *log);
+void	print_log(t_log *log);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:06:17 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 18:25:09 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/13 19:18:35 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ void	do_rra(t_stack *stack)
 {
 	do_reverse(&stack->a);
 	write(1, "rra\n", 4);
+	print_stack(stack);
+	add_log(stack, newlog(stack, "rra", " "));
 }
 
 void	do_rrb(t_stack *stack)
 {
 	do_reverse(&stack->b);
 	write(1, "rrb\n", 4);
+	add_log(stack, newlog(stack, "rrb", " "));
 }
 
 void	do_rrr(t_stack *stack)
@@ -46,6 +49,7 @@ void	do_rrr(t_stack *stack)
 	do_reverse(&stack->a);
 	do_reverse(&stack->b);
 	write(1, "rrr\n", 4);
+	add_log(stack, newlog(stack, "rrr", " "));
 }
 
 /*

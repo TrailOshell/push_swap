@@ -6,13 +6,13 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 18:03:32 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/13 18:03:34 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int ps_isnum(int c)
+int	ps_isnum(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -32,11 +32,30 @@ int	ps_strcmp(char *s1, char *s2)
 	return (1);
 }
 
+char	*ps_strdup(char *str)
+{
+	char	*dupe;
+	int		i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	dupe = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (str[i])
+	{
+		dupe[i] = str[i];
+		i++;
+	}
+	dupe[i] = '\0';
+	return (dupe);
+}
+
 int	atoi_push_swap(char *str)
 {
-	int nbr;
-	int len;
-	int isnegative;
+	int	nbr;
+	int	len;
+	int	isnegative;
 
 	if (ps_strcmp(str, "-2147483648"))
 		return (-2147483648);
@@ -55,6 +74,24 @@ int	atoi_push_swap(char *str)
 		len++;
 	}
 	return (nbr * isnegative);
+}
+
+void	set_operations(t_stack *stack, t_node *stack_name)
+{
+	if (stack_name == stack->a)
+	{
+		stack->swap = &(do_sa);
+		stack->rotate = &(do_ra);
+		stack->reverse = &(do_rra);
+		stack->push = &(do_pb);
+	}
+	else if (stack_name == stack->b)
+	{
+		stack->swap = &(do_sb);
+		stack->rotate = &(do_rb);
+		stack->reverse = &(do_rrb);
+		stack->push = &(do_pa);
+	}
 }
 
 /*

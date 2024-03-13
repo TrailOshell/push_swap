@@ -17,7 +17,9 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
 SRC		=	push_swap.c stack.c node.c util.c error.c sorting.c \
-			do_swap.c do_push.c do_rotate.c do_reverse.c
+			sort_3.c \
+			do_swap.c do_push.c do_rotate.c do_reverse.c \
+			log.c
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
@@ -26,6 +28,7 @@ OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 AR		=	ar rc
 CC		=	cc
 #CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-g
 RM		=	rm -f
 RM_RF	= 	rm -rf
 

@@ -165,6 +165,7 @@ void	push_swap(char **argv)
 	stack = NULL;
 	stack = start_stack(stack);
 	input_stack(stack, &(stack->a), ++argv);
+	//add_log(stack, newlog(stack, "new", " "));
 	//print_node(stack->a, "print a");
 	//printf("stack->a->next = %d", stack->a->next->val);
 	if (!stack->iserror)
@@ -178,7 +179,6 @@ void	push_swap(char **argv)
 	else
 		write(1, "Error\n", 7);
 	current_stack_order(stack, &(stack->a));
-	//get_order_stack(stack, argv);
 	//set_color(YELLOW);
 	//print_node(stack->order, "print order");
 	//set_color(RESET_C);
@@ -186,7 +186,7 @@ void	push_swap(char **argv)
 	while (count_nodes(stack->a) > 3)
 	{
 		find_median(stack, &(stack->a));
-		printf("%srun push_till_median\n%s", YELLOW, RESET_C);
+		//printf("%srun push_till_median\n%s", YELLOW, RESET_C);
 		//printf("median val = %d\n", stack->median);
 		push_till_median(stack, &(stack->a), 'a');
 		//printf("count nodes = %d\n", count_nodes(stack->a));
@@ -207,6 +207,8 @@ void	push_swap(char **argv)
 		// print_stack(stack);
 	}
 	//print_node_connect(stack->median, "median_node");
+	print_log(stack->log);
+	//free_log(stack->log);
 	end_stack(stack);
 }
 

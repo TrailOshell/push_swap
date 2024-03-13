@@ -100,36 +100,6 @@ int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
 	}
 	return (1);
 
-	//while (tmp)
-	//{
-	//	if (tmp->val == node->val)
-	//		break ;
-	//	count++;
-	//	tmp = tmp->next;
-	//	if (tmp == stack_name)
-	//		break ;
-	//}
-	//if (count <= (count_nodes(stack_name) / 2))
-	//	return (1);
-	//return (0);
-}
-
-void	set_operations(t_stack *stack, t_node *stack_name)
-{
-	if (stack_name == stack->a)
-	{
-		stack->swap = &(do_sa);
-		stack->rotate = &(do_ra);
-		stack->reverse = &(do_rra);
-		stack->push = &(do_pb);
-	}
-	else if (stack_name == stack->b)
-	{
-		stack->swap = &(do_sb);
-		stack->rotate = &(do_rb);
-		stack->reverse = &(do_rrb);
-		stack->push = &(do_pa);
-	}
 }
 
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
@@ -181,55 +151,8 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 		}
 		do_double_op(stack);
 		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
-		print_stack(stack);
+		//print_stack(stack);
 	}
-}
-
-
-void	sort_3_ascend(t_stack *stack, t_node **stack_name)
-{
-	t_node	*head;
-	t_node	*max_node;
-
-	set_operations(stack, *stack_name);
-	max_node = *stack_name;
-	head = *stack_name;
-	while (head->next != *stack_name)
-	{
-		head = head->next;
-		if (max_node->val < head->val)
-			max_node = head;
-	}
-	if (max_node == *stack_name)
-		stack->rotate(stack);
-	else if (max_node == (*stack_name)->next)
-		stack->reverse(stack);
-	*stack_name = max_node->next;
-	if ((*stack_name)->val > (*stack_name)->next->val)
-		stack->swap(stack);
-}
-
-void	sort_3_descend(t_stack *stack, t_node **stack_name)
-{
-	t_node	*head;
-	t_node	*min_node;
-
-	set_operations(stack, *stack_name);
-	min_node = *stack_name;
-	head = *stack_name;
-	while (head->next != *stack_name)
-	{
-		head = head->next;
-		if (min_node->val > head->val)
-			min_node = head;
-	}
-	if (min_node == *stack_name)
-		stack->rotate(stack);
-	else if (min_node == (*stack_name)->next)
-		stack->reverse(stack);
-	*stack_name = min_node->next;
-	if ((*stack_name)->val < (*stack_name)->next->val)
-		stack->swap(stack);
 }
 
 void	push_max(t_stack *stack, t_node **stack_name)
@@ -290,34 +213,28 @@ void	do_double_op(t_stack *stack)
 		if (stack->a->val > stack->a->next->val
 			&& stack->b->val < stack->b->next->val)
 		{
-			printf("%srun do_double_op()\n%s", GREEN, RESET_C);
+			//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_ss(stack);
 		}
 		else if (stack->a->val > stack->a->prev->val
 			&& stack->b->val < stack->b->prev->val)
 		{
-			printf("%srun do_double_op()\n%s", GREEN, RESET_C);
+			//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_rrr(stack);
 		}
 		else if (stack->a->val > stack->a->prev->val
 			&& stack->b->val < stack->b->prev->val)
 		{
-			printf("%srun do_double_op()\n%s", GREEN, RESET_C);
+			//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_rr(stack);
 		}
 		else
 		{
-			printf("%snot do_double_op()\n%s", CYAN, RESET_C);
-			print_stack(stack);
+			//printf("%snot do_double_op()\n%s", CYAN, RESET_C);
+			//print_stack(stack);
 			break ;
 		}
 		// print_stack(stack);
 	}
 	// print_stack(stack);
 }
-
-/*
-	5 -> 3
-	(5 / 2) + 1 = 3
-	6 -> 3
-*/
