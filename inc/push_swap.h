@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/12 17:23:21 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:29:56 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char);
 void	sort_3_ascend(t_stack *stack, t_node **stack_name);
 void	sort_3_descend(t_stack *stack, t_node **stack_name);
 void	push_max(t_stack *stack, t_node **stack_name);
-
+void	do_double_op(t_stack *stack);
 
 //	error functions
 // error.c

@@ -144,9 +144,10 @@ val: all
 
 l: all
 	clear
-#	./$(NAME) $(input_500) $(L)
+	./$(NAME) $(input_100) | wc -l
+
+L: all
+	clear
 	./$(NAME) $(input_500) | wc -l
-#	$(L)
-#	echo $(L)
 	
 .PHONY += t test

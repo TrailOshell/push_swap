@@ -138,9 +138,10 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 
 	set_operations(stack, *stack_name);
 	find_median(stack, stack_name);
+	do_double_op(stack);
 	while (check_median_push(stack, *stack_name, stack->median))
 	{
-		//printf("target = %d\n", stack->target->val);
+		// printf("target = %d\n", stack->target->val);
 		head = *stack_name;
 		if (stack->target == (*stack_name))
 			stack->push(stack);
@@ -161,6 +162,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 					do_rr(stack);
 				else
 					stack->rotate(stack);
+				do_double_op(stack);
 			}
 			stack->push(stack);
 		}
@@ -173,9 +175,11 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 					do_rrr(stack);
 				else
 					stack->reverse(stack);
+				do_double_op(stack);
 			}
 			stack->push(stack);
 		}
+		do_double_op(stack);
 		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
 		print_stack(stack);
 	}
@@ -275,42 +279,41 @@ void	push_max(t_stack *stack, t_node **stack_name)
 
 void	do_double_op(t_stack *stack)
 {
-	printf("run do_double_op()\n");
-	if (stack->target == (*stack_name))
-		stack->push(stack);
-	else if (stack->target == (*stack_name)->next)
+
+	// printf("a = %d\n", count_nodes(stack->a));
+	// printf("b = %d\n", count_nodes(stack->b));
+	if ((!stack->a || !stack->b)
+		|| (count_nodes(stack->a) <= 3 || count_nodes(stack->b) <= 3))
+			return ;
+	while (stack->a && stack->b)
 	{
-		if (stack->b && stack->b->val < stack->b->next->val)
+		if (stack->a->val > stack->a->next->val
+			&& stack->b->val < stack->b->next->val)
+		{
+			printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_ss(stack);
+		}
+		else if (stack->a->val > stack->a->prev->val
+			&& stack->b->val < stack->b->prev->val)
+		{
+			printf("%srun do_double_op()\n%s", GREEN, RESET_C);
+			do_rrr(stack);
+		}
+		else if (stack->a->val > stack->a->prev->val
+			&& stack->b->val < stack->b->prev->val)
+		{
+			printf("%srun do_double_op()\n%s", GREEN, RESET_C);
+			do_rr(stack);
+		}
 		else
-			stack->swap(stack);
-		stack->push(stack);
-	}
-	else if (isnear_head(stack, *stack_name, stack->target) == 1)
-	{
-		while (stack->target != head)
 		{
-			head = head->next;
-			if (stack->b && stack->b->val < stack->b->prev->val)
-				do_rr(stack);
-			else
-				stack->rotate(stack);
+			printf("%snot do_double_op()\n%s", CYAN, RESET_C);
+			print_stack(stack);
+			break ;
 		}
-		stack->push(stack);
+		// print_stack(stack);
 	}
-	else if (isnear_head(stack, *stack_name, stack->target) == 0)
-	{
-		while (stack->target != head)
-		{
-			head = head->prev;
-			if (stack->b && stack->b->val > stack->b->prev->val)
-				do_rrr(stack);
-			else
-				stack->reverse(stack);
-		}
-		stack->push(stack);
-	}
-	print_stack(stack);
+	// print_stack(stack);
 }
 
 /*
