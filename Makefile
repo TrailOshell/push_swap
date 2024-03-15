@@ -19,7 +19,7 @@ SRC_PTH	=	src/
 SRC		=	push_swap.c stack.c node.c util.c error.c sorting.c \
 			sort_3.c \
 			do_swap.c do_push.c do_rotate.c do_reverse.c \
-			log.c
+			debug.c log.c
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)

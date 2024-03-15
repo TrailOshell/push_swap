@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/13 18:39:39 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:01:20 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,20 @@ int		notnbr_error(t_stack *stack, char *argv);
 int		dupnbr_error(t_stack *stack, int num);
 
 //	test functions
+// debug.c
 void	print_stack(t_stack *stack);
 void	print_node(t_node *node, char *text);
-//void	set_color(char *color);
-//char	*strtocolor(char *str);
-//void	printcolor(char *s, char *color);
+void	set_color(char *color);
+char	*strtocolor(char *str);
+void	printcolor(char *s, char *color);
+void	debug_title(char *s);
+void	debug_op(t_stack *stack, void (*do_f)(t_stack *));
+void	debug_operations(t_stack *stack);
+void	debug_operations_1_node(t_stack *stack);
+void	debug_push_empty_a(t_stack *stack);
+void	debug_push_empty_b(t_stack *stack);
+void	debug_push_1_a(t_stack *stack);
+void	print_node_connect(t_node *node, char *node_text);
 
 // log.c
 t_log	*newlog(t_stack *stack, char *op, char *text);
