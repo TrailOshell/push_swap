@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/15 11:01:20 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/16 18:51:06 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_stack
 typedef struct s_log
 {
 	int				id;
+	int				op_count;
 	struct s_log	*next;
 	struct s_log	*prev;
 	char			*op;
@@ -145,7 +146,7 @@ void	print_node_connect(t_node *node, char *node_text);
 
 // log.c
 t_log	*newlog(t_stack *stack, char *op, char *text);
-void	add_log(t_stack *stack, t_log *log);
+void	add_log(t_stack *stack, t_log *log, int add_count);
 void	free_log(t_log *log);
 void	print_log(t_log *log);
 

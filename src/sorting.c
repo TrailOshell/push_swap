@@ -132,7 +132,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 					do_rr(stack);
 				else
 					stack->rotate(stack);
-				do_double_op(stack);
+				//do_double_op(stack);
 			}
 			stack->push(stack);
 		}
@@ -145,7 +145,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 					do_rrr(stack);
 				else
 					stack->reverse(stack);
-				do_double_op(stack);
+				//do_double_op(stack);
 			}
 			stack->push(stack);
 		}

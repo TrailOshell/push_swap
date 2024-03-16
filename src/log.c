@@ -1,10 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   log.c                                              :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */ /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   log.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:55:00 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/13 19:29:59 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:01:57by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +20,15 @@ t_log	*newlog(t_stack *stack, char *op, char *text)
 	if (!new)
 		return (0);
 	new->id = 0;
+	new->op_count = 0;
 	new->next = NULL;
 	new->prev = NULL;
-	new->op = ps_strdup(op);
-	new->text = ps_strdup(text);
+	new->op = NULL;
+	new->text = NULL;
+	if (op)
+		new->op = ps_strdup(op);
+	if (text)
+		new->text = ps_strdup(text);
 	new->a = NULL;
 	new->b = NULL;
 	dupe_stack(stack, stack->a, &(new->a));
@@ -29,11 +36,12 @@ t_log	*newlog(t_stack *stack, char *op, char *text)
 	return (new);
 }
 
-void	add_log(t_stack *stack, t_log *log)
+void	add_log(t_stack *stack, t_log *log, int add_count)
 {
 	if (!stack->log)
 	{
 		log->id = 1;
+		log->op_count = add_count;
 		stack->log = log;
 		log->next = log;
 		log->prev = log;
@@ -41,6 +49,7 @@ void	add_log(t_stack *stack, t_log *log)
 	else
 	{
 		log->id = stack->log->prev->id + 1;
+		log->op_count = stack->log->prev->op_count + add_count;
 		log->next = stack->log;
 		log->prev = stack->log->prev;
 		stack->log->prev->next = log;
@@ -78,7 +87,12 @@ void	set_log_target(t_log *log, t_node **a, t_node **b)
 {
 	char	*s;
 
-	s = ps_strdup(log->op);
+	*a = NULL;
+	*b = NULL;
+	if (log->op)
+		s = ps_strdup(log->op);
+	else
+		return ;
 	if (ps_strcmp(s, "sa") || ps_strcmp(s, "ss"))
 		*a = log->a->next;
 	else if (ps_strcmp(s, "ra") || ps_strcmp(s, "rr"))
@@ -98,7 +112,6 @@ void	print_log_stack(t_node *log_node, t_node *target, char *color)
 {
 	t_node	*head;
 
-	printf("%sa: [", color);
 	head = log_node;
 	while (log_node)
 	{
@@ -123,15 +136,23 @@ void	print_log(t_log *log)
 	while (log)
 	{
 		set_log_target(log, &target_a, &target_b);
-		printf("%s\t%d:\t%s", GREEN, log->id, RESET_C);
-		printf("%s %s%s", PURPLE, log->op, RESET_C);
 		if (log->text)
-			printf("%s %s%s", YELLOW, log->text, RESET_C);
-		printf("\t");
-		print_log_stack(log->a, target_a, RED);
-		printf("\t\t\t");
-		print_log_stack(log->b, target_b, BLUE);
-		printf("%s", RESET_C);
+		{
+			printf("%s\t%d:\t%s", GREEN, log->next->op_count, RESET_C);
+			printf("%s %s%s\n", YELLOW, log->text, RESET_C);
+		}
+		if (log->op)
+		{
+			printf("%s\t%d:\t%s", GREEN, log->op_count, RESET_C);
+			printf("%s %s%s", PURPLE, log->op, RESET_C);
+			set_color(RED);
+			printf("\ta: [");
+			print_log_stack(log->a, target_a, RED);
+			set_color(BLUE);
+			printf("\t\t\tb: [");
+			print_log_stack(log->b, target_b, BLUE);
+			set_color(RESET_C);
+		}
 		log = log->next;
 		if (log->id == 1)
 			break ;

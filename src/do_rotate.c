@@ -38,14 +38,14 @@ void	do_ra(t_stack *stack)
 {
 	do_rotate(&stack->a);
 	write(1, "ra\n", 3);
-	add_log(stack, newlog(stack, "ra", " "));
+	add_log(stack, newlog(stack, "ra", NULL), 1);
 }
 
 void	do_rb(t_stack *stack)
 {
 	do_rotate(&stack->b);
 	write(1, "rb\n", 3);
-	add_log(stack, newlog(stack, "rb", " "));
+	add_log(stack, newlog(stack, "rb", NULL), 1);
 }
 
 void	do_rr(t_stack *stack)
@@ -53,7 +53,7 @@ void	do_rr(t_stack *stack)
 	do_rotate(&stack->a);
 	do_rotate(&stack->b);
 	write(1, "rr\n", 3);
-	add_log(stack, newlog(stack, "rr", " "));
+	add_log(stack, newlog(stack, "rr", NULL), 1);
 }
 
 /* void	do_rotate(t_node *node)
