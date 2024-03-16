@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:36:47 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/13 19:18:07 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:37:47 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	do_sa(t_stack *stack)
 {
 	do_swap(stack->a);
 	write(1, "sa\n", 3);
-	print_stack(stack);
 	add_log(stack, newlog(stack, "sa", " "));
 }
 

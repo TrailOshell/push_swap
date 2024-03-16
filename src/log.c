@@ -1,9 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   log.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   log.c                                              :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */ /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:55:00 by tsomchan          #+#    #+#             */
 /*   Updated: 2024/03/13 19:29:59 by tsomchan         ###   ########.fr       */
@@ -22,12 +20,8 @@ t_log	*newlog(t_stack *stack, char *op, char *text)
 	new->id = 0;
 	new->next = NULL;
 	new->prev = NULL;
-	new->op = NULL;
-	new->text = NULL;
-	if (*op)
-		new->op = ps_strdup(op);
-	if (*text)
-		new->text = ps_strdup(text);
+	new->op = ps_strdup(op);
+	new->text = ps_strdup(text);
 	new->a = NULL;
 	new->b = NULL;
 	dupe_stack(stack, stack->a, &(new->a));
@@ -73,20 +67,8 @@ void	free_log(t_log *log)
 		while (log->b)
 			nodedel(&(log->b));
 		tmp = log;
-		if (log->next == log)
-		{
-			free(log);
-			log = NULL;
-			break ;
-		}
-		else
-		{
-			log = log->next;
-			tmp->prev->next = log;
-			free(tmp);
-			tmp = NULL;
-		}
-		printf("run\n");
+		log = log->next;
+		free(tmp);
 		if (log == head)
 			break ;
 	}
@@ -94,74 +76,43 @@ void	free_log(t_log *log)
 
 void	set_log_target(t_log *log, t_node **a, t_node **b)
 {
-	if (ps_strcmp(log->op, "rr") == 1)
-	{
-		*a = log->a->prev;
-		*b = log->b->prev;
-	}
-	else if (ps_strcmp(log->op, "ra") == 1)
-		*a = log->a->prev;
-	else if (ps_strcmp(log->op, "rb") == 1)
-		*b = log->b->prev;
-	else if (ps_strcmp(log->op, "rra") == 1 || ps_strcmp(log->op, "pa") == 1)
-		*a = log->a;
-	else if (ps_strcmp(log->op, "rrb") == 1 || ps_strcmp(log->op, "pb") == 1)
-		*b = log->b;
-	else if (ps_strcmp(log->op, "rrr") == 1)
-	{
-		*a = log->a;
-		*b = log->b;
-	}
-	else if (ps_strcmp(log->op, "sa") == 1)
+	char	*s;
+
+	s = ps_strdup(log->op);
+	if (ps_strcmp(s, "sa") || ps_strcmp(s, "ss"))
 		*a = log->a->next;
-	else if (ps_strcmp(log->op, "sb") == 1)
+	else if (ps_strcmp(s, "ra") || ps_strcmp(s, "rr"))
+		*a = log->a->prev;
+	else if (ps_strcmp(s, "rra") || ps_strcmp(s, "pa") || ps_strcmp(s, "rrr"))
+		*a = log->a;
+	if (ps_strcmp(s, "sb") || ps_strcmp(s, "ss"))
 		*b = log->b->next;
-	else if (ps_strcmp(log->op, "ss") == 1)
-	{
-		*a = log->a->next;
-		*b = log->b->next;
-	}
-	else
-	{
-		*a = NULL;
-		*b = NULL;
-	}
+	else if (ps_strcmp(s, "rb") || ps_strcmp(s, "rr"))
+		*b = log->b->prev;
+	else if (ps_strcmp(s, "rrb") || ps_strcmp(s, "pb") || ps_strcmp(s, "rrr"))
+		*b = log->b;
+	free(s);
 }
 
-void	print_log_stack(t_log *log, t_node *target_a, t_node *target_b)
+void	print_log_stack(t_node *log_node, t_node *target, char *color)
 {
 	t_node	*head;
 
-	printf("%sa: [", RED);
-	head = log->a;
-	while (log->a)
+	printf("%sa: [", color);
+	head = log_node;
+	while (log_node)
 	{
-		if (target_a && log->a == target_a)
-			printf("%s %d%s", YELLOW, log->a->val, RED);
+		if (target && log_node == target)
+			printf("%s%d%s", YELLOW, log_node->val, color);
 		else
-			printf("%d", log->a->val);
-		log->a = log->a->next;
-		if (log->a == head)
+			printf("%d", log_node->val);
+		log_node = log_node->next;
+		if (log_node == head)
 			break ;
 		printf(", ");
 	}
 	printf("]");
 	printf("\n");
-	printf("\t\t\t%sb: [", BLUE);
-	head = log->b;
-	while (log->b)
-	{
-		if (target_b && log->b == target_b)
-			printf("%s %d%s", YELLOW, log->b->val, BLUE);
-		else
-			printf("%d", log->a->val);
-		log->b = log->b->next;
-		if (log->b == head)
-			break ;
-		printf(", ");
-	}
-	printf("]");
-	printf("\n%s", RESET_C);
 }
 
 void	print_log(t_log *log)
@@ -177,29 +128,64 @@ void	print_log(t_log *log)
 		if (log->text)
 			printf("%s %s%s", YELLOW, log->text, RESET_C);
 		printf("\t");
-		print_log_stack(log, target_a, target_b);
+		print_log_stack(log->a, target_a, RED);
+		printf("\t\t\t");
+		print_log_stack(log->b, target_b, BLUE);
+		printf("%s", RESET_C);
 		log = log->next;
 		if (log->id == 1)
 			break ;
 	}
-	printf("end log\n");
-	//t_log	*head;
-	//t_log	*tmp;
-	//t_node	*node1;
-	//t_node	*node2;
-
-	//head = log;
-	//tmp = log;
-	//printf("%s", text);
-	//printf(": [");
-	//while (tmp)
-	//{
-	//	printf("%d", tmp->val);
-	//	tmp = tmp->next;
-	//	if (tmp == head)
-	//		break ;
-	//	printf(", ");
-	//}
-	//printf("]");
-	//printf("\n");
 }
+
+/* newlog()
+	//new->a = malloc(sizeof(t_node));
+	//new->b = malloc(sizeof(t_node));
+	//if (stack->a)
+	//{
+	//	printf("stack->a = %d\t", stack->a->val);
+	//	printf("new->a = %d\n", new->a->val);
+	//	print_stack(stack);
+	//}
+	//if (stack->b)
+	//{
+	//	printf("stack->b = %d\t", stack->b->val);
+	//	printf("new->b = %d\n", new->b->val);
+	//	print_stack(stack);
+	//}
+*/
+
+/* void	set_log_target(t_log *log, t_node **a, t_node **b)
+	//if (ps_strcmp(log->op, "rr") == 1)
+	//{
+	//	*a = log->a->prev;
+	//	*b = log->b->prev;
+	//}
+	//else if (ps_strcmp(log->op, "ra") == 1)
+	//	*a = log->a->prev;
+	//else if (ps_strcmp(log->op, "rb") == 1)
+	//	*b = log->b->prev;
+	//else if (ps_strcmp(log->op, "rra") == 1 || ps_strcmp(log->op, "pa") == 1)
+	//	*a = log->a;
+	//else if (ps_strcmp(log->op, "rrb") == 1 || ps_strcmp(log->op, "pb") == 1)
+	//	*b = log->b;
+	//else if (ps_strcmp(log->op, "rrr") == 1)
+	//{
+	//	*a = log->a;
+	//	*b = log->b;
+	//}
+	//else if (ps_strcmp(log->op, "sa") == 1)
+	//	*a = log->a->next;
+	//else if (ps_strcmp(log->op, "sb") == 1)
+	//	*b = log->b->next;
+	//else if (ps_strcmp(log->op, "ss") == 1)
+	//{
+	//	*a = log->a->next;
+	//	*b = log->b->next;
+	//}
+	//else
+	//{
+	//	*a = NULL;
+	//	*b = NULL;
+	//}
+*/

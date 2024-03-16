@@ -37,8 +37,10 @@ void	push_swap(char **argv)
 		// print_stack(stack);
 	}
 	//print_node_connect(stack->median, "median_node");
+
 	print_log(stack->log);
-	// free_log(stack->log);
+	free_log(stack->log);
+
 	end_stack(stack);
 }
 

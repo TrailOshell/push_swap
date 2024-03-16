@@ -207,33 +207,21 @@ void	do_double_op(t_stack *stack)
 	// printf("b = %d\n", count_nodes(stack->b));
 	if ((!stack->a || !stack->b)
 		|| (count_nodes(stack->a) <= 3 || count_nodes(stack->b) <= 3))
-			return ;
+		return ;
 	while (stack->a && stack->b)
 	{
 		if (stack->a->val > stack->a->next->val
 			&& stack->b->val < stack->b->next->val)
-		{
-			//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_ss(stack);
-		}
 		else if (stack->a->val > stack->a->prev->val
 			&& stack->b->val < stack->b->prev->val)
-		{
-			//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_rrr(stack);
-		}
 		else if (stack->a->val > stack->a->prev->val
 			&& stack->b->val < stack->b->prev->val)
-		{
-			//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 			do_rr(stack);
-		}
 		else
-		{
-			//printf("%snot do_double_op()\n%s", CYAN, RESET_C);
-			//print_stack(stack);
 			break ;
-		}
+		//printf("%srun do_double_op()\n%s", GREEN, RESET_C);
 		// print_stack(stack);
 	}
 	// print_stack(stack);
