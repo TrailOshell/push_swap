@@ -46,7 +46,6 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 
 	set_operations(stack, *stack_name);
 	find_median(stack, stack_name);
-	do_double_op(stack);
 	while (check_median_push(stack, *stack_name, stack->median))
 	{
 		// printf("target = %d\n", stack->target->val);
@@ -85,7 +84,6 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			}
 			stack->push(stack);
 		}
-		//do_double_op(stack);
 		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
 		//print_stack(stack);
 	}

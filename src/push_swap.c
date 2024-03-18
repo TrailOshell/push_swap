@@ -30,11 +30,13 @@ void	push_swap(char **argv)
 	while (count_nodes(stack->a) > 5)
 	{
 		find_median(stack, &(stack->a));
-		//printf("median val = %d\n", stack->median);
+		printf("median val = %d\n", stack->median);
 		//printf("count nodes = %d\n", count_nodes(stack->a));
 		add_log(stack, newlog(stack, NULL, "push_till_median"), 0);
 		push_till_median(stack, &(stack->a), 'a');
+		print_stack(stack);
 	}
+	printf("count nodes = %d\n", count_nodes(stack->a));
 	add_log(stack, newlog(stack, NULL, "sort_in_5"), 0);
 	sort_in_5(stack);
 	while (count_nodes(stack->b))
