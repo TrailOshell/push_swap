@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 16:52:22 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:20:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,11 @@ t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char);
 void	push_max(t_stack *stack, t_node **stack_name);
 void	do_double_op(t_stack *stack);
+void	push_min_max(t_stack *stack, t_node **stack_name);
+void	final_order(t_stack *stack);
 
 // sort_3.c
-void	sort_3_ascend(t_stack *stack, t_node **stack_name);
+//void	sort_3_ascend(t_stack *stack, t_node **stack_name);
 //void	sort_3_descend(t_stack *stack, t_node **stack_name);
 
 // sort_5.c

@@ -164,41 +164,45 @@ void	do_double_op(t_stack *stack)
 
 void	push_min_max(t_stack *stack, t_node **stack_name)
 {
-	t_node	*head;
-	int		min;
-	int		max;
-	t_node	*tmp;
-	t_node	*tmp2;
+	int			min;
+	int			max;
+	t_node		*tmp;
+	t_node		*tmp2;
+	void		(*do_op)(t_stack *);
 
-	set_operations(stack, *stack_name);
 	min = find_min(stack, stack_name);
 	max = find_max(stack, stack_name);
-	while (*stack_name)
+	tmp = *stack_name;
+	tmp2 = (*stack_name)->prev;
+	while (tmp)
 	{
-		tmp = *stack_name;
-		tmp2 = (*stack_name)->prev;
-		while (tmp != tmp2)
+		if (tmp->val == min || tmp->val == max)
 		{
-			if (tmp->val == min || tmp->val == max)
-			{
-				stack->target = tmp;
-				break ;
-			}
-			else if (tmp2->val == min || tmp2->val == max)
-			{
-				stack->target = tmp2;
-				break ;
-			}
-			tmp = tmp->next;
-			tmp2 = tmp2->prev;
+			stack->target = tmp;
+			do_op = do_rb;
+			break ;
 		}
-	}
-	if (stack->target == tmp)
-	{
-		while (max_node != head)
+		else if (tmp2->val == min || tmp2->val == max)
 		{
-			head = head->next;
-			stack->rotate(stack);
+			stack->target = tmp2;
+			do_op = do_rrb;
+			break ;
 		}
+		tmp = tmp->next;
+		tmp2 = tmp2->prev;
 	}
+	while (stack->b != stack->target)
+		do_op(stack);
+	do_pa(stack);
+	if (stack->target->val == min)
+		do_ra(stack);
+}
+
+void	final_order(t_stack *stack)
+{
+	int	min;
+
+	min = find_min(stack, &(stack->a));
+	while (stack->a->val != min)
+		do_rra(stack);
 }

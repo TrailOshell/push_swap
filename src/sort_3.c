@@ -10,28 +10,28 @@
 
 #include "../inc/push_swap.h"
 
-void	sort_3_ascend(t_stack *stack, t_node **stack_name)
-{
-	t_node	*head;
-	t_node	*max_node;
+//void	sort_3_ascend(t_stack *stack, t_node **stack_name)
+//{
+//	t_node	*head;
+//	t_node	*max_node;
 
-	set_operations(stack, *stack_name);
-	max_node = *stack_name;
-	head = *stack_name;
-	while (head->next != *stack_name)
-	{
-		head = head->next;
-		if (max_node->val < head->val)
-			max_node = head;
-	}
-	if (max_node == *stack_name)
-		stack->rotate(stack);
-	else if (max_node == (*stack_name)->next)
-		stack->reverse(stack);
-	*stack_name = max_node->next;
-	if ((*stack_name)->val > (*stack_name)->next->val)
-		sort_2(stack);
-}
+//	set_operations(stack, *stack_name);
+//	max_node = *stack_name;
+//	head = *stack_name;
+//	while (head->next != *stack_name)
+//	{
+//		head = head->next;
+//		if (max_node->val < head->val)
+//			max_node = head;
+//	}
+//	if (max_node == *stack_name)
+//		stack->rotate(stack);
+//	else if (max_node == (*stack_name)->next)
+//		stack->reverse(stack);
+//	*stack_name = max_node->next;
+//	if ((*stack_name)->val > (*stack_name)->next->val)
+//		sort_2(stack);
+//}
 
 //void	sort_3_descend(t_stack *stack, t_node **stack_name)
 //{
