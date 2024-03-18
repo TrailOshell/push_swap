@@ -140,16 +140,19 @@ void	print_log(t_log *log)
 		{
 			printf("%s\t%d:\t%s", GREEN, log->next->op_count, RESET_C);
 			printf("%s %s%s\n", YELLOW, log->text, RESET_C);
+			printf("%s\t\t\ta: [", RED);
+			print_log_stack(log->a, target_a, RED);
+			printf("%s\t\t\tb: [", BLUE);
+			print_log_stack(log->b, target_b, BLUE);
+			set_color(RESET_C);
 		}
 		if (log->op)
 		{
 			printf("%s\t%d:\t%s", GREEN, log->op_count, RESET_C);
 			printf("%s %s%s", PURPLE, log->op, RESET_C);
-			set_color(RED);
-			printf("\ta: [");
+			printf("%s\ta: [", RED);
 			print_log_stack(log->a, target_a, RED);
-			set_color(BLUE);
-			printf("\t\t\tb: [");
+			printf("%s\t\t\tb: [", BLUE);
 			print_log_stack(log->b, target_b, BLUE);
 			set_color(RESET_C);
 		}
@@ -160,53 +163,53 @@ void	print_log(t_log *log)
 }
 
 /* newlog()
-	//new->a = malloc(sizeof(t_node));
-	//new->b = malloc(sizeof(t_node));
-	//if (stack->a)
-	//{
-	//	printf("stack->a = %d\t", stack->a->val);
-	//	printf("new->a = %d\n", new->a->val);
-	//	print_stack(stack);
-	//}
-	//if (stack->b)
-	//{
-	//	printf("stack->b = %d\t", stack->b->val);
-	//	printf("new->b = %d\n", new->b->val);
-	//	print_stack(stack);
-	//}
+	new->a = malloc(sizeof(t_node));
+	new->b = malloc(sizeof(t_node));
+	if (stack->a)
+	{
+		printf("stack->a = %d\t", stack->a->val);
+		printf("new->a = %d\n", new->a->val);
+		print_stack(stack);
+	}
+	if (stack->b)
+	{
+		printf("stack->b = %d\t", stack->b->val);
+		printf("new->b = %d\n", new->b->val);
+		print_stack(stack);
+	}
 */
 
 /* void	set_log_target(t_log *log, t_node **a, t_node **b)
-	//if (ps_strcmp(log->op, "rr") == 1)
-	//{
-	//	*a = log->a->prev;
-	//	*b = log->b->prev;
-	//}
-	//else if (ps_strcmp(log->op, "ra") == 1)
-	//	*a = log->a->prev;
-	//else if (ps_strcmp(log->op, "rb") == 1)
-	//	*b = log->b->prev;
-	//else if (ps_strcmp(log->op, "rra") == 1 || ps_strcmp(log->op, "pa") == 1)
-	//	*a = log->a;
-	//else if (ps_strcmp(log->op, "rrb") == 1 || ps_strcmp(log->op, "pb") == 1)
-	//	*b = log->b;
-	//else if (ps_strcmp(log->op, "rrr") == 1)
-	//{
-	//	*a = log->a;
-	//	*b = log->b;
-	//}
-	//else if (ps_strcmp(log->op, "sa") == 1)
-	//	*a = log->a->next;
-	//else if (ps_strcmp(log->op, "sb") == 1)
-	//	*b = log->b->next;
-	//else if (ps_strcmp(log->op, "ss") == 1)
-	//{
-	//	*a = log->a->next;
-	//	*b = log->b->next;
-	//}
-	//else
-	//{
-	//	*a = NULL;
-	//	*b = NULL;
-	//}
+	if (ps_strcmp(log->op, "rr") == 1)
+	{
+		*a = log->a->prev;
+		*b = log->b->prev;
+	}
+	else if (ps_strcmp(log->op, "ra") == 1)
+		*a = log->a->prev;
+	else if (ps_strcmp(log->op, "rb") == 1)
+		*b = log->b->prev;
+	else if (ps_strcmp(log->op, "rra") == 1 || ps_strcmp(log->op, "pa") == 1)
+		*a = log->a;
+	else if (ps_strcmp(log->op, "rrb") == 1 || ps_strcmp(log->op, "pb") == 1)
+		*b = log->b;
+	else if (ps_strcmp(log->op, "rrr") == 1)
+	{
+		*a = log->a;
+		*b = log->b;
+	}
+	else if (ps_strcmp(log->op, "sa") == 1)
+		*a = log->a->next;
+	else if (ps_strcmp(log->op, "sb") == 1)
+		*b = log->b->next;
+	else if (ps_strcmp(log->op, "ss") == 1)
+	{
+		*a = log->a->next;
+		*b = log->b->next;
+	}
+	else
+	{
+		*a = NULL;
+		*b = NULL;
+	}
 */

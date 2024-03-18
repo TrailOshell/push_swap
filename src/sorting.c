@@ -40,68 +40,6 @@ t_node	*current_stack_order(t_stack *stack, t_node **stack_name)
 	return (stack->order);
 }
 
-void	find_median(t_stack *stack, t_node **stack_name)
-{
-	t_node	*tmp;
-	int		node_count;
-	int		median_count;
-	int		node_current;
-	int		median;
-
-	node_count = count_nodes(*stack_name);
-	current_stack_order(stack, stack_name);
-	median_count = (node_count / 2) + (node_count % 2);
-	node_current = 1;
-	tmp = stack->order;
-	while (node_current < median_count)
-	{
-		tmp = tmp->next;
-		node_current++;
-	}
-	stack->median = tmp->val;
-}
-
-int	check_median_push(t_stack *stack, t_node *stack_name, int median) {
-	t_node	*tmp;
-
-	tmp = stack_name;
-	//while (tmp->next != stack_name)
-	while (tmp)
-	{
-		if (tmp->val <= median)
-		{
-			stack->target = tmp;
-			return (1);
-		}
-		tmp = tmp->next;
-		if (tmp == stack_name)
-			break ;
-	}
-	return (0);
-}
-
-int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
-{
-	t_node	*tmp;
-	t_node	*tmp2;
-	int		count;
-
-	count = 0;
-	tmp = stack_name;
-	tmp2 = stack_name->prev;
-	while (tmp != tmp2)
-	{
-		if (tmp->val == node->val)
-			return (1);
-		else if (tmp2->val == node->val)
-			return (0);
-		tmp = tmp->next;
-		tmp2 = tmp2->prev;
-	}
-	return (1);
-
-}
-
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 {
 	t_node	*head;
@@ -132,7 +70,6 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 					do_rr(stack);
 				else
 					stack->rotate(stack);
-				//do_double_op(stack);
 			}
 			stack->push(stack);
 		}
@@ -145,11 +82,10 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 					do_rrr(stack);
 				else
 					stack->reverse(stack);
-				//do_double_op(stack);
 			}
 			stack->push(stack);
 		}
-		do_double_op(stack);
+		//do_double_op(stack);
 		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
 		//print_stack(stack);
 	}
@@ -202,7 +138,6 @@ void	push_max(t_stack *stack, t_node **stack_name)
 
 void	do_double_op(t_stack *stack)
 {
-
 	// printf("a = %d\n", count_nodes(stack->a));
 	// printf("b = %d\n", count_nodes(stack->b));
 	if ((!stack->a || !stack->b)

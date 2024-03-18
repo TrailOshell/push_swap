@@ -14,24 +14,7 @@
 
 void	do_rotate(t_node **node)
 {
-	//t_node	*tmp;
-	//t_node	*last;
-	//t_node	*first;
-
-	//tmp = (*node)->prev;
 	*node = (*node)->next;
-	//(*node)->prev = last;
-	//last->prev = tmp;
-	//tmp->next = last;
-
-	//tmp = *node;
-	//while (tmp->next)
-	//	tmp = tmp->next;
-	//last = *node;
-	//first = (*node)->next;
-	//*node = first;
-	//tmp->next = last;
-	//last->next = NULL;
 }
 
 void	do_ra(t_stack *stack)
@@ -55,6 +38,29 @@ void	do_rr(t_stack *stack)
 	write(1, "rr\n", 3);
 	add_log(stack, newlog(stack, "rr", NULL), 1);
 }
+
+/*
+void	do_rotate(t_node **node)
+{
+	t_node	*tmp;
+	t_node	*last;
+	t_node	*first;
+
+	tmp = (*node)->prev;
+	(*node)->prev = last;
+	last->prev = tmp;
+	tmp->next = last;
+
+	tmp = *node;
+	while (tmp->next)
+		tmp = tmp->next;
+	last = *node;
+	first = (*node)->next;
+	*node = first;
+	tmp->next = last;
+	last->next = NULL;
+}
+*/
 
 /* void	do_rotate(t_node *node)
 	//int	tmp;

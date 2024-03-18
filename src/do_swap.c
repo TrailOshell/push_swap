@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:36:47 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/16 19:11:28 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:42:36 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,13 @@
 
 void	do_swap(t_node *node)
 {
-	//t_node	*swap1;
-	//t_node	*swap2;
-	int		tmp;
+	int	tmp;
 
 	if (node->next == node)
 		return ;
 	tmp = node->next->val;
 	node->next->val = node->val;
 	node->val = tmp;
-
-	//swap1 = node;
-	//swap2 = node->next;
-	//swap1->prev->next = swap2;
-	//swap2->next->prev = swap1;
-	//swap2->prev = swap1->prev;
-	//swap1->next = swap2->next;
-	//swap1->prev = swap2;
-	//swap2->next = swap1;
 }
 
 void	do_sa(t_stack *stack)
@@ -62,3 +51,20 @@ void	do_ss(t_stack *stack)
 	//	node->next->val = node->val;
 	//	node->val = tmp;
 	//}
+
+/*
+void	do_swap(t_node *node)
+{
+	t_node	*swap1;
+	t_node	*swap2;
+	
+	swap1 = node;
+	swap2 = node->next;
+	swap1->prev->next = swap2;
+	swap2->next->prev = swap1;
+	swap2->prev = swap1->prev;
+	swap1->next = swap2->next;
+	swap1->prev = swap2;
+	swap2->next = swap1;
+}
+*/

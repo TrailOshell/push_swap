@@ -1,54 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 15:10:22 by tsomchan         ###   ########.fr       */
+/*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */
+/*   Updated: 2024/03/18 16:28:23 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	notnbr_error(t_stack *stack, char *argv)
+int	check_median_push(t_stack *stack, t_node *stack_name, int median)
 {
-	if (*argv == '-')
-		argv++;
-	while (*argv)
-	{
-		if (*argv < '0' || *argv > '9')
-		{
-			stack->iserror = 1;
-			return (1);
-		}
-		argv++;
-	}
-	return (0);
-}
-
-int	dupnbr_error(t_stack *stack, int num)
-{
-	t_node	*head;
 	t_node	*tmp;
 
-	head = stack->a;
-	tmp = stack->a->prev;
-	while (tmp->next != head->prev)
+	tmp = stack_name;
+	while (tmp->next != stack_name)
 	{
 		tmp = tmp->next;
-		if (tmp->val == num)
+		if (tmp->val <= median)
 		{
-			stack->iserror = 1;
+			stack->target = tmp;
 			return (1);
 		}
 	}
 	return (0);
 }
 
-/*
-	printf("argv = %s$\n", argv);
-		printf("*argv = %c$\n", *argv);
-	printf("run 0\n");
-*/
+int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
+{
+	t_node	*tmp;
+	t_node	*tmp2;
+	int		count;
+
+	count = 0;
+	tmp = stack_name;
+	tmp2 = stack_name->prev;
+	while (tmp != tmp2)
+	{
+		if (tmp->val == node->val)
+			return (1);
+		else if (tmp2->val == node->val)
+			return (0);
+		else if (tmp == tmp2)
+			break ;
+		tmp = tmp->next;
+		tmp2 = tmp2->prev;
+	}
+	return (0);
+}

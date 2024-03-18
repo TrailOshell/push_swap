@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:58:58 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/15 11:12:48 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:02:24 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ void	print_node(t_node *node, char *text)
 	t_node	*tmp;
 
 	head = node;
-	tmp = node;
+	tmp = node->prev;
 	printf("%s", text);
 	printf(": [");
-	while (tmp)
+	while (tmp->next != head->prev)
 	{
-		printf("%d", tmp->val);
 		tmp = tmp->next;
-		if (tmp == head)
-			break ;
+		printf("%d", tmp->val);
 		printf(", ");
 	}
 	printf("]");
@@ -155,4 +153,33 @@ void	print_node_connect(t_node *node, char *node_text)
 	printf("%s->val = %d ", node_text, node->val);
 	printf("%s->next = %d ", node_text, node->next->val);
 	printf("%s->prev = %d\n", node_text, node->prev->val);
+}
+
+int	check_ordered(t_node *a)
+{
+	t_node	*head;
+
+	head = a;
+	while (a)
+	{
+		//printf("val = %d ", a->val);
+		if (a->next == head)
+			break ;
+		if (a->val > a->next->val)
+		{
+			printf("found %d > %d:", a->val, a->next->val);
+			return (0);
+		}
+		a = a->next;
+	}
+	printf("\n");
+	return (1);
+}
+
+void	debug_ordered(t_stack *stack)
+{
+	if (check_ordered(stack->a) == 1)
+		printcolor("Ordered\n", GREEN);
+	else
+		printcolor("NOT Ordered\n", RED);
 }

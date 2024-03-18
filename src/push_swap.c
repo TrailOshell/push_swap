@@ -20,8 +20,14 @@ void	push_swap(char **argv)
 	stack = NULL;
 	stack = start_stack(stack);
 	input_stack(stack, &(stack->a), ++argv);
+	if (stack->iserror)
+	{
+		write(1, "Error\n", 6);
+		end_stack(stack);
+		return ;
+	}
 	current_stack_order(stack, &(stack->a));
-	while (count_nodes(stack->a) > 3)
+	while (count_nodes(stack->a) > 5)
 	{
 		find_median(stack, &(stack->a));
 		add_log(stack, newlog(stack, NULL, "push_till_median"), 0);
@@ -29,7 +35,9 @@ void	push_swap(char **argv)
 		push_till_median(stack, &(stack->a), 'a');
 		//printf("count nodes = %d\n", count_nodes(stack->a));
 	}
-	sort_3_ascend(stack, &(stack->a));
+	add_log(stack, newlog(stack, NULL, "sort_in_5"), 0);
+	sort_in_5(stack);
+	//sort_3_ascend(stack, &(stack->a));
 	//sort_3_descend(stack, &(stack->b));
 	while (count_nodes(stack->b))
 	{
@@ -38,9 +46,8 @@ void	push_swap(char **argv)
 		// print_stack(stack);
 	}
 	//print_node_connect(stack->median, "median_node");
-
 	print_log(stack->log);
-	free_log(stack->log);
+	debug_ordered(stack);
 	end_stack(stack);
 }
 

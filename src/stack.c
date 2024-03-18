@@ -41,7 +41,7 @@ void	input_stack(t_stack *stack, t_node **stack_name, char **input)
 		if (notnbr_error(stack, *input))
 			return ;
 		num = atoi_push_swap(*input);
-		if (dupnbr_error(stack, num))
+		if (stack->a && dupnbr_error(stack, num))
 			return ;
 		add_node_last(stack, stack_name, nodenew(num));
 		input++;
@@ -75,6 +75,7 @@ void	end_stack(t_stack *stack)
 		nodedel(&stack->b);
 	while (stack->order)
 		nodedel(&stack->order);
+	free_log(stack->log);
 	free(stack);
 }
 

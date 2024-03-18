@@ -17,7 +17,7 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
 SRC		=	push_swap.c stack.c node.c util.c error.c sorting.c \
-			sort_3.c \
+			check.c find_value.c sort_3.c sort_5.c\
 			do_swap.c do_push.c do_rotate.c do_reverse.c \
 			debug.c log.c
 
