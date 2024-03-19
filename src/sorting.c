@@ -46,17 +46,19 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 
 	set_operations(stack, *stack_name);
 	find_median(stack, stack_name);
-	while (check_median_push(stack, *stack_name, stack->median))
+	check_median_push(stack, *stack_name, stack->median);
+	while (stack->target)
 	{
+		add_log(stack, newlog(stack, NULL, "pushing"), 0);
 		// printf("target = %d\n", stack->target->val);
 		head = *stack_name;
 		if (stack->target == (*stack_name))
 			stack->push(stack);
 		else if (stack->target == (*stack_name)->next)
 		{
-			if (stack->b && stack->b->val < stack->b->next->val)
-				do_ss(stack);
-			else
+			// if (stack->b && stack->b->val < stack->b->next->val)
+			// 	do_ss(stack);
+			// else
 				stack->swap(stack);
 			stack->push(stack);
 		}
@@ -65,9 +67,9 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->next;
-				if (stack->b && stack->b->val < stack->b->prev->val)
-					do_rr(stack);
-				else
+				// if (stack->b && stack->b->val < stack->b->prev->val)
+				// 	do_rr(stack);
+				// else
 					stack->rotate(stack);
 			}
 			stack->push(stack);
@@ -77,69 +79,78 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->prev;
-				if (stack->b && stack->b->val > stack->b->prev->val)
-					do_rrr(stack);
-				else
+				// if (stack->b && stack->b->val > stack->b->prev->val)
+				// 	do_rrr(stack);
+				// else
 					stack->reverse(stack);
 			}
 			stack->push(stack);
 		}
-		//printf("%d\n", check_median_push(stack, *stack_name, stack->median));
-		//print_stack(stack);
+		// if (stack->b->val > stack->b->next->val)
+		// 	do_sb(stack);
+		// if (stack->b->val < stack->b->prev
+		// 	&& stack->b->next->val > stack->b->prev->val)
+		// 	do_rb(stack);
+		// add_log(stack, newlog(stack, NULL, "slight sorted stack b"), 0);
+		check_median_push(stack, *stack_name, stack->median);
+		// printf("%d\n", check_median_push(stack, *stack_name, stack->median));
+		print_stack(stack);
 	}
 }
 
-void	push_max(t_stack *stack, t_node **stack_name)
+void	push_min_max(t_stack *stack, t_node **stack_name)
 {
-	t_node	*head;
-	t_node	*max_node;
+	int			min;
+	int			max;
+	t_node		*tmp;
+	t_node		*tmp2;
+	void		(*do_op)(t_stack *);
+	int			target;
 
-	set_operations(stack, *stack_name);
-	max_node = *stack_name;
-	head = *stack_name;
-	while (head->next != *stack_name)
+	min = find_min(stack, stack_name);
+	max = find_max(stack, stack_name);
+	tmp = *stack_name;
+	tmp2 = (*stack_name)->prev;
+	while (tmp)
 	{
-		head = head->next;
-		if (max_node->val < head->val)
-			max_node = head;
-	}
-	head = *stack_name;
-	//printf("%smax_node = %d\n%s", PURPLE, max_node->val, RESET_C);
-	//printf("%sstack head = %d\n%s", PURPLE, (*stack_name)->val, RESET_C);
-	//printf("%shead = %d\n%s", PURPLE, head->val, RESET_C);
-	if (max_node == head)
-		stack->push(stack);
-	else if (max_node == (head)->next)
-	{
-		stack->swap(stack);
-		stack->push(stack);
-	}
-	else if (isnear_head(stack, head, max_node) == 1)
-	{
-		while (max_node != head)
+		if (tmp->val == min || tmp->val == max)
 		{
-			head = head->next;
-			stack->rotate(stack);
+			target = tmp->val;
+			do_op = do_rb;
+			break ;
 		}
-		stack->push(stack);
-	}
-	else if (isnear_head(stack, head, max_node) == 0)
-	{
-		while (max_node != head)
+		else if (tmp2->val == min || tmp2->val == max)
 		{
-			head = head->prev;
-			stack->reverse(stack);
+			target = tmp2->val;
+			do_op = do_rrb;
+			break ;
 		}
-		stack->push(stack);
+		tmp = tmp->next;
+		tmp2 = tmp2->prev;
 	}
+	while (stack->b->val != target)
+		do_op(stack);
+	do_pa(stack);
+	if (target == min)
+		do_ra(stack);
 }
 
+void	final_order(t_stack *stack)
+{
+	int	min;
+
+	min = find_min(stack, &(stack->a));
+	while (stack->a->val != min)
+		do_rra(stack);
+}
+
+/*
 void	do_double_op(t_stack *stack)
 {
 	// printf("a = %d\n", count_nodes(stack->a));
 	// printf("b = %d\n", count_nodes(stack->b));
 	if ((!stack->a || !stack->b)
-		|| (count_nodes(stack->a) <= 3 || count_nodes(stack->b) <= 3))
+		|| (count_nodes(stack->a) <= 5 || count_nodes(stack->b) <= 5))
 		return ;
 	while (stack->a && stack->b)
 	{
@@ -159,48 +170,35 @@ void	do_double_op(t_stack *stack)
 	}
 	// print_stack(stack);
 }
+*/
 
-void	push_min_max(t_stack *stack, t_node **stack_name)
+/*
+void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 {
-	int			min;
-	int			max;
-	t_node		*tmp;
-	t_node		*tmp2;
-	void		(*do_op)(t_stack *);
+	t_node *last;
 
-	min = find_min(stack, stack_name);
-	max = find_max(stack, stack_name);
-	tmp = *stack_name;
-	tmp2 = (*stack_name)->prev;
-	while (tmp)
+	set_operations(stack, *stack_name);
+	find_median(stack, stack_name);
+	check_median_push(stack, *stack_name, stack->median);
+	last = (*stack_name)->prev;
+	while (stack->target)
 	{
-		if (tmp->val == min || tmp->val == max)
-		{
-			stack->target = tmp;
-			do_op = do_rb;
+		add_log(stack, newlog(stack, NULL, "pushing"), 0);
+		// printf("target = %d\n", stack->target->val);
+		if ((*stack_name)->val <= stack->target->val)
+			stack->push(stack);
+		else if (count_nodes(*stack_name) <= 5 || *stack_name == last)
 			break ;
-		}
-		else if (tmp2->val == min || tmp2->val == max)
+		else
 		{
-			stack->target = tmp2;
-			do_op = do_rrb;
-			break ;
+			printf("run\n");
+			stack->rotate(stack);
 		}
-		tmp = tmp->next;
-		tmp2 = tmp2->prev;
+		// add_log(stack, newlog(stack, NULL, "slight sorted stack b"), 0);
+		check_median_push(stack, *stack_name, stack->median);
+		last = (*stack_name)->prev;
+		// printf("%d\n", check_median_push(stack, *stack_name, stack->median));
+		// print_stack(stack);
 	}
-	while (stack->b != stack->target)
-		do_op(stack);
-	do_pa(stack);
-	if (stack->target->val == min)
-		do_ra(stack);
 }
-
-void	final_order(t_stack *stack)
-{
-	int	min;
-
-	min = find_min(stack, &(stack->a));
-	while (stack->a->val != min)
-		do_rra(stack);
-}
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:58:58 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 17:02:24 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/19 04:06:26 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	print_node(t_node *node, char *text)
 	{
 		tmp = tmp->next;
 		printf("%d", tmp->val);
-		printf(", ");
+		if (tmp->next != head->prev)
+			printf(", ");
 	}
 	printf("]");
 	printf("\n");

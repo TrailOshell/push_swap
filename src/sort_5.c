@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:23:03 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 20:36:40 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/19 06:28:06 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	sort_5(t_stack *stack)
 	find_median(stack, &(stack->a));
 	while (count > 3)
 	{
-		if (stack->a < stack->median)
+		if (stack->a->val < stack->median)
 		{
 			do_pb(stack);
 			count--;

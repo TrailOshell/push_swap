@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 18:09:57 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/19 06:38:00 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,33 @@
 int	check_median_push(t_stack *stack, t_node *stack_name, int median)
 {
 	t_node	*tmp;
+	t_node	*tmp2;
+	t_node	*head;
 
 	tmp = stack_name;
-	while (tmp->next != stack_name)
+	tmp2 = stack_name->prev;
+	head = stack_name;
+	while (tmp != tmp2)
 	{
-		tmp = tmp->next;
+		// printf("tmp %d, tmp2 %d\n", tmp->val, tmp2->val);
+		// if (stack->b)
+		// 	print_stack(stack);
 		if (tmp->val <= median)
 		{
 			stack->target = tmp;
 			return (1);
 		}
+		// else if (tmp2->val <= median)
+		// {
+		// 	stack->target = tmp2;
+		// 	return (1);
+		// }
+		tmp = tmp->next;
+		tmp2 = tmp2->prev;
+		if (tmp == head)
+			break ;
 	}
+	stack->target = NULL;
 	return (0);
 }
 
