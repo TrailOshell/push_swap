@@ -97,7 +97,6 @@ log: clear
 
 push:
 	@git push
-	@git push intra
 	@clear && git log --name-status -1
 
 git_add:
