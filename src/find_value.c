@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:45:15 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 16:28:27 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:31:14 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,30 @@ void	find_median(t_stack *stack, t_node **stack_name)
 	}
 	stack->median = tmp->val;
 }
+
+void	find_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order)
+{
+	t_node	*tmp;
+	int		node_count;
+	int		median_count;
+	int		node_current;
+	int		median;
+
+	node_count = 0;
+	while (tmp->next != node && tmp->next->chunk_order == chunk_order)
+	{
+		tmp = tmp->next;
+		node_count++;
+	}
+	current_stack_order(stack, stack_name);
+	median_count = (node_count / 2) + (node_count % 2);
+	node_current = 1;
+	tmp = stack->order;
+	while (node_current < median_count)
+	{
+		tmp = tmp->next;
+		node_current++;
+	}
+	stack->median = tmp->val;
+}
+
