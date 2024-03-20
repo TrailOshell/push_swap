@@ -6,8 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 17:28:20tsomchan         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2024/03/04 17:28:20tsomchan         ###   ########.fr       */ /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
@@ -35,7 +34,7 @@ void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add)
 	add->prev = tmp;
 }
 
-t_node	*nodenew(int num)
+t_node	*nodenew(int num, int chunk_order)
 {
 	t_node	*new;
 
@@ -45,6 +44,7 @@ t_node	*nodenew(int num)
 	new->val = num;
 	new->next = NULL;
 	new->prev = NULL;
+	new->chunk_order = chunk_order;
 	return (new);
 }
 

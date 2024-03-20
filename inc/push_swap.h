@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/18 20:20:12 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:17:43 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_node
 	int				val;
 	struct s_node	*next;
 	struct s_node	*prev;
+	int				chunk_order;
 }	t_node;
 
 typedef struct s_stack
@@ -79,7 +80,7 @@ void	end_stack(t_stack *stack);
 // node.c
 // void	add_node_last(t_stack *stack, char stack_name, t_node *add);
 void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add);
-t_node	*nodenew(int num);
+t_node	*nodenew(int num, int chunk_order);
 void	nodedel(t_node **node);
 void	swap_nodes_value(t_node **node_1, t_node **node_2);
 int		count_nodes(t_node *node);
@@ -117,7 +118,7 @@ void	find_median(t_stack *stack, t_node **stack_name);
 
 // sorting.c
 t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
-void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char);
+void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char, int chunk_order);
 void	push_max(t_stack *stack, t_node **stack_name);
 void	do_double_op(t_stack *stack);
 void	push_min_max(t_stack *stack, t_node **stack_name);
@@ -160,5 +161,6 @@ t_log	*newlog(t_stack *stack, char *op, char *text);
 void	add_log(t_stack *stack, t_log *log, int add_count);
 void	free_log(t_log *log);
 void	print_log(t_log *log);
+void	logging(t_stack *stack, t_log *log);
 
 #endif

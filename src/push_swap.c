@@ -17,6 +17,7 @@ void	push_swap(char **argv)
 	t_stack	*stack;
 	t_node	*node;
 	int		total_count;
+	int		chunk_order;
 
 	stack = NULL;
 	stack = start_stack(stack);
@@ -29,19 +30,23 @@ void	push_swap(char **argv)
 	}
 	total_count = count_nodes(stack->a);
 	current_stack_order(stack, &(stack->a));
+	chunk_order = 1;
 	while (count_nodes(stack->a) > 5)
 	{
 		// find_median(stack, &(stack->a));
 		// printf("median val = %d\n", stack->median);
 		//printf("count nodes = %d\n", count_nodes(stack->a));
+		printf("order = %d\n", chunk_order);
 		if (total_count <= 100)
 		{
 			add_log(stack, newlog(stack, NULL, "push_till_median"), 0);
-			push_till_median(stack, &(stack->a), 'a');
+			push_till_median(stack, &(stack->a), 'a', chunk_order);
 		}
 		else
-			push_till_median(stack, &(stack->a), 'a');
+			push_till_median(stack, &(stack->a), 'a', chunk_order);
 		// print_stack(stack);
+		printf("b order = %d\n", stack->b->chunk_order);
+		chunk_order++;
 	}
 	// printf("count nodes = %d\n", count_nodes(stack->a));
 	add_log(stack, newlog(stack, NULL, "sort_in_5"), 0);
@@ -55,6 +60,7 @@ void	push_swap(char **argv)
 	final_order(stack);
 	//print_node_connect(stack->median, "median_node");
 	print_log(stack->log);
+	//logging(stack, stack->log);
 	debug_ordered(stack);
 	end_stack(stack);
 }

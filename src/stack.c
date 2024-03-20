@@ -43,7 +43,7 @@ void	input_stack(t_stack *stack, t_node **stack_name, char **input)
 		num = atoi_push_swap(*input);
 		if (stack->a && dupnbr_error(stack, num))
 			return ;
-		add_node_last(stack, stack_name, nodenew(num));
+		add_node_last(stack, stack_name, nodenew(num, 0));
 		input++;
 	}
 }
@@ -58,7 +58,7 @@ void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe)
 		nodedel(&(*stack_dupe));
 	while (stack_origin)
 	{
-		add_node_last(stack, stack_dupe, nodenew(stack_origin->val));
+		add_node_last(stack, stack_dupe, nodenew(stack_origin->val, stack_origin->chunk_order));
 		stack_origin = stack_origin->next;
 		if (stack_origin == head)
 			break ;

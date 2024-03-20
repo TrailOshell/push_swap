@@ -40,7 +40,8 @@ t_node	*current_stack_order(t_stack *stack, t_node **stack_name)
 	return (stack->order);
 }
 
-void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
+void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char
+			, int chunk_order)
 {
 	t_node	*head;
 
@@ -56,10 +57,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			stack->push(stack);
 		else if (stack->target == (*stack_name)->next)
 		{
-			// if (stack->b && stack->b->val < stack->b->next->val)
-			// 	do_ss(stack);
-			// else
-				stack->swap(stack);
+			stack->swap(stack);
 			stack->push(stack);
 		}
 		else if (isnear_head(stack, *stack_name, stack->target) == 1)
@@ -67,10 +65,7 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->next;
-				// if (stack->b && stack->b->val < stack->b->prev->val)
-				// 	do_rr(stack);
-				// else
-					stack->rotate(stack);
+				stack->rotate(stack);
 			}
 			stack->push(stack);
 		}
@@ -79,22 +74,15 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char)
 			while (stack->target != head)
 			{
 				head = head->prev;
-				// if (stack->b && stack->b->val > stack->b->prev->val)
-				// 	do_rrr(stack);
-				// else
-					stack->reverse(stack);
+				stack->reverse(stack);
 			}
 			stack->push(stack);
 		}
-		// if (stack->b->val > stack->b->next->val)
-		// 	do_sb(stack);
-		// if (stack->b->val < stack->b->prev
-		// 	&& stack->b->next->val > stack->b->prev->val)
-		// 	do_rb(stack);
+		stack->b->chunk_order = chunk_order;
 		// add_log(stack, newlog(stack, NULL, "slight sorted stack b"), 0);
 		check_median_push(stack, *stack_name, stack->median);
 		// printf("%d\n", check_median_push(stack, *stack_name, stack->median));
-		print_stack(stack);
+		//print_stack(stack);
 	}
 }
 
