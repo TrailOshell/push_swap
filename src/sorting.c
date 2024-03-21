@@ -19,7 +19,7 @@ t_node	*current_stack_order(t_stack *stack, t_node **stack_name)
 	t_node	*min_prev;
 	t_node	*tmp;
 
-	dupe_stack(stack, *stack_name, &(stack->order));
+	dupe_stack(stack, stack_name, &(stack->order));
 	min_prev = NULL;
 	head = stack->order;
 	while (head->next != stack->order)
@@ -82,14 +82,39 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char
 		// add_log(stack, newlog(stack, NULL, "slight sorted stack b"), 0);
 		check_median_push(stack, *stack_name, stack->median);
 		// printf("%d\n", check_median_push(stack, *stack_name, stack->median));
-		//print_stack(stack);
 	}
 }
 
 void	push_chunk_median(t_stack *stack, t_node **stack_name, char stack_char
 			, int chunk_order)
 {
+	t_node	*chunk;
+	t_node	*head;
 
+	chunk = NULL;
+	//print_log(stack->log);
+	//print_stack(stack);
+	//dupe_chunk(stack, &(stack->b), &chunk, stack->b->chunk_order);
+	dupe_chunk(stack, &(stack->b), &chunk, chunk_order);
+	//dupe_stack(stack, &(stack->b), &chunk);
+	find_median(stack, &chunk);
+	print_node(chunk, "chunk_order");
+	printf("= %d\n", chunk_order);
+	printf("median = %d\n", stack->median);
+	set_operations(stack, *stack_name);
+	add_log(stack, newlog(stack, NULL, "pushing_chunk"), 0);
+	head = *stack_name;
+	while (*stack_name)
+	{
+		if ((*stack_name)->val < stack->median)
+			stack->push(stack);
+		else if ((*stack_name)->chunk_order != chunk_order
+			|| (*stack_name) == head || count_nodes(*stack_name) <= 5)
+			break ;
+		else
+			stack->rotate(stack);
+		print_stack(stack);
+	}
 }
 
 void	push_min_max(t_stack *stack, t_node **stack_name)

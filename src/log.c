@@ -31,8 +31,8 @@ t_log	*newlog(t_stack *stack, char *op, char *text)
 		new->text = ps_strdup(text);
 	new->a = NULL;
 	new->b = NULL;
-	dupe_stack(stack, stack->a, &(new->a));
-	dupe_stack(stack, stack->b, &(new->b));
+	dupe_stack(stack, &(stack->a), &(new->a));
+	dupe_stack(stack, &(stack->b), &(new->b));
 	return (new);
 }
 

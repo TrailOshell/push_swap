@@ -1,8 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+/*                                                        :::      ::::::::   */ /*   stack.c                                            :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
@@ -48,19 +46,42 @@ void	input_stack(t_stack *stack, t_node **stack_name, char **input)
 	}
 }
 
-void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe)
+void	dupe_stack(t_stack *stack, t_node **stack_origin, t_node **stack_dupe)
 {
 	t_node	*head;
 	t_node	*tmp;
+	t_node	*new;
 
-	head = stack_origin;
+	head = *stack_origin;
 	while (*stack_dupe)
 		nodedel(&(*stack_dupe));
-	while (stack_origin)
+	while (*stack_origin)
 	{
-		add_node_last(stack, stack_dupe, nodenew(stack_origin->val, stack_origin->chunk_order));
-		stack_origin = stack_origin->next;
-		if (stack_origin == head)
+		new = nodenew((*stack_origin)->val, (*stack_origin)->chunk_order);
+		add_node_last(stack, stack_dupe, new);
+		*stack_origin = (*stack_origin)->next;
+		if (*stack_origin == head)
+			break ;
+	}
+}
+
+void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
+			int chunk_order)
+{
+	t_node	*head;
+	t_node	*tmp;
+	t_node	*new;
+
+	head = *stack_origin;
+	tmp = *stack_origin;
+	while (*stack_dupe)
+		nodedel(&(*stack_dupe));
+	while (tmp)
+	{
+		new = nodenew(tmp->val, tmp->chunk_order);
+		add_node_last(stack, stack_dupe, new);
+		tmp = tmp->next;
+		if (tmp == head || tmp->chunk_order != chunk_order)
 			break ;
 	}
 }

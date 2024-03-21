@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/20 16:17:43 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:20:52 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ void	push_swap(char **argv);
 // stack.c
 t_stack	*start_stack(t_stack *stack);
 void	input_stack(t_stack *stack, t_node **stack_name, char **input);
-void	dupe_stack(t_stack *stack, t_node *stack_origin, t_node **stack_dupe);
+void	dupe_stack(t_stack *stack, t_node **stack_origin, t_node **stack_dupe);
+void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
+			int chunk_order);
 void	end_stack(t_stack *stack);
 
 // node.c
@@ -119,6 +121,8 @@ void	find_median(t_stack *stack, t_node **stack_name);
 // sorting.c
 t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
 void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char, int chunk_order);
+void	push_chunk_median(t_stack *stack, t_node **stack_name, char stack_char
+			, int chunk_order);
 void	push_max(t_stack *stack, t_node **stack_name);
 void	do_double_op(t_stack *stack);
 void	push_min_max(t_stack *stack, t_node **stack_name);
