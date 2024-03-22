@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi_push_swap.c                                   :+:      :+:    :+:   */
+/*   find_target.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 17:37:13 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/02/29 17:39:39 by tsomchan         ###   ########.fr       */
+/*   Created: 2024/03/22 15:19:21 by tsomchan          #+#    #+#             */
+/*   Updated: 2024/03/22 15:29:04 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	atoi_push_swap(char *str)
+void	find_target_min_max(t_stack *stack, t_node *head, int min, int max)
 {
-	int nbr;
+	t_node		*tmp;
+	t_node		*tmp2;
 
-	nbr = 0;
-	return (nbr);
+	tmp = head;
+	tmp2 = head->prev;
+	stack->target = NULL;
+	while (tmp)
+	{
+		if (tmp->val == min || tmp->val == max)
+			stack->target = tmp;
+		else if (tmp2->val == min || tmp2->val == max)
+			stack->target = tmp2;
+		if (stack->target != NULL)
+			break ;
+		tmp = tmp->next;
+		tmp2 = tmp2->prev;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:45:15 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/21 17:27:42 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/22 14:35:40 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,3 @@ void	find_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order)
 	}
 	stack->median = tmp->val;
 }
-

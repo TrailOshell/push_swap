@@ -6,60 +6,38 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/16 19:09:29 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:17:53y tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
+void	set_head_push_pull(t_stack *s, char c, t_node ***push, t_node ***pull)
+{
+	if (c == 'a')
+	{
+		*push = &(s->a);
+		*pull = &(s->b);
+	}
+	else if (c == 'b')
+	{
+		*push = &(s->b);
+		*pull = &(s->a);
+	}
+}
+
 void	do_push(t_stack *stack, char push_stack)
 {
 	t_node	**head_push;
 	t_node	**head_pull;
-	t_node	*tmp;
+	t_node	*push_node;
 
-	if (push_stack == 'a')
-	{
-		head_push = &(stack->a);
-		head_pull = &(stack->b);
-	}
-	else if (push_stack == 'b')
-	{
-		head_push = &(stack->b);
-		head_pull = &(stack->a);
-	}
+	set_head_push_pull(stack, push_stack, &head_push, &head_pull);
 	if (!*head_pull)
 		return ;
-	tmp = *head_pull;
-	//	linking new stack pull
-	if ((*head_pull)->next == *head_pull)
-		*head_pull = NULL;
-	else
-	{
-		*head_pull = (*head_pull)->next;
-		(*head_pull)->prev = tmp->prev;
-		tmp->prev->next = *head_pull;
-		//printf("%s%d\n%s", PURPLE, (*head_pull)->val, RESET_C);
-	}
-	// linking new stack a
-	//printf("%srun\n%s", YELLOW, RESET_C);
-	//printf("%s%d\n%s", PURPLE, tmp->val, RESET_C);
-	//printf("%s%d\n%s", PURPLE, (*head_push)->prev->next->val, RESET_C);
-	tmp->next->prev = tmp->prev;
-	tmp->prev->next = tmp->next;
-	if (!*head_push)
-	{
-		tmp->next = tmp;
-		tmp->prev = tmp;
-	}
-	else
-	{
-		(*head_push)->prev->next = tmp;
-		tmp->next = *head_push;
-		tmp->prev = (*head_push)->prev;
-		(*head_push)->prev = tmp;
-	}
-	*head_push = tmp;
+	push_node = *head_pull;
+	node_new_head_pull(head_pull, &push_node);
+	node_new_head_push(head_push, &push_node);
 }
 
 void	do_pa(t_stack *stack)

@@ -51,17 +51,17 @@ void	push_swap(char **argv)
 	// printf("count nodes = %d\n", count_nodes(stack->a));
 	add_log(stack, newlog(stack, NULL, "sort_in_5"), 0);
 	sort_in_5(stack);
-	while (chunk_order > 0)
-	{
-		push_chunk_median(stack, &(stack->b), 'b', chunk_order);
-		chunk_order--;
-	}
-	//print_log(stack->log);
-	//while (count_nodes(stack->b))
+	//while (chunk_order > 0)
 	//{
-	//	add_log(stack, newlog(stack, NULL, "push_min_max"), 0);
-	//	push_min_max(stack, &(stack->b));
+	//	push_chunk_median(stack, &(stack->b), 'b', chunk_order);
+	//	chunk_order--;
 	//}
+	//print_log(stack->log);
+	while (count_nodes(stack->b))
+	{
+		add_log(stack, newlog(stack, NULL, "push_min_max"), 0);
+		push_min_max(stack, &(stack->b));
+	}
 	add_log(stack, newlog(stack, NULL, "final_order"), 0);
 	final_order(stack);
 	print_log(stack->log);

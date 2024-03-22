@@ -16,9 +16,11 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
-SRC		=	push_swap.c stack.c node.c util.c error.c sorting.c \
-			check.c find_value.c sort_3.c sort_5.c\
-			do_swap.c do_push.c do_rotate.c do_reverse.c \
+SRC		=	push_swap.c stack.c node.c util.c error.c  \
+			check.c find_value.c find_target.c \
+			node_linking.c \
+			order.c sort_5.c sorting.c \
+			do_swap.c do_push.c do_rotate.c do_reverse.c do_operations.c \
 			debug.c log.c
 
 OBJ_PTH	=	obj/
