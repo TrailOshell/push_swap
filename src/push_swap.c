@@ -51,6 +51,14 @@ void	push_swap(char **argv)
 	sort_in_5(stack);
 	push_chunk_median(stack, &(stack->b), chunk_order);
 	sort_chunk(stack, chunk_order);
+	push_chunk_median(stack, &(stack->b), chunk_order);
+	sort_chunk(stack, chunk_order);
+	push_chunk_median(stack, &(stack->b), chunk_order);
+	sort_chunk(stack, chunk_order);
+	push_chunk_median(stack, &(stack->b), chunk_order);
+	sort_chunk(stack, chunk_order);
+	push_chunk_median(stack, &(stack->b), chunk_order);
+	sort_chunk(stack, chunk_order);
 	//while (chunk_order > 0)
 	//{
 	//	push_chunk_median(stack, &(stack->b), chunk_order);

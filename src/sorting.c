@@ -45,16 +45,14 @@ void	push_chunk_median(t_stack *stack, t_node **stack_name, int chunk_n)
 	chunk = NULL;
 	dupe_chunk(stack, &(stack->b), &chunk, chunk_n);
 	find_median(stack, &chunk);
-	printf("chunk = %d ", chunk_n);
-	print_node(chunk, "");
-	printf("median = %d\n", stack->median);
+	set_color(CYAN); printf("chunk = %d ", chunk_n); print_node(chunk, ""); printf("median = %d\n", stack->median); set_color(RESET_C);
 	set_operations(stack, *stack_name);
 	add_log(stack, newlog(stack, NULL, "pushing_chunk"), 0);
 	head = *stack_name;
 	print_node(stack->b, "stack b");
 	while ((*stack_name)->chunk_order == chunk_n)
 	{
-		if ((*stack_name)->val > stack->median && (*stack_name)->chunk_order == chunk_n)
+		if ((*stack_name)->val >= stack->median && (*stack_name)->chunk_order == chunk_n)
 		{
 			add_log(stack, newlog(stack, NULL, "push"), 0);
 			stack->push(stack);
@@ -66,8 +64,7 @@ void	push_chunk_median(t_stack *stack, t_node **stack_name, int chunk_n)
 			break ;
 		//print_stack(stack);
 	}
-	print_node(stack->a, "stack a");
-	print_node(stack->b, "stack b");
+	set_color(YELLOW); print_node(stack->a, "stack a"); print_node(stack->b, "stack b"); set_color(RESET_C);
 }
 
 void	find_target_chunk_sort(t_stack *stack, t_node *node, int chunk)
@@ -76,7 +73,7 @@ void	find_target_chunk_sort(t_stack *stack, t_node *node, int chunk)
 
 	head = node;
 	stack->target = NULL;
-	while (node)
+	while (stack->target == NULL)
 	{
 		if (node->val > node->next->val)
 			stack->target = node;
@@ -85,15 +82,19 @@ void	find_target_chunk_sort(t_stack *stack, t_node *node, int chunk)
 	}
 }
 
-void	check_chunk_sort(t_stack *stack, t_node *node, int chunk)
-{
+//void	check_chunk_sort(t_stack *stack, t_node *node, int chunk)
+//{
 
-}
+//}
 
 void	sort_chunk(t_stack *stack, int chunk_n)
 {
 	find_target_chunk_sort(stack, stack->a, chunk_n);
-	printf("%starget = %d\n%s", CYAN, stack->target->val, RESET_C);
+	if (stack->target)
+		printf("%starget = %d\n%s", CYAN, stack->target->val, RESET_C);
+	while (stack->b->prev->chunk_order == chunk_n)
+		do_rrb(stack);
+	set_color(BLUE); print_node(stack->a, "stack a"); print_node(stack->b, "stack b"); set_color(RESET_C);
 }
 
 void	push_min_max(t_stack *stack, t_node **stack_name)
