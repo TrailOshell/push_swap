@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:58:58 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/21 17:45:13 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:42:57 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ void	print_node_connect(t_node *node, char *node_text)
 	printf("%s->prev = %d\n", node_text, node->prev->val);
 }
 
-int	check_ordered(t_node *a)
+int	debug_check_ordered(t_node *a)
 {
 	t_node	*head;
 
@@ -181,7 +181,7 @@ int	check_ordered(t_node *a)
 
 void	debug_ordered(t_stack *stack)
 {
-	if (check_ordered(stack->a) == 1)
+	if (debug_check_ordered(stack->a) == 1)
 		printcolor("Ordered\n", GREEN);
 	else
 		printcolor("NOT Ordered\n", RED);

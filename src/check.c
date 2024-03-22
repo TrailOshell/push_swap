@@ -5,8 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/19 06:38:00 by tsomchan         ###   ########.fr       */
+/*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */ /*   Updated: 2024/03/19 06:38:00 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +42,22 @@ int	check_median_push(t_stack *stack, t_node *stack_name, int median)
 	}
 	stack->target = NULL;
 	return (0);
+}
+
+int	check_ordered(t_node *a)
+{
+	t_node	*head;
+
+	head = a;
+	while (a)
+	{
+		if (a->next == head)
+			break ;
+		if (a->val > a->next->val)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
 
 int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)

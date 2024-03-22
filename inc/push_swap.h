@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/22 16:25:22 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:28:35 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void	do_swap_push(t_stack *stack);
 void	do_r_till_target_push(t_stack *stack, t_node *head);
 void	do_rr_till_target_push(t_stack *stack, t_node *head);
 
-
 // util.c
 int		ps_strcmp(char *s1, char *s2);
 char	*ps_strdup(char *str);
@@ -139,8 +138,9 @@ void	sort_in_5(t_stack *stack);
 t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
 
 // sorting.c
-void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char, int chunk_order);
+void	push_till_median(t_stack *stack, t_node **stack_name, int chunk_order);
 void	push_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order);
+void	sort_chunk(t_stack *stack, int chunk_order);
 void	push_min_max(t_stack *stack, t_node **stack_name);
 void	final_order(t_stack *stack);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:23:03 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/19 06:28:06 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/22 16:51:19 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	sort_in_5(t_stack *stack)
 {
 	int	count;
 
+	add_log(stack, newlog(stack, NULL, "sort_in_5"), 0);
 	count = count_nodes(stack->a);
 	//printf("count = %d\n\n\n", count);
 	if (count == 2)

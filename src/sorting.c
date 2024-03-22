@@ -12,11 +12,11 @@
 
 #include "../inc/push_swap.h"
 
-void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char
-			, int chunk_order)
+void	push_till_median(t_stack *stack, t_node **stack_name, int chunk_order)
 {
 	t_node	*head;
 
+	add_log(stack, newlog(stack, NULL, "push_till_median"), 0);
 	set_operations(stack, *stack_name);
 	find_median(stack, stack_name);
 	check_median_push(stack, *stack_name, stack->median);
@@ -37,35 +37,63 @@ void	push_till_median(t_stack *stack, t_node **stack_name, char stack_char
 	}
 }
 
-void	push_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order)
+void	push_chunk_median(t_stack *stack, t_node **stack_name, int chunk_n)
 {
 	t_node	*chunk;
 	t_node	*head;
 
 	chunk = NULL;
-	//print_log(stack->log);
-	//print_stack(stack);
-	//dupe_chunk(stack, &(stack->b), &chunk, stack->b->chunk_order);
-	dupe_chunk(stack, &(stack->b), &chunk, chunk_order);
-	//dupe_stack(stack, &(stack->b), &chunk);
+	dupe_chunk(stack, &(stack->b), &chunk, chunk_n);
 	find_median(stack, &chunk);
-	print_node(chunk, "chunk_order");
-	printf("= %d\n", chunk_order);
+	printf("chunk = %d ", chunk_n);
+	print_node(chunk, "");
 	printf("median = %d\n", stack->median);
 	set_operations(stack, *stack_name);
 	add_log(stack, newlog(stack, NULL, "pushing_chunk"), 0);
 	head = *stack_name;
-	while (*stack_name)
+	print_node(stack->b, "stack b");
+	while ((*stack_name)->chunk_order == chunk_n)
 	{
-		if ((*stack_name)->val < stack->median)
+		if ((*stack_name)->val > stack->median && (*stack_name)->chunk_order == chunk_n)
+		{
+			add_log(stack, newlog(stack, NULL, "push"), 0);
 			stack->push(stack);
-		else if ((*stack_name)->chunk_order != chunk_order
-			|| (*stack_name) == head || count_nodes(*stack_name) <= 5)
-			break ;
+		}
+		//else if ((*stack_name)->chunk != chunk || count_nodes(*stack_name) <= 5)
 		else
 			stack->rotate(stack);
-		print_stack(stack);
+		if (*stack_name == head)
+			break ;
+		//print_stack(stack);
 	}
+	print_node(stack->a, "stack a");
+	print_node(stack->b, "stack b");
+}
+
+void	find_target_chunk_sort(t_stack *stack, t_node *node, int chunk)
+{
+	t_node	*head;
+
+	head = node;
+	stack->target = NULL;
+	while (node)
+	{
+		if (node->val > node->next->val)
+			stack->target = node;
+		if (node == head)
+			break ;
+	}
+}
+
+void	check_chunk_sort(t_stack *stack, t_node *node, int chunk)
+{
+
+}
+
+void	sort_chunk(t_stack *stack, int chunk_n)
+{
+	find_target_chunk_sort(stack, stack->a, chunk_n);
+	printf("%starget = %d\n%s", CYAN, stack->target->val, RESET_C);
 }
 
 void	push_min_max(t_stack *stack, t_node **stack_name)
@@ -91,6 +119,7 @@ void	final_order(t_stack *stack)
 {
 	int	min;
 
+	add_log(stack, newlog(stack, NULL, "final_order"), 0);
 	min = find_min(stack, &(stack->a));
 	while (stack->a->val != min)
 		do_rra(stack);
