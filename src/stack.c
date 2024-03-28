@@ -1,6 +1,8 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */ /*   stack.c                                            :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
@@ -16,13 +18,12 @@ t_stack	*start_stack(t_stack *stack)
 		stack = malloc(sizeof(t_stack));
 	stack->a = NULL;
 	stack->b = NULL;
-	stack->last_a = NULL;
-	stack->last_b = NULL;
 	stack->order = NULL;
 	stack->target = NULL;
 	stack->iserror = 0;
 	stack->median = 0;
 	stack->quarter = 0;
+	stack->half_quarter = 0;
 	stack->swap = NULL;
 	stack->rotate = NULL;
 	stack->reverse = NULL;
@@ -66,27 +67,6 @@ void	dupe_stack(t_stack *stack, t_node **stack_origin, t_node **stack_dupe)
 	}
 }
 
-void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
-			int chunk_order)
-{
-	t_node	*head;
-	t_node	*tmp;
-	t_node	*new;
-
-	head = *stack_origin;
-	tmp = *stack_origin;
-	while (*stack_dupe)
-		nodedel(&(*stack_dupe));
-	while (tmp)
-	{
-		new = nodenew(tmp->val, tmp->chunk_order);
-		add_node_last(stack, stack_dupe, new);
-		tmp = tmp->next;
-		if (tmp == head || tmp->chunk_order != chunk_order)
-			break ;
-	}
-}
-
 void	end_stack(t_stack *stack)
 {
 	if (!stack)
@@ -100,6 +80,27 @@ void	end_stack(t_stack *stack)
 	free_log(stack->log);
 	free(stack);
 }
+
+//void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
+//			int chunk_order)
+//{
+//	t_node	*head;
+//	t_node	*tmp;
+//	t_node	*new;
+
+//	head = *stack_origin;
+//	tmp = *stack_origin;
+//	while (*stack_dupe)
+//		nodedel(&(*stack_dupe));
+//	while (tmp)
+//	{
+//		new = nodenew(tmp->val, tmp->chunk_order);
+//		add_node_last(stack, stack_dupe, new);
+//		tmp = tmp->next;
+//		if (tmp == head || tmp->chunk_order != chunk_order)
+//			break ;
+//	}
+//}
 
 //	print_node(stack->a, "deleting the stack...");
 

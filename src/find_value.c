@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:45:15 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/28 16:37:45 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:36:02y tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,29 +86,50 @@ void	find_quarter(t_stack *stack, t_node **stack_name)
 	stack->quarter = tmp->val;
 }
 
-void	find_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order)
+void	find_half_quarter(t_stack *stack, t_node **stack_name)
 {
 	t_node	*tmp;
 	int		node_count;
-	int		median_count;
+	int		half_quarter_count;
 	int		node_current;
 	int		median;
 
-	node_count = 0;
-	tmp = *stack_name;
-	while (tmp->next->chunk_order == chunk_order)
-	{
-		tmp = tmp->next;
-		node_count++;
-	}
+	node_count = count_nodes(*stack_name);
 	current_stack_order(stack, stack_name);
-	median_count = (node_count / 2) + (node_count % 2);
+	half_quarter_count = (node_count / 8) + (node_count % 2);
 	node_current = 1;
 	tmp = stack->order;
-	while (node_current < median_count)
+	while (node_current < half_quarter_count)
 	{
 		tmp = tmp->next;
 		node_current++;
 	}
-	stack->median = tmp->val;
+	stack->half_quarter = tmp->val;
 }
+
+//void	find_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order)
+//{
+//	t_node	*tmp;
+//	int		node_count;
+//	int		median_count;
+//	int		node_current;
+//	int		median;
+
+//	node_count = 0;
+//	tmp = *stack_name;
+//	while (tmp->next->chunk_order == chunk_order)
+//	{
+//		tmp = tmp->next;
+//		node_count++;
+//	}
+//	current_stack_order(stack, stack_name);
+//	median_count = (node_count / 2) + (node_count % 2);
+//	node_current = 1;
+//	tmp = stack->order;
+//	while (node_current < median_count)
+//	{
+//		tmp = tmp->next;
+//		node_current++;
+//	}
+//	stack->median = tmp->val;
+//}
