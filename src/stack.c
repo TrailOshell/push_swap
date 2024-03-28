@@ -22,6 +22,7 @@ t_stack	*start_stack(t_stack *stack)
 	stack->target = NULL;
 	stack->iserror = 0;
 	stack->median = 0;
+	stack->quarter = 0;
 	stack->swap = NULL;
 	stack->rotate = NULL;
 	stack->reverse = NULL;

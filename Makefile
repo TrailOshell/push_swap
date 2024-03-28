@@ -19,7 +19,7 @@ SRC_PTH	=	src/
 SRC		=	push_swap.c stack.c node.c util.c error.c  \
 			check.c find_value.c find_target.c \
 			node_linking.c \
-			order.c sort_5.c sorting.c \
+			order.c sort_5.c sorting.c chunk.c\
 			do_swap.c do_push.c do_rotate.c do_reverse.c do_operations.c \
 			debug.c log.c
 

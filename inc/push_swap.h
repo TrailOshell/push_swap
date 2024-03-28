@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/22 17:28:35 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:37:36 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_stack
 	struct s_node	*target;
 	int				iserror;
 	int				median;
+	int				quarter;
 	void			(*swap)(struct s_stack *);
 	void			(*rotate)(struct s_stack *);
 	void			(*reverse)(struct s_stack *);
@@ -124,6 +125,8 @@ int		isnear_head(t_stack *stack, t_node *stack_name, t_node *node);
 int		find_max(t_stack *stack, t_node **stack_name);
 int		find_min(t_stack *stack, t_node **stack_name);
 void	find_median(t_stack *stack, t_node **stack_name);
+void	find_quarter(t_stack *stack, t_node **stack_name);
+
 // find_target.c
 void	find_target_min_max(t_stack *stack, t_node *head, int min, int max);
 
@@ -136,6 +139,8 @@ void	sort_in_5(t_stack *stack);
 
 // order.c
 t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
+
+// chunk.c
 
 // sorting.c
 void	push_till_median(t_stack *stack, t_node **stack_name, int chunk_order);

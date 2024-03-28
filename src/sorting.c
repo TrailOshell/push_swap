@@ -113,7 +113,15 @@ void	push_min_max(t_stack *stack, t_node **stack_name)
 	else if (near_head == 0)
 		do_rr_till_target_push(stack, *stack_name);
 	if (stack->target->val == min)
-		do_ra(stack);
+	{
+		//min = find_min(stack, stack->b);
+		//max = find_max(stack, stack->b);
+		//find_target_min_max(stack, *stack_name, min, max);
+		//if (stack->b != stack->target)
+		//	do_rr(stack);
+		//else
+			do_ra(stack);
+	}
 }
 
 void	final_order(t_stack *stack)
