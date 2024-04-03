@@ -12,27 +12,27 @@
 
 #include "../inc/push_swap.h"
 
-void	set_head_push_pull(t_stack *s, char c, t_node ***push, t_node ***pull)
+void	set_head_push_pull(t_data *d, char s, t_node ***push, t_node ***pull)
 {
-	if (c == 'a')
+	if (s == 'a')
 	{
-		*push = &(s->a);
-		*pull = &(s->b);
+		*push = &(d->a);
+		*pull = &(d->b);
 	}
-	else if (c == 'b')
+	else if (s == 'b')
 	{
-		*push = &(s->b);
-		*pull = &(s->a);
+		*push = &(d->b);
+		*pull = &(d->a);
 	}
 }
 
-void	do_push(t_stack *stack, char push_stack)
+void	do_push(t_data *data, char stack)
 {
 	t_node	**head_push;
 	t_node	**head_pull;
 	t_node	*push_node;
 
-	set_head_push_pull(stack, push_stack, &head_push, &head_pull);
+	set_head_push_pull(data, stack, &head_push, &head_pull);
 	if (!*head_pull)
 		return ;
 	push_node = *head_pull;
@@ -40,31 +40,45 @@ void	do_push(t_stack *stack, char push_stack)
 	node_new_head_push(head_push, &push_node);
 }
 
-void	do_pa(t_stack *stack)
+void	do_pa(t_data *data)
 {
-	do_push(stack, 'a');
+	do_push(data, 'a');
 	write(1, "pa\n", 3);
-	add_log(stack, newlog(stack, "pa", NULL), 1);
+	add_log(data, newlog(data, "pa", NULL), 1);
 }
 
-void	do_pb(t_stack *stack)
+void	do_pb(t_data *data)
 {
-	do_push(stack, 'b');
+	do_push(data, 'b');
 	write(1, "pb\n", 3);
-	add_log(stack, newlog(stack, "pb", NULL), 1);
+	add_log(data, newlog(data, "pb", NULL), 1);
 }
 
+	/*
+    t_node *head_a;
+    t_node *head_b
 	/*
     t_node *head_a;
     t_node *head_b;
     
     //stack_a make new head
-    head_a->val = stack->b->val;
+    head_a->val = data->b->val;
 	//stack_a connect new head to old head
-    head_a->next = stack->a->next;
+    head_a->next = data->a->next;
 
 	//stack_b track new head
-	head_b = stack->b->next;
+	head_b = data->b->next;
 	//stack_b remove old head
-	dellst(stack->b);
+	dellst(data->b);
+	*/;
+    
+    //stack_a make new head
+    head_a->val = data->b->val;
+	//stack_a connect new head to old head
+    head_a->next = data->a->next;
+
+	//stack_b track new head
+	head_b = data->b->next;
+	//stack_b remove old head
+	dellst(data->b);
 	*/

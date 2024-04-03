@@ -6,100 +6,80 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:23:03 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/22 16:51:19 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:15:31 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	sort_2(t_stack *stack)
+void	sort_2(t_data *data)
 {
-	if (stack->a->val > (stack->a->next->val))
-		do_sa(stack);
+	if (data->a->val > (data->a->next->val))
+		do_sa(data);
 }
 
-void	sort_3(t_stack *stack)
+void	sort_3(t_data *data)
 {
 	int	max;
 
-	max = find_max(stack, &(stack->a));
-	if (stack->a->val == max)
-		stack->rotate(stack);
-	else if (stack->a->next->val == max)
-		stack->reverse(stack);
-	sort_2(stack);
+	max = find_max(data, &(data->a));
+	if (data->a->val == max)
+		data->rotate(data);
+	else if (data->a->next->val == max)
+		data->reverse(data);
+	sort_2(data);
 }
 
-void	sort_4(t_stack *stack)
+void	sort_4(t_data *data)
 {
 	int	min;
 
-	min = find_min(stack, &(stack->a));
-	while (stack->a->val != min)
+	min = find_min(data, &(data->a));
+	while (data->a->val != min)
 	{
-		do_ra(stack);
-		stack->a = stack->a->next;
+		do_ra(data);
+		data->a = data->a->next;
 	}
-	do_pb(stack);
-	sort_3(stack);
-	do_pa(stack);
+	do_pb(data);
+	sort_3(data);
+	do_pa(data);
 }
 
-void	sort_5(t_stack *stack)
+void	sort_5(t_data *data)
 {
 	int	count;
 
 	count = 5;
-	find_median(stack, &(stack->a));
+	find_median(data, &(data->a));
 	while (count > 3)
 	{
-		if (stack->a->val < stack->median)
+		if (data->a->val < data->median)
 		{
-			do_pb(stack);
+			do_pb(data);
 			count--;
 		}
 		else
-			do_ra(stack);
+			do_ra(data);
 	}
-	sort_3(stack);
-	if (stack->b->val < (stack->b->next->val))
-		do_sb(stack);
-	do_pa(stack);
-	do_pa(stack);
+	sort_3(data);
+	if (data->b->val < (data->b->next->val))
+		do_sb(data);
+	do_pa(data);
+	do_pa(data);
 }
 
-void	sort_in_5(t_stack *stack)
+void	sort_in_5(t_data *data)
 {
 	int	count;
 
-	add_log(stack, newlog(stack, NULL, "sort_in_5"), 0);
-	count = count_nodes(stack->a);
-	//printf("count = %d\n\n\n", count);
+	add_log(data, newlog(data, NULL, "sort_in_5"), 0);
+	count = count_nodes(data->a);
 	if (count == 2)
-		sort_2(stack);
+		sort_2(data);
 	else if (count == 3)
-		sort_3(stack);
+		sort_3(data);
 	else if (count == 4)
-		sort_4(stack);
+		sort_4(data);
 	else if (count == 5)
-		sort_5(stack);
-	//else
-		//error
+		sort_5(data);
 }
-
-/*
-void	sort_2(t_stack *stack)
-{
-	int	do_swap_a;	
-	int	do_swap_b;	
-
-	do_swap_a = stack->a->val > (stack->a->next->val);
-	do_swap_b = stack->b->val < (stack->b->next->val);
-	if (do_swap_a && do_swap_b)
-		do_ss(stack);
-	else if (do_swap_a)
-		do_sa(stack);
-	else if (do_swap_b)
-		do_sb(stack);
-}
-*/

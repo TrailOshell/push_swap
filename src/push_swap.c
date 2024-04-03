@@ -14,36 +14,34 @@
 
 void	push_swap(char **argv)
 {
-	t_stack	*stack;
+	t_data	*data;
 	t_node	*node;
-	//int		total_count;
 	int		chunk_order;
 
-	stack = NULL;
-	stack = start_stack(stack);
-	input_stack(stack, &(stack->a), ++argv);
-	if (stack->iserror)
+	data = NULL;
+	data = start_data(data);
+	input_stack(data, &(data->a), ++argv);
+	if (data->iserror)
 	{
 		write(1, "Error\n", 6);
-		end_stack(stack);
+		end_stack(data);
 		return ;
 	}
-	//total_count = count_nodes(stack->a);
 	chunk_order = 0;
-	while (count_nodes(stack->a) > 5)
+	while (count_nodes(data->a) > 5)
 	{
-		if (count_nodes(stack->a) <= 100)
-			push_till_median(stack, &(stack->a), ++chunk_order);
+		if (count_nodes(data->a) <= 100)
+			push_till_median(data, &(data->a), ++chunk_order);
 		else
-			push_till_quarter(stack, &(stack->a), ++chunk_order);
+			push_till_quarter(data, &(data->a), ++chunk_order);
 	}
-	sort_in_5(stack);
-	while (count_nodes(stack->b))
-		push_min_max(stack, &(stack->b));
-	final_order(stack);
-	print_log(stack->log); debug_ordered(stack);
-	//print_stack(stack);
-	end_stack(stack);
+	sort_in_5(data);
+	while (count_nodes(data->b))
+		push_min_max(data, &(data->b));
+	final_order(data);
+	print_log(data->log); debug_ordered(data);
+	//print_stack(data);
+	end_stack(data);
 }
 
 int	main(int argc, char **argv)

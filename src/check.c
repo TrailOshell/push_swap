@@ -6,48 +6,57 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/28 19:45:53 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:12:59 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	check_rotate_median_push(t_stack *stack)
+int	check_rotate_median_push(t_data *data)
 {
-	if (stack->b->chunk_order == 1 && stack->b->val <= stack->quarter)
+	if (data->b->chunk_order == 1 && data->b->val <= data->quarter)
 		return (1);
-	//else if (stack->b->chunk_order > 1 && stack->b->val <= stack->quarter)
-	else if (stack->b->chunk_order > 1 && stack->b->val > stack->quarter)
+	else if (data->b->chunk_order > 1 && data->b->val > data->quarter)
 		return (1);
 	return (0);
 }
 
-int	check_rotate_quarter_push(t_stack *stack)
+int	check_rotate_quarter_push(t_data *data)
 {
-	if (stack->b->chunk_order == 1 && stack->b->val <= stack->half_quarter)
-		return (1);
-	//else if (stack->b->chunk_order > 1 && stack->b->val > stack->half_quarter)
-	else if (stack->b->chunk_order > 1 && stack->b->val <= stack->half_quarter)
+	//if (data->b->chunk_order == 1 && data->b->val <= data->half_quarter)
+	//	return (1);
+	//else if (data->b->chunk_order > 1 && data->b->val <= data->half_quarter)
+	//	return (1);
+	if (data->b->val <= data->half_quarter)
 		return (1);
 	return (0);
 }
 
-int	check_median_push(t_stack *stack, t_node *stack_name, int median)
+int	check_rotate_chunk(t_data *data, int value)
+{
+	if (data->b->chunk_order == 1 && data->b->val <= value)
+		return (1);
+	else if (data->b->chunk_order > 1 && data->b->val <= value)
+		return (1);
+	return (0);
+}
+
+int	check_median_push(t_data *data, t_node *stack, int median)
 {
 	t_node	*tmp;
 	t_node	*tmp2;
 	t_node	*head;
 	int		index;
 
-	tmp = stack_name;
-	tmp2 = stack_name->prev;
-	head = stack_name;
+	tmp = stack;
+	tmp2 = stack->prev;
+	head = stack;
 	index = 0;
-	while (tmp != tmp2)
+	while (tmp)
 	{
 		if (tmp->val <= median)
 		{
-			stack->target = tmp;
+			data->target = tmp;
 			return (1);
 		}
 		tmp = tmp->next;
@@ -56,7 +65,7 @@ int	check_median_push(t_stack *stack, t_node *stack_name, int median)
 		if (tmp == head)
 			break ;
 	}
-	stack->target = NULL;
+	data->target = NULL;
 	return (0);
 }
 
@@ -76,15 +85,15 @@ int	check_ordered(t_node *a)
 	return (1);
 }
 
-int	isnear_head(t_stack *stack, t_node *stack_name, t_node *node)
+int	isnear_head(t_data *data, t_node *stack, t_node *node)
 {
 	t_node	*tmp;
 	t_node	*tmp2;
 	int		count;
 
 	count = 0;
-	tmp = stack_name;
-	tmp2 = stack_name->prev;
+	tmp = stack;
+	tmp2 = stack->prev;
 	while (tmp != tmp2)
 	{
 		if (tmp->val == node->val)

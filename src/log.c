@@ -12,7 +12,7 @@
 
 #include "../inc/push_swap.h"
 
-t_log	*newlog(t_stack *stack, char *op, char *text)
+t_log	*newlog(t_data *data, char *op, char *text)
 {
 	t_log	*new;
 
@@ -31,29 +31,29 @@ t_log	*newlog(t_stack *stack, char *op, char *text)
 		new->text = ps_strdup(text);
 	new->a = NULL;
 	new->b = NULL;
-	dupe_stack(stack, &(stack->a), &(new->a));
-	dupe_stack(stack, &(stack->b), &(new->b));
+	dupe_stack(data, &(data->a), &(new->a));
+	dupe_stack(data, &(data->b), &(new->b));
 	return (new);
 }
 
-void	add_log(t_stack *stack, t_log *log, int add_count)
+void	add_log(t_data *data, t_log *log, int add_count)
 {
-	if (!stack->log)
+	if (!data->log)
 	{
 		log->id = 1;
 		log->op_count = add_count;
-		stack->log = log;
+		data->log = log;
 		log->next = log;
 		log->prev = log;
 	}
 	else
 	{
-		log->id = stack->log->prev->id + 1;
-		log->op_count = stack->log->prev->op_count + add_count;
-		log->next = stack->log;
-		log->prev = stack->log->prev;
-		stack->log->prev->next = log;
-		stack->log->prev = log;
+		log->id = data->log->prev->id + 1;
+		log->op_count = data->log->prev->op_count + add_count;
+		log->next = data->log;
+		log->prev = data->log->prev;
+		data->log->prev->next = log;
+		data->log->prev = log;
 	}
 }
 
@@ -171,7 +171,7 @@ void	print_log(t_log *log)
 	}
 }
 
-void	logging(t_stack *stack, t_log *log)
+void	logging(t_data *data, t_log *log)
 {
 	t_node	*target_a;
 	t_node	*target_b;

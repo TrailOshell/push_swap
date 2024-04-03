@@ -12,73 +12,73 @@
 
 #include "../inc/push_swap.h"
 
-t_stack	*start_stack(t_stack *stack)
+t_data	*start_data(t_data *data)
 {
-	if (!stack)
-		stack = malloc(sizeof(t_stack));
-	stack->a = NULL;
-	stack->b = NULL;
-	stack->order = NULL;
-	stack->target = NULL;
-	stack->iserror = 0;
-	stack->median = 0;
-	stack->quarter = 0;
-	stack->half_quarter = 0;
-	stack->swap = NULL;
-	stack->rotate = NULL;
-	stack->reverse = NULL;
-	stack->push = NULL;
-	stack->log = NULL;
-	return (stack);
+	if (!data)
+		data = malloc(sizeof(t_data));
+	data->a = NULL;
+	data->b = NULL;
+	data->order = NULL;
+	data->target = NULL;
+	data->iserror = 0;
+	data->median = 0;
+	data->quarter = 0;
+	data->half_quarter = 0;
+	data->swap = NULL;
+	data->rotate = NULL;
+	data->reverse = NULL;
+	data->push = NULL;
+	data->log = NULL;
+	return (data);
 }
 
-void	input_stack(t_stack *stack, t_node **stack_name, char **input)
+void	input_stack(t_data *data, t_node **stack, char **input)
 {
 	int		num;
 
 	while (*input)
 	{
-		if (notnbr_error(stack, *input))
+		if (notnbr_error(data, *input))
 			return ;
 		num = atoi_push_swap(*input);
-		if (stack->a && dupnbr_error(stack, num))
+		if (data->a && dupnbr_error(data, num))
 			return ;
-		add_node_last(stack, stack_name, nodenew(num, 0));
+		add_node_last(data, stack, nodenew(num, 0));
 		input++;
 	}
 }
 
-void	dupe_stack(t_stack *stack, t_node **stack_origin, t_node **stack_dupe)
+void	dupe_stack(t_data *data, t_node **origin, t_node **dupe)
 {
 	t_node	*head;
 	t_node	*tmp;
 	t_node	*new;
 
-	head = *stack_origin;
-	while (*stack_dupe)
-		nodedel(&(*stack_dupe));
-	while (*stack_origin)
+	head = *origin;
+	while (*dupe)
+		nodedel(&(*dupe));
+	while (*origin)
 	{
-		new = nodenew((*stack_origin)->val, (*stack_origin)->chunk_order);
-		add_node_last(stack, stack_dupe, new);
-		*stack_origin = (*stack_origin)->next;
-		if (*stack_origin == head)
+		new = nodenew((*origin)->val, (*origin)->chunk_order);
+		add_node_last(data, dupe, new);
+		*origin = (*origin)->next;
+		if (*origin == head)
 			break ;
 	}
 }
 
-void	end_stack(t_stack *stack)
+void	end_stack(t_data *data)
 {
-	if (!stack)
+	if (!data)
 		return ;
-	while (stack->a)
-		nodedel(&stack->a);
-	while (stack->b)
-		nodedel(&stack->b);
-	while (stack->order)
-		nodedel(&stack->order);
-	free_log(stack->log);
-	free(stack);
+	while (data->a)
+		nodedel(&data->a);
+	while (data->b)
+		nodedel(&data->b);
+	while (data->order)
+		nodedel(&data->order);
+	free_log(data->log);
+	free(data);
 }
 
 //void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
@@ -95,14 +95,14 @@ void	end_stack(t_stack *stack)
 //	while (tmp)
 //	{
 //		new = nodenew(tmp->val, tmp->chunk_order);
-//		add_node_last(stack, stack_dupe, new);
+//		add_node_last(data, stack_dupe, new);
 //		tmp = tmp->next;
 //		if (tmp == head || tmp->chunk_order != chunk_order)
 //			break ;
 //	}
 //}
 
-//	print_node(stack->a, "deleting the stack...");
+//	print_node(data->a, "deleting the stack...");
 
 /* input_stack()
 	printf("*argv = %s$\n", *argv);

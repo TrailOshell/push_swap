@@ -72,21 +72,21 @@ int	atoi_push_swap(char *str)
 	return (nbr * isnegative);
 }
 
-void	set_operations(t_stack *stack, t_node *stack_name)
+void	set_operations(t_data *data, t_node *stack)
 {
-	if (stack_name == stack->a)
+	if (stack == data->a)
 	{
-		stack->swap = &(do_sa);
-		stack->rotate = &(do_ra);
-		stack->reverse = &(do_rra);
-		stack->push = &(do_pb);
+		data->swap = &(do_sa);
+		data->rotate = &(do_ra);
+		data->reverse = &(do_rra);
+		data->push = &(do_pb);
 	}
-	else if (stack_name == stack->b)
+	else if (stack == data->b)
 	{
-		stack->swap = &(do_sb);
-		stack->rotate = &(do_rb);
-		stack->reverse = &(do_rrb);
-		stack->push = &(do_pa);
+		data->swap = &(do_sb);
+		data->rotate = &(do_rb);
+		data->reverse = &(do_rrb);
+		data->push = &(do_pa);
 	}
 }
 

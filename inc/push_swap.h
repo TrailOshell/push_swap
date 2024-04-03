@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/28 19:44:50 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:01:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_node
 	int				chunk_order;
 }	t_node;
 
-typedef struct s_stack
+typedef struct s_data
 {
 	struct s_node	*a;
 	struct s_node	*b;
@@ -47,12 +47,13 @@ typedef struct s_stack
 	int				median;
 	int				quarter;
 	int				half_quarter;
-	void			(*swap)(struct s_stack *);
-	void			(*rotate)(struct s_stack *);
-	void			(*reverse)(struct s_stack *);
-	void			(*push)(struct s_stack *);
+	//int				half_half_quarter;
+	void			(*swap)(struct s_data *);
+	void			(*rotate)(struct s_data *);
+	void			(*reverse)(struct s_data *);
+	void			(*push)(struct s_data *);
 	struct s_log	*log;
-}	t_stack;
+}	t_data;
 
 typedef struct s_log
 {
@@ -70,15 +71,15 @@ typedef struct s_log
 void	push_swap(char **argv);
 
 // stack.c
-t_stack	*start_stack(t_stack *stack);
-void	input_stack(t_stack *stack, t_node **stack_name, char **input);
-void	dupe_stack(t_stack *stack, t_node **stack_origin, t_node **stack_dupe);
-void	end_stack(t_stack *stack);
+t_data	*start_data(t_data *data);
+void	input_stack(t_data *data, t_node **stack, char **input);
+void	dupe_stack(t_data *data, t_node **stack_origin, t_node **stack_dupe);
+void	end_stack(t_data *data);
 //void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
 //			int chunk_order);
 
 // node.c
-void	add_node_last(t_stack *stack, t_node **stack_name, t_node *add);
+void	add_node_last(t_data *data, t_node **stack, t_node *add);
 t_node	*nodenew(int num, int chunk_order);
 void	nodedel(t_node **node);
 void	swap_nodes_value(t_node **node_1, t_node **node_2);
@@ -90,95 +91,99 @@ void	node_new_head_pull(t_node **head_pull, t_node **push_node);
 void	node_new_head_push(t_node **head_push, t_node **push_node);
 
 // do_swap.c
-void	do_sa(t_stack *stack);
-void	do_sb(t_stack *stack);
-void	do_ss(t_stack *stack);
+void	do_sa(t_data *data);
+void	do_sb(t_data *data);
+void	do_ss(t_data *data);
 // do_push.c
-void	do_pa(t_stack *stack);
-void	do_pb(t_stack *stack);
+void	do_pa(t_data *data);
+void	do_pb(t_data *data);
 // do_rotate.c
-void	do_ra(t_stack *stack);
-void	do_rb(t_stack *stack);
-void	do_rr(t_stack *stack);
+void	do_ra(t_data *data);
+void	do_rb(t_data *data);
+void	do_rr(t_data *data);
 // do_reverse.c
-void	do_rra(t_stack *stack);
-void	do_rrb(t_stack *stack);
-void	do_rrr(t_stack *stack);
+void	do_rra(t_data *data);
+void	do_rrb(t_data *data);
+void	do_rrr(t_data *data);
 
 // do_operations.c
-void	do_swap_push(t_stack *stack);
-void	do_r_till_target_push(t_stack *stack, t_node *head);
-void	do_rr_till_target_push(t_stack *stack, t_node *head);
-void	do_condition_then_push(t_stack *stack, t_node **stack_name, int chunk_order);
+void	do_swap_push(t_data *data);
+void	do_r_till_target_push(t_data *data, t_node *head);
+void	do_rr_till_target_push(t_data *data, t_node *head);
+void	do_condition_then_push(t_data *data, t_node **stack, int chunk_order);
 
 // util.c
 int		ps_strcmp(char *s1, char *s2);
 char	*ps_strdup(char *str);
 int		atoi_push_swap(char *str);
-void	set_operations(t_stack *stack, t_node *stack_name);
+void	set_operations(t_data *data, t_node *stack);
 
 // check.c
-int		check_rotate_median_push(t_stack *stack);
-int		check_rotate_quarter_push(t_stack *stack);
-int		check_median_push(t_stack *stack, t_node *stack_name, int median);
-int		isnear_head(t_stack *stack, t_node *stack_name, t_node *node);
+int		check_rotate_median_push(t_data *data);
+int		check_rotate_quarter_push(t_data *data);
+int		check_rotate_chunk(t_data *data, int value);
+int		check_median_push(t_data *data, t_node *stack, int median);
+int		isnear_head(t_data *data, t_node *stack, t_node *node);
 
 // find_value.c
-int		find_max(t_stack *stack, t_node **stack_name);
-int		find_min(t_stack *stack, t_node **stack_name);
-void	find_median(t_stack *stack, t_node **stack_name);
-void	find_quarter(t_stack *stack, t_node **stack_name);
-void	find_half_quarter(t_stack *stack, t_node **stack_name);
+int		find_max(t_data *data, t_node **stack);
+int		find_min(t_data *data, t_node **stack);
+void	find_median(t_data *data, t_node **stack);
+void	find_quarter(t_data *data, t_node **stack);
+void	find_half_quarter(t_data *data, t_node **stack);
+//void	find_half_half_quarter(t_stack *stack, t_node **stack);
 
 // find_target.c
-void	find_target_min_max(t_stack *stack, t_node *head, int min, int max);
+void	find_target_min_max(t_data *data, t_node *head, int min, int max);
+void	set_target_min_max(t_data *data, int *min, int *max, int *near_head);
 
 // sort_5.c
-void	sort_2(t_stack *stack);
-void	sort_3(t_stack *stack);
-void	sort_4(t_stack *stack);
-void	sort_5(t_stack *stack);
-void	sort_in_5(t_stack *stack);
+void	sort_2(t_data *data);
+void	sort_3(t_data *data);
+void	sort_4(t_data *data);
+void	sort_5(t_data *data);
+void	sort_in_5(t_data *data);
 
 // order.c
-t_node	*current_stack_order(t_stack *stack, t_node **stack_name);
+t_node	*current_stack_order(t_data *data, t_node **stack);
 
 // chunk.c
 
 // sorting.c
-void	push_till_median(t_stack *stack, t_node **stack_name, int chunk_order);
-void	push_till_quarter(t_stack *stack, t_node **stack_name, int chunk_order);
-void	push_min_max(t_stack *stack, t_node **stack_name);
-void	final_order(t_stack *stack);
-//void	push_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order);
+void	push_till_median(t_data *data, t_node **stack, int chunk_order);
+void	push_till_quarter(t_data *data, t_node **stack, int chunk_order);
+//void	push_till_half_quarter(t_stack *stack, t_node **stack, int chunk_order);
+void	push_min_max(t_data *data, t_node **stack);
+void	final_order(t_data *data);
+//void	push_chunk_median(t_stack *stack, t_node **stack, int chunk_order);
 //void	sort_chunk(t_stack *stack, int chunk_order);
 
 // error.c
-int		notnbr_error(t_stack *stack, char *argv);
-int		dupnbr_error(t_stack *stack, int num);
+int		notnbr_error(t_data *data, char *argv);
+int		dupnbr_error(t_data *data, int num);
 
 // debug.c
-void	print_stack(t_stack *stack);
+void	print_stack(t_data *data);
 void	print_node(t_node *node, char *text);
 void	set_color(char *color);
 char	*strtocolor(char *str);
 void	printcolor(char *s, char *color);
 void	debug_title(char *s);
-void	debug_op(t_stack *stack, void (*do_f)(t_stack *));
-void	debug_operations(t_stack *stack);
-void	debug_operations_1_node(t_stack *stack);
-void	debug_push_empty_a(t_stack *stack);
-void	debug_push_empty_b(t_stack *stack);
-void	debug_push_1_a(t_stack *stack);
+void	debug_op(t_data *data, void (*do_f)(t_data *));
+void	debug_operations(t_data *data);
+void	debug_operations_1_node(t_data *data);
+void	debug_push_empty_a(t_data *data);
+void	debug_push_empty_b(t_data *data);
+void	debug_push_1_a(t_data *data);
 void	print_node_connect(t_node *node, char *node_text);
 int		check_ordered(t_node *a);
-void	debug_ordered(t_stack *stack);
+void	debug_ordered(t_data *data);
 
 // log.c
-t_log	*newlog(t_stack *stack, char *op, char *text);
-void	add_log(t_stack *stack, t_log *log, int add_count);
+t_log	*newlog(t_data *data, char *op, char *text);
+void	add_log(t_data *data, t_log *log, int add_count);
 void	free_log(t_log *log);
 void	print_log(t_log *log);
-void	logging(t_stack *stack, t_log *log);
+void	logging(t_data *data, t_log *log);
 
 #endif

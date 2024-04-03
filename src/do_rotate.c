@@ -17,61 +17,24 @@ void	do_rotate(t_node **node)
 	*node = (*node)->next;
 }
 
-void	do_ra(t_stack *stack)
+void	do_ra(t_data *data)
 {
-	do_rotate(&stack->a);
+	do_rotate(&data->a);
 	write(1, "ra\n", 3);
-	add_log(stack, newlog(stack, "ra", NULL), 1);
+	add_log(data, newlog(data, "ra", NULL), 1);
 }
 
-void	do_rb(t_stack *stack)
+void	do_rb(t_data *data)
 {
-	do_rotate(&stack->b);
+	do_rotate(&data->b);
 	write(1, "rb\n", 3);
-	add_log(stack, newlog(stack, "rb", NULL), 1);
+	add_log(data, newlog(data, "rb", NULL), 1);
 }
 
-void	do_rr(t_stack *stack)
+void	do_rr(t_data *data)
 {
-	do_rotate(&stack->a);
-	do_rotate(&stack->b);
+	do_rotate(&data->a);
+	do_rotate(&data->b);
 	write(1, "rr\n", 3);
-	add_log(stack, newlog(stack, "rr", NULL), 1);
+	add_log(data, newlog(data, "rr", NULL), 1);
 }
-
-/*
-void	do_rotate(t_node **node)
-{
-	t_node	*tmp;
-	t_node	*last;
-	t_node	*first;
-
-	tmp = (*node)->prev;
-	(*node)->prev = last;
-	last->prev = tmp;
-	tmp->next = last;
-
-	tmp = *node;
-	while (tmp->next)
-		tmp = tmp->next;
-	last = *node;
-	first = (*node)->next;
-	*node = first;
-	tmp->next = last;
-	last->next = NULL;
-}
-*/
-
-/* void	do_rotate(t_node *node)
-	//int	tmp;
-
-	//if (!node->next)
-	//	return ;
-	//tmp = node->val;
-	//while (node->next)
-	//{
-	//	node->val = node->next->val;
-	//	node = node->next;
-	//}
-	//node->val = tmp;
-*/

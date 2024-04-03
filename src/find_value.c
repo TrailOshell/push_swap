@@ -12,14 +12,14 @@
 
 #include "../inc/push_swap.h"
 
-int	find_max(t_stack *stack, t_node **stack_name)
+int	find_max(t_data *data, t_node **stack)
 {
 	t_node	*max_node;
 	t_node	*head;
 
-	max_node = *stack_name;
-	head = *stack_name;
-	while (head->next != *stack_name)
+	max_node = *stack;
+	head = *stack;
+	while (head->next != *stack)
 	{
 		head = head->next;
 		if (max_node->val < head->val)
@@ -28,14 +28,14 @@ int	find_max(t_stack *stack, t_node **stack_name)
 	return (max_node->val);
 }
 
-int	find_min(t_stack *stack, t_node **stack_name)
+int	find_min(t_data *data, t_node **stack)
 {
 	t_node	*min_node;
 	t_node	*head;
 
-	min_node = *stack_name;
-	head = *stack_name;
-	while (head->next != *stack_name)
+	min_node = *stack;
+	head = *stack;
+	while (head->next != *stack)
 	{
 		head = head->next;
 		if (min_node->val > head->val)
@@ -44,7 +44,7 @@ int	find_min(t_stack *stack, t_node **stack_name)
 	return (min_node->val);
 }
 
-void	find_median(t_stack *stack, t_node **stack_name)
+void	find_median(t_data *data, t_node **stack)
 {
 	t_node	*tmp;
 	int		node_count;
@@ -52,20 +52,20 @@ void	find_median(t_stack *stack, t_node **stack_name)
 	int		node_current;
 	int		median;
 
-	node_count = count_nodes(*stack_name);
-	current_stack_order(stack, stack_name);
+	node_count = count_nodes(*stack);
+	current_stack_order(data, stack);
 	median_count = (node_count / 2) + (node_count % 2);
 	node_current = 1;
-	tmp = stack->order;
+	tmp = data->order;
 	while (node_current < median_count)
 	{
 		tmp = tmp->next;
 		node_current++;
 	}
-	stack->median = tmp->val;
+	data->median = tmp->val;
 }
 
-void	find_quarter(t_stack *stack, t_node **stack_name)
+void	find_quarter(t_data *data, t_node **stack)
 {
 	t_node	*tmp;
 	int		node_count;
@@ -73,20 +73,20 @@ void	find_quarter(t_stack *stack, t_node **stack_name)
 	int		node_current;
 	int		median;
 
-	node_count = count_nodes(*stack_name);
-	current_stack_order(stack, stack_name);
+	node_count = count_nodes(*stack);
+	current_stack_order(data, stack);
 	quarter_count = (node_count / 4) + (node_count % 2);
 	node_current = 1;
-	tmp = stack->order;
+	tmp = data->order;
 	while (node_current < quarter_count)
 	{
 		tmp = tmp->next;
 		node_current++;
 	}
-	stack->quarter = tmp->val;
+	data->quarter = tmp->val;
 }
 
-void	find_half_quarter(t_stack *stack, t_node **stack_name)
+void	find_half_quarter(t_data *data, t_node **stack)
 {
 	t_node	*tmp;
 	int		node_count;
@@ -94,42 +94,36 @@ void	find_half_quarter(t_stack *stack, t_node **stack_name)
 	int		node_current;
 	int		median;
 
-	node_count = count_nodes(*stack_name);
-	current_stack_order(stack, stack_name);
+	node_count = count_nodes(*stack);
+	current_stack_order(data, stack);
 	half_quarter_count = (node_count / 8) + (node_count % 2);
 	node_current = 1;
-	tmp = stack->order;
+	tmp = data->order;
 	while (node_current < half_quarter_count)
 	{
 		tmp = tmp->next;
 		node_current++;
 	}
-	stack->half_quarter = tmp->val;
+	data->half_quarter = tmp->val;
 }
 
-//void	find_chunk_median(t_stack *stack, t_node **stack_name, int chunk_order)
+//void	find_half_half_quarter(t_stack *stack, t_node **stack)
 //{
 //	t_node	*tmp;
 //	int		node_count;
-//	int		median_count;
+//	int		half_half_quarter_count;
 //	int		node_current;
 //	int		median;
 
-//	node_count = 0;
-//	tmp = *stack_name;
-//	while (tmp->next->chunk_order == chunk_order)
-//	{
-//		tmp = tmp->next;
-//		node_count++;
-//	}
-//	current_stack_order(stack, stack_name);
-//	median_count = (node_count / 2) + (node_count % 2);
+//	node_count = count_nodes(*stack);
+//	current_stack_order(data, stack);
+//	half_half_quarter_count = (node_count / 16) + (node_count % 2);
 //	node_current = 1;
-//	tmp = stack->order;
-//	while (node_current < median_count)
+//	tmp = data->order;
+//	while (node_current < half_half_quarter_count)
 //	{
 //		tmp = tmp->next;
 //		node_current++;
 //	}
-//	stack->median = tmp->val;
+//	data->half_half_quarter = tmp->val;
 //}

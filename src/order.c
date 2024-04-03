@@ -6,23 +6,23 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:28:25 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/22 14:28:35 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:01:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_node	*current_stack_order(t_stack *stack, t_node **stack_name)
+t_node	*current_stack_order(t_data *data, t_node **stack)
 {
 	t_node	*head;
 	t_node	*min_node;
 	t_node	*min_prev;
 	t_node	*tmp;
 
-	dupe_stack(stack, stack_name, &(stack->order));
+	dupe_stack(data, stack, &(data->order));
 	min_prev = NULL;
-	head = stack->order;
-	while (head->next != stack->order)
+	head = data->order;
+	while (head->next != data->order)
 	{
 		min_node = head;
 		tmp = head;
@@ -37,6 +37,6 @@ t_node	*current_stack_order(t_stack *stack, t_node **stack_name)
 		min_prev = head;
 		head = head->next;
 	}
-	return (stack->order);
+	return (data->order);
 }
 

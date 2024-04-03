@@ -6,51 +6,51 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 14:35:11 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/28 19:35:40 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:01:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	do_swap_push(t_stack *stack)
+void	do_swap_push(t_data *data)
 {
-	stack->swap(stack);
-	stack->push(stack);
+	data->swap(data);
+	data->push(data);
 }
 
-void	do_r_till_target_push(t_stack *stack, t_node *head)
+void	do_r_till_target_push(t_data *data, t_node *head)
 {
-	while (stack->target != head)
+	while (data->target != head)
 	{
 		head = head->next;
-		stack->rotate(stack);
+		data->rotate(data);
 	}
-	stack->push(stack);
+	data->push(data);
 }
 
-void	do_rr_till_target_push(t_stack *stack, t_node *head)
+void	do_rr_till_target_push(t_data *data, t_node *head)
 {
-	while (stack->target != head)
+	while (data->target != head)
 	{
 		head = head->prev;
-		stack->reverse(stack);
+		data->reverse(data);
 	}
-	stack->push(stack);
+	data->push(data);
 }
 
-void	do_condition_then_push(t_stack *stack, t_node **stack_name, int chunk_order)
+void	do_condition_then_push(t_data *data, t_node **stack, int chunk_order)
 {
 	t_node	*head;
 
-	add_log(stack, newlog(stack, NULL, "pushing"), 0);
-	head = *stack_name;
-	if (stack->target == (*stack_name))
-		stack->push(stack);
-	else if (stack->target == (*stack_name)->next)
-		do_swap_push(stack);
-	else if (isnear_head(stack, *stack_name, stack->target) == 1)
-		do_r_till_target_push(stack, head);
-	else if (isnear_head(stack, *stack_name, stack->target) == 0)
-		do_rr_till_target_push(stack, head);
-	stack->b->chunk_order = chunk_order;
+	add_log(data, newlog(data, NULL, "pushing"), 0);
+	head = *stack;
+	if (data->target == (*stack))
+		data->push(data);
+	else if (data->target == (*stack)->next)
+		do_swap_push(data);
+	else if (isnear_head(data, *stack, data->target) == 1)
+		do_r_till_target_push(data, head);
+	else if (isnear_head(data, *stack, data->target) == 0)
+		do_rr_till_target_push(data, head);
+	data->b->chunk_order = chunk_order;
 }
