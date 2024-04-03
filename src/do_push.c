@@ -54,7 +54,7 @@ void	do_pb(t_data *data)
 	add_log(data, newlog(data, "pb", NULL), 1);
 }
 
-	/*
+/*
     t_node *head_a;
     t_node *head_b
 	/*
@@ -70,7 +70,6 @@ void	do_pb(t_data *data)
 	head_b = data->b->next;
 	//stack_b remove old head
 	dellst(data->b);
-	*/;
     
     //stack_a make new head
     head_a->val = data->b->val;
@@ -81,4 +80,4 @@ void	do_pb(t_data *data)
 	head_b = data->b->next;
 	//stack_b remove old head
 	dellst(data->b);
-	*/
+*/
