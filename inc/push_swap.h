@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/03 18:01:12 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:54:47 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,21 @@ typedef struct s_log
 }	t_log;
 
 //	push_swap.c
+t_data	*start_data(t_data *data);
 void	push_swap(char **argv);
 
 // stack.c
-t_data	*start_data(t_data *data);
 void	input_stack(t_data *data, t_node **stack, char **input);
-void	dupe_stack(t_data *data, t_node **stack_origin, t_node **stack_dupe);
+void	dupe_stack(t_node **stack_origin, t_node **stack_dupe);
 void	end_stack(t_data *data);
-//void	dupe_chunk(t_stack *stack, t_node **stack_origin, t_node **stack_dupe,
-//			int chunk_order);
+t_node	*current_stack_order(t_data *data, t_node **stack);
 
 // node.c
-void	add_node_last(t_data *data, t_node **stack, t_node *add);
 t_node	*nodenew(int num, int chunk_order);
 void	nodedel(t_node **node);
-void	swap_nodes_value(t_node **node_1, t_node **node_2);
 int		count_nodes(t_node *node);
+void	add_node_last(t_node **stack, t_node *add);
+void	swap_nodes_value(t_node **node_1, t_node **node_2);
 
 // node_linking.c
 void	node_link_self(t_node *node);
@@ -123,15 +122,15 @@ int		check_rotate_median_push(t_data *data);
 int		check_rotate_quarter_push(t_data *data);
 int		check_rotate_chunk(t_data *data, int value);
 int		check_median_push(t_data *data, t_node *stack, int median);
-int		isnear_head(t_data *data, t_node *stack, t_node *node);
+int		check_ordered(t_node *a);
+int		isnear_head(t_node *stack, t_node *node);
 
 // find_value.c
-int		find_max(t_data *data, t_node **stack);
-int		find_min(t_data *data, t_node **stack);
+int		find_max(t_node **stack);
+int		find_min(t_node **stack);
 void	find_median(t_data *data, t_node **stack);
 void	find_quarter(t_data *data, t_node **stack);
 void	find_half_quarter(t_data *data, t_node **stack);
-//void	find_half_half_quarter(t_stack *stack, t_node **stack);
 
 // find_target.c
 void	find_target_min_max(t_data *data, t_node *head, int min, int max);
@@ -144,19 +143,11 @@ void	sort_4(t_data *data);
 void	sort_5(t_data *data);
 void	sort_in_5(t_data *data);
 
-// order.c
-t_node	*current_stack_order(t_data *data, t_node **stack);
-
-// chunk.c
-
 // sorting.c
 void	push_till_median(t_data *data, t_node **stack, int chunk_order);
 void	push_till_quarter(t_data *data, t_node **stack, int chunk_order);
-//void	push_till_half_quarter(t_stack *stack, t_node **stack, int chunk_order);
 void	push_min_max(t_data *data, t_node **stack);
-void	final_order(t_data *data);
-//void	push_chunk_median(t_stack *stack, t_node **stack, int chunk_order);
-//void	sort_chunk(t_stack *stack, int chunk_order);
+void	do_rra_till_ordered(t_data *data);
 
 // error.c
 int		notnbr_error(t_data *data, char *argv);
@@ -176,7 +167,6 @@ void	debug_push_empty_a(t_data *data);
 void	debug_push_empty_b(t_data *data);
 void	debug_push_1_a(t_data *data);
 void	print_node_connect(t_node *node, char *node_text);
-int		check_ordered(t_node *a);
 void	debug_ordered(t_data *data);
 
 // log.c
@@ -184,6 +174,6 @@ t_log	*newlog(t_data *data, char *op, char *text);
 void	add_log(t_data *data, t_log *log, int add_count);
 void	free_log(t_log *log);
 void	print_log(t_log *log);
-void	logging(t_data *data, t_log *log);
+void	logging(t_log *log);
 
 #endif

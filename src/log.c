@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:55:00 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/16 19:01:57by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 15:08:54 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_log	*newlog(t_data *data, char *op, char *text)
 		new->text = ps_strdup(text);
 	new->a = NULL;
 	new->b = NULL;
-	dupe_stack(data, &(data->a), &(new->a));
-	dupe_stack(data, &(data->b), &(new->b));
+	dupe_stack(&(data->a), &(new->a));
+	dupe_stack(&(data->b), &(new->b));
 	return (new);
 }
 
@@ -147,6 +147,8 @@ void	print_log(t_log *log)
 		set_log_target(log, &target_a, &target_b);
 		if (log->text)
 		{
+			printf("%s\t --------------- ----- ---  --------------- ----- --- -- --\n%s", YELLOW, RESET_C);
+			printf("%s\t --------------- ----- ---  --------------- ----- --- -- --\n%s", YELLOW, RESET_C);
 			printf("%s\t%d:\t%s", GREEN, log->next->op_count, RESET_C);
 			printf("%s %s%s\n", YELLOW, log->text, RESET_C);
 			printf("%s\t\t\ta: [", RED);
@@ -171,7 +173,7 @@ void	print_log(t_log *log)
 	}
 }
 
-void	logging(t_data *data, t_log *log)
+void	logging(t_log *log)
 {
 	t_node	*target_a;
 	t_node	*target_b;

@@ -6,13 +6,13 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:45:15 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/28 17:36:02y tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:17:40 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	find_max(t_data *data, t_node **stack)
+int	find_max(t_node **stack)
 {
 	t_node	*max_node;
 	t_node	*head;
@@ -28,7 +28,7 @@ int	find_max(t_data *data, t_node **stack)
 	return (max_node->val);
 }
 
-int	find_min(t_data *data, t_node **stack)
+int	find_min(t_node **stack)
 {
 	t_node	*min_node;
 	t_node	*head;
@@ -50,7 +50,6 @@ void	find_median(t_data *data, t_node **stack)
 	int		node_count;
 	int		median_count;
 	int		node_current;
-	int		median;
 
 	node_count = count_nodes(*stack);
 	current_stack_order(data, stack);
@@ -71,7 +70,6 @@ void	find_quarter(t_data *data, t_node **stack)
 	int		node_count;
 	int		quarter_count;
 	int		node_current;
-	int		median;
 
 	node_count = count_nodes(*stack);
 	current_stack_order(data, stack);
@@ -92,7 +90,6 @@ void	find_half_quarter(t_data *data, t_node **stack)
 	int		node_count;
 	int		half_quarter_count;
 	int		node_current;
-	int		median;
 
 	node_count = count_nodes(*stack);
 	current_stack_order(data, stack);

@@ -5,7 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */ /*   Updated: 2024/03/18 17:45:15 by tsomchan         ###   ########.fr       */ /*                                                                            */ /* ************************************************************************** */
+/*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */
+/*   Updated: 2024/04/06 14:16:31 by tsomchan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 int	ps_isnum(int c)
@@ -89,10 +93,3 @@ void	set_operations(t_data *data, t_node *stack)
 		data->push = &(do_pa);
 	}
 }
-
-/*
-	printf("str = %s\n", str);
-	printf("str[len] = %d\n", str[len] - '0');
-		printf("nbr = %d\n", nbr);
-	printf("nbr * isnegative = %d\n", nbr * isnegative);
-*/

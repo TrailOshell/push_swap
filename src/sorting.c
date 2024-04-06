@@ -1,11 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/09 16:53:47y tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:55:19by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +30,17 @@ void	push_till_median(t_data *data, t_node **stack, int chunk_order)
 		else if (check_rotate_median_push(data))
 			do_rb(data);
 	}
-	print_stack(data);
+	//print_stack(data);
 }
-
 
 void	push_till_quarter(t_data *data, t_node **stack, int chunk_order)
 {
+	print_stack(data);
 	add_log(data, newlog(data, NULL, "push_till_quarter"), 0);
 	set_operations(data, *stack);
 	find_quarter(data, stack);
 	find_half_quarter(data, stack);
+	printf("\n%squarter = %d%s\n", GREEN, data->quarter, RESET_C);
 	check_median_push(data, *stack, data->quarter);
 	while (data->target)
 	{
@@ -57,16 +59,22 @@ void	push_min_max(t_data *data, t_node **stack)
 	int	max;
 	int	near_head;
 
-	add_log(data, newlog(data, NULL, "push_min_max"), 0);
+	//add_log(data, newlog(data, NULL, "push_min_max"), 0);
 	set_operations(data, *stack);
 	min = 0;
 	max = 0;
 	near_head = 0;
 	set_target_min_max(data, &min, &max, &near_head);
 	if (near_head == 1)
+	{
+		add_log(data, newlog(data, NULL, "push_min_max do_r"), 0);
 		do_r_till_target_push(data, *stack);
+	}
 	else if (near_head == 0)
+	{
+		add_log(data, newlog(data, NULL, "push_min_max do_rr"), 0);
 		do_rr_till_target_push(data, *stack);
+	}
 	if (data->target->val == min)
 	{
 		if (*stack)
@@ -77,43 +85,3 @@ void	push_min_max(t_data *data, t_node **stack)
 			do_ra(data);
 	}
 }
-
-void	final_order(t_data *data)
-{
-	int	min;
-
-	add_log(data, newlog(data, NULL, "final_order"), 0);
-	min = find_min(data, &(data->a));
-	while (data->a->val != min)
-		do_rra(data);
-}
-
-//int	check_rotate_quarter_push(t_stack *data)
-//{
-//	if (data->b->chunk_order == 1 && data->b->val <= data->half_quarter)
-//		return (1);
-//	else if (data->b->chunk_order > 1 && data->b->val <= data->half_quarter)
-//		return (1);
-//	return (0);
-//}
-
-//void	push_till_half_quarter(t_stack *stack, t_node **stack, int chunk_order)
-//{
-//	add_log(data, newlog(data, NULL, "push_till_half_quarter"), 0);
-//	set_operations(data, *stack);
-//	find_half_quarter(data, stack);
-//	find_half_half_quarter(data, stack);
-//	check_median_push(data, *stack, data->half_quarter);
-//	while (data->target)
-//	{
-//		do_condition_then_push(data, stack, chunk_order);
-//		check_median_push(data, *stack, data->half_quarter);
-//		//if (check_rotate_value_push(data, data->half_quarter)
-//		//	&& data->a != data->target)
-//		//	do_rr(data);
-//		//else if (check_rotate_value_push(data, data->half_quarter))
-//		//	do_rb(data);
-//		if (check_rotate_value_push(data, data->half_half_quarter))
-//			do_rb(data);
-//	}
-//}

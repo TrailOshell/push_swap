@@ -6,13 +6,14 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/04 17:28:20tsomchan         ###   ########.fr       */ /*                                                                            */
+/*   Updated: 2024/04/06 14:17:04 by tsomchan         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
 //currently not using t_stack *stack
-void	add_node_last(t_data *data, t_node **stack, t_node *add)
+void	add_node_last(t_node **stack, t_node *add)
 {
 	t_node	**head;
 	t_node	*tmp;
@@ -95,8 +96,3 @@ int	count_nodes(t_node *node)
 	}
 	return (count);
 }
-
-//	printf("%d\n", (*node)->val);
-/* nodenew()
-	//printf("nodenew %d\n", new->val);
-*/

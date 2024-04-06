@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/03 18:12:59 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:17:56 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	check_rotate_median_push(t_data *data)
 		return (1);
 	else if (data->b->chunk_order > 1 && data->b->val > data->quarter)
 		return (1);
+	//if (data->b->val > data->quarter)
+	//	return (1);
 	return (0);
 }
 
 int	check_rotate_quarter_push(t_data *data)
 {
-	//if (data->b->chunk_order == 1 && data->b->val <= data->half_quarter)
-	//	return (1);
-	//else if (data->b->chunk_order > 1 && data->b->val <= data->half_quarter)
-	//	return (1);
-	if (data->b->val <= data->half_quarter)
+	if (data->b->val > data->half_quarter)
 		return (1);
+	//if (data->b->val <= data->half_quarter)
+	//	return (1);
 	return (0);
 }
 
@@ -46,12 +46,10 @@ int	check_median_push(t_data *data, t_node *stack, int median)
 	t_node	*tmp;
 	t_node	*tmp2;
 	t_node	*head;
-	int		index;
 
 	tmp = stack;
 	tmp2 = stack->prev;
 	head = stack;
-	index = 0;
 	while (tmp)
 	{
 		if (tmp->val <= median)
@@ -61,7 +59,6 @@ int	check_median_push(t_data *data, t_node *stack, int median)
 		}
 		tmp = tmp->next;
 		tmp2 = tmp2->prev;
-		index++;
 		if (tmp == head)
 			break ;
 	}
@@ -85,13 +82,11 @@ int	check_ordered(t_node *a)
 	return (1);
 }
 
-int	isnear_head(t_data *data, t_node *stack, t_node *node)
+int	isnear_head(t_node *stack, t_node *node)
 {
 	t_node	*tmp;
 	t_node	*tmp2;
-	int		count;
 
-	count = 0;
 	tmp = stack;
 	tmp2 = stack->prev;
 	while (tmp != tmp2)

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 10:58:58 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/03 17:59:09 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:14:01 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	print_stack(t_data *data)
 void	debug_title(char *s)
 {
 	set_color(GREEN);
-	printf("| OPERATIONS |\n");
+	if (!s)
+		printf("| OPERATIONS |\n");
+	else
+		printf("| %s |\n", s);
 	set_color(RESET_C);
 }
 

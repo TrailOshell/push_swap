@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/03/22 16:17:53y tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:15:55 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	do_pb(t_data *data)
 /*
     t_node *head_a;
     t_node *head_b
-	/*
     t_node *head_a;
     t_node *head_b;
     

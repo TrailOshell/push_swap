@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:23:03 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/03 18:15:31 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:11:56 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sort_3(t_data *data)
 {
 	int	max;
 
-	max = find_max(data, &(data->a));
+	max = find_max(&(data->a));
 	if (data->a->val == max)
 		data->rotate(data);
 	else if (data->a->next->val == max)
@@ -34,7 +34,7 @@ void	sort_4(t_data *data)
 {
 	int	min;
 
-	min = find_min(data, &(data->a));
+	min = find_min(&(data->a));
 	while (data->a->val != min)
 	{
 		do_ra(data);

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:21 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/03 17:59:09 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:11:23 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	find_target_min_max(t_data *data, t_node *head, int min, int max)
 
 void	set_target_min_max(t_data *data, int *min, int *max, int *near_head)
 {
-	*min = find_min(data, &(data->b));
-	*max = find_max(data, &(data->b));
+	*min = find_min(&(data->b));
+	*max = find_max(&(data->b));
 	find_target_min_max(data, data->b, *min, *max);
-	*near_head = isnear_head(data, data->b, data->target);
+	*near_head = isnear_head(data->b, data->target);
 }
