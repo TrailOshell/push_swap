@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:45:15 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:17:40 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:43:34 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,24 +103,3 @@ void	find_half_quarter(t_data *data, t_node **stack)
 	}
 	data->half_quarter = tmp->val;
 }
-
-//void	find_half_half_quarter(t_stack *stack, t_node **stack)
-//{
-//	t_node	*tmp;
-//	int		node_count;
-//	int		half_half_quarter_count;
-//	int		node_current;
-//	int		median;
-
-//	node_count = count_nodes(*stack);
-//	current_stack_order(data, stack);
-//	half_half_quarter_count = (node_count / 16) + (node_count % 2);
-//	node_current = 1;
-//	tmp = data->order;
-//	while (node_current < half_half_quarter_count)
-//	{
-//		tmp = tmp->next;
-//		node_current++;
-//	}
-//	data->half_half_quarter = tmp->val;
-//}

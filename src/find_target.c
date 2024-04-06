@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:19:21 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:11:23 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:56:03 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	find_target_min_max(t_data *data, t_node *head, int min, int max)
 	data->target = NULL;
 	while (tmp)
 	{
-		if (tmp->val == min || tmp->val == max)
+		if (tmp->val == max || tmp->val == min)
 			data->target = tmp;
-		else if (tmp2->val == min || tmp2->val == max)
+		else if (tmp2->val == max || tmp2->val == min)
 			data->target = tmp2;
 		if (data->target != NULL)
 			break ;

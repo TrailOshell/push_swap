@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:54:47 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:13:46 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	push_till_median(t_data *data, t_node **stack, int chunk_order);
 void	push_till_quarter(t_data *data, t_node **stack, int chunk_order);
 void	push_min_max(t_data *data, t_node **stack);
 void	do_rra_till_ordered(t_data *data);
+void	push_min_max_chunk(t_data *data, int chunk_order);
 
 // error.c
 int		notnbr_error(t_data *data, char *argv);

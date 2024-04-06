@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 15:58:41 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:59:34 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ void	run_sorting(t_data *data)
 	}
 	if (!(check_ordered(data->a)))
 		sort_in_5(data);
+	//while (count_nodes(data->b))
+	//	push_min_max(data, &(data->b));
+	printf("run\n");
 	while (count_nodes(data->b))
-		push_min_max(data, &(data->b));
+		push_min_max_chunk(data, chunk_order--);
 	do_rra_till_ordered(data);
 }
 

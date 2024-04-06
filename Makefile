@@ -28,8 +28,8 @@ OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 
 AR		=	ar rc
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
-#CFLAGS	=	-g
+#CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-g
 RM		=	rm -f
 RM_RF	= 	rm -rf
 
