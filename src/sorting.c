@@ -194,3 +194,22 @@ void	push_min_max_chunk(t_data *data, int chunk_order)
 	}
 	print_stack(data);
 }
+
+void	push_ten_percent(t_data *data, t_node **stack, int chunk_order)
+{
+	print_stack(data);
+	add_log(data, newlog(data, NULL, "push_ten_percent"), 0);
+	set_operations(data, *stack);
+	//find_ten_percent(data, stack);
+	//check_median_push(data, *stack, data->median);
+	while (data->target)
+	{
+		do_condition_then_push(data, stack, chunk_order);
+		//check_median_push(data, *stack, data->median);
+		//if (check_rotate_median_push(data) && data->a != data->target)
+			//do_rr(data);
+		//else if (check_rotate_median_push(data))
+			//do_rb(data);
+	}
+	//print_stack(data);
+}
