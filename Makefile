@@ -6,7 +6,7 @@
 #    By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 23:06:09 by tsomchan          #+#    #+#              #
-#    Updated: 2024/04/09 13:28:43 by tsomchan         ###   ########.fr        #
+#    Updated: 2024/04/09 14:45:34 by tsomchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,9 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
-SRC		=	push_swap.c stack.c node.c util.c error.c  \
-			check.c find_value.c chunk.c\
-			sort_5.c sorting.c \
+SRC		=	push_swap.c util.c stack.c node.c check.c find_value.c error.c \
 			do_swap.c do_push.c do_rotate.c do_reverse.c do_operations.c \
+			sort_5.c sorting.c sort_chunk.c\
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
@@ -27,7 +26,7 @@ OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 
 AR		=	ar rc
 CC		=	cc
-#CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 CFLAGS	=	-g
 RM		=	rm -f
 RM_RF	= 	rm -rf
