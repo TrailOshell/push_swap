@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:58:25 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:08:09 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:48:12 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ int	check_has_chunk(t_node *stack, int chunk_order)
 	return (0);
 }
 
-int	find_min_in_chunk(t_node **stack, int chunk_order)
+int	find_min_in_chunk(t_node *stack, int chunk_order)
 {
 	t_node	*min_node;
 	t_node	*head;
 
-	if ((*stack)->chunk_order == chunk_order)
-		min_node = *stack;
+	if ((stack)->chunk_order == chunk_order)
+		min_node = stack;
 	else
-		min_node = (*stack)->prev;
-	head = *stack;
-	while (head->next != *stack)
+		min_node = (stack)->prev;
+	head = stack;
+	while (head->next != stack)
 	{
 		head = head->next;
 		if (min_node->val > head->val && head->chunk_order == chunk_order)
@@ -49,17 +49,17 @@ int	find_min_in_chunk(t_node **stack, int chunk_order)
 	return (min_node->val);
 }
 
-int	find_max_in_chunk(t_node **stack, int chunk_order)
+int	find_max_in_chunk(t_node *stack, int chunk_order)
 {
 	t_node	*max_node;
 	t_node	*head;
 
-	if ((*stack)->chunk_order == chunk_order)
-		max_node = *stack;
+	if ((stack)->chunk_order == chunk_order)
+		max_node = stack;
 	else
-		max_node = (*stack)->prev;
-	head = *stack;
-	while (head->next != *stack)
+		max_node = (stack)->prev;
+	head = stack;
+	while (head->next != stack)
 	{
 		head = head->next;
 		if (max_node->val < head->val && head->chunk_order == chunk_order)
@@ -95,8 +95,8 @@ void	set_target_min_max_chunk(t_data *data, int *ismin
 	int	min;
 	int	max;
 
-	min = find_min_in_chunk(&(data->b), chunk);
-	max = find_max_in_chunk(&(data->b), chunk);
+	min = find_min_in_chunk(data->b, chunk);
+	max = find_max_in_chunk(data->b, chunk);
 	find_target_min_max(data, data->b, min, max);
 	*ismin = 0;
 	if (data->target->val == min)

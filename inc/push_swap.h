@@ -133,8 +133,8 @@ void	push_min_max_chunk(t_data *data, int chunk_order);
 void	final_ordering(t_data *data);
 
 // chunk.c
-int		find_min_in_chunk(t_node **stack, int chunk_order);
-int		find_max_in_chunk(t_node **stack, int chunk_order);
+int		find_min_in_chunk(t_node *stack, int chunk_order);
+int		find_max_in_chunk(t_node *stack, int chunk_order);
 int		check_has_chunk(t_node *stack, int chunk_order);
 void	set_target_min_max_chunk(t_data *data, int *ismin,
 			int *near_head, int chunk_order);
