@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:55:19by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:49:46 tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	push_till_median(t_data *data, t_node **stack, int chunk_order)
 		else if (check_rotate_median_push(data))
 			do_rb(data);
 	}
-	//print_stack(data);
 }
 
 void	push_till_quarter(t_data *data, t_node **stack, int chunk_order)
@@ -46,10 +45,25 @@ void	push_till_quarter(t_data *data, t_node **stack, int chunk_order)
 	{
 		do_condition_then_push(data, stack, chunk_order);
 		check_median_push(data, *stack, data->quarter);
-		if (check_rotate_quarter_push(data) && data->a != data->target)
-			do_rr(data);
-		else if (check_rotate_quarter_push(data))
-			do_rb(data);
+		if (check_has_bigger_half(data) == 1)
+		{
+			if (check_rotate_quarter_push(data) && data->a != data->target)
+				do_rr(data);
+			else if (check_rotate_quarter_push(data) == 1)
+				do_rb(data);
+		}
+	}
+	if (chunk_order > 1)
+	{
+		find_quarter(data, stack);
+		check_median_push(data, *stack, data->quarter);
+		while (data->b->prev->chunk_order == chunk_order)
+		{
+			if (isnear_head(*stack, data->target) == 0)
+				do_rrr(data);
+			else
+				do_rrb(data);
+		}
 	}
 }
 
@@ -183,7 +197,7 @@ void	push_min_max_chunk(t_data *data, int chunk_order)
 		}
 		print_stack(data);
 	}
-	if (chunk_order - 1 > 0)
+	if (chunk_order > 1)
 		set_target_min_max_chunk(data, &ismin, &near_head, (chunk_order - 1));
 	while (check_ordered(data->a) == 0)
 	{

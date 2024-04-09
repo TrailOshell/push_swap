@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:34:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 16:29:41 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:21:19 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	check_rotate_median_push(t_data *data)
 {
-	if (data->b->chunk_order == 1 && data->b->val <= data->quarter)
+	// if (data->b->chunk_order == 1 && data->b->val <= data->quarter)
+	// 	return (1);
+	// else if (data->b->chunk_order > 1 && data->b->val > data->quarter)
+	// 	return (1);
+	if (data->b->val > data->quarter)
 		return (1);
-	else if (data->b->chunk_order > 1 && data->b->val > data->quarter)
-		return (1);
-	//if (data->b->val > data->quarter)
-	//	return (1);
 	return (0);
 }
 
@@ -29,6 +29,24 @@ int	check_rotate_quarter_push(t_data *data)
 		return (1);
 	//if (data->b->val <= data->half_quarter)
 	//	return (1);
+	return (0);
+}
+
+int	check_has_bigger_half(t_data *data)
+{
+	t_node	*tmp;
+	t_node	*head;
+
+	tmp = data->a;
+	head = data->a;
+	while (tmp)
+	{
+		if (tmp->val <= data->quarter && tmp->val > data->half_quarter)
+			return (1);
+		tmp = tmp->next;
+		if (tmp == head)
+			break ;
+	}
 	return (0);
 }
 

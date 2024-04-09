@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 22:51:52 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 17:13:46 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:14:55 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	set_operations(t_data *data, t_node *stack);
 // check.c
 int		check_rotate_median_push(t_data *data);
 int		check_rotate_quarter_push(t_data *data);
+int		check_has_bigger_half(t_data *data);
 int		check_rotate_chunk(t_data *data, int value);
 int		check_median_push(t_data *data, t_node *stack, int median);
 int		check_ordered(t_node *a);
