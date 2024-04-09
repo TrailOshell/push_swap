@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:42:37 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:57:02 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,10 @@ void	swap_nodes_value(t_node **node_1, t_node **node_2)
 	(*node_2)->val = tmp_val;
 }
 
-void	add_node_last(t_node **stack, t_node *add)
+void	add_node_last(t_node **head, t_node *add)
 {
-	t_node	**head;
 	t_node	*tmp;
 
-	head = stack;
 	if (!*head)
 	{
 		*head = add;
@@ -87,7 +85,6 @@ void	add_node_last(t_node **stack, t_node *add)
 	}
 	else
 	{
-		head = stack;
 		tmp = (*head)->prev;
 		tmp->next = add;
 		(*head)->prev = add;
