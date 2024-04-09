@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:33:48 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:35:36 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	push_till_quarter(t_data *data, int chunk_order)
 
 void	push_min_max(t_data *data, int *ismin, int *near_head, int chunk_order)
 {
-	set_target_min_max_chunk(data, ismin, near_head, chunk_order);
+	set_target_chunk(data, ismin, near_head, chunk_order);
 	if (*near_head == 1)
 		do_r_till_target_push(data, data->b);
 	else if (*near_head == 0)
@@ -56,7 +56,7 @@ void	push_min_max(t_data *data, int *ismin, int *near_head, int chunk_order)
 	if (*ismin == 1)
 	{
 		if (data->b)
-			set_target_min_max_chunk(data, ismin, near_head, chunk_order);
+			set_target_chunk(data, ismin, near_head, chunk_order);
 		if (*near_head == 1 && data->b != data->target)
 			do_rr(data);
 		else
@@ -75,7 +75,7 @@ void	push_min_max_chunk(t_data *data, int chunk_order)
 	while (check_has_chunk(data->b, chunk_order) == 1)
 		push_min_max(data, &ismin, &near_head, chunk_order);
 	if (chunk_order > 1)
-		set_target_min_max_chunk(data, &ismin, &near_head, (chunk_order - 1));
+		set_target_chunk(data, &ismin, &near_head, (chunk_order - 1));
 	while (check_ordered(data->a) == 0)
 	{
 		if (data->b && near_head == 0 && data->target != data->b)

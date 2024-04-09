@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 11:58:25 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:48:12 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:35:37 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	find_target_min_max(t_data *data, t_node *head, int min, int max)
 	}
 }
 
-void	set_target_min_max_chunk(t_data *data, int *ismin
+void	set_target_chunk(t_data *data, int *ismin
 		, int *near_head, int chunk)
 {
 	int	min;

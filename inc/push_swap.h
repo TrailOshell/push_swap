@@ -58,6 +58,11 @@ t_data	*start_data(t_data *data);
 void	end_data(t_data *data);
 void	push_swap(char **argv);
 
+// util.c
+int		ps_strcmp(char *s1, char *s2);
+char	*ps_strdup(char *str);
+int		atoi_push_swap(char *str);
+
 // stack.c
 void	input_stack(t_data *data, char **input);
 void	dupe_stack(t_node *stack_origin, t_node **stack_dupe);
@@ -96,18 +101,6 @@ void	do_r_till_target_push(t_data *data, t_node *head);
 void	do_rr_till_target_push(t_data *data, t_node *head);
 void	do_condition_then_push(t_data *data, t_node *stack, int chunk_order);
 
-// util.c
-int		ps_strcmp(char *s1, char *s2);
-char	*ps_strdup(char *str);
-int		atoi_push_swap(char *str);
-
-// check.c
-int		check_rotate_median_push(t_data *data);
-int		check_rotate_quarter_push(t_data *data);
-int		check_median_push(t_data *data, t_node *stack, int median);
-int		check_ordered(t_node *a);
-int		isnear_head(t_node *stack, t_node *node);
-
 // find_value.c
 int		find_max(t_node *stack);
 int		find_min(t_node *stack);
@@ -115,9 +108,12 @@ void	find_median(t_data *data, t_node *stack);
 void	find_quarter(t_data *data, t_node *stack);
 void	find_half_quarter(t_data *data, t_node *stack);
 
-// find_target.c
-void	find_target_min_max(t_data *data, t_node *head, int min, int max);
-void	set_target_min_max(t_data *data, int *min, int *max, int *near_head);
+// check.c
+int		check_rotate_median_push(t_data *data);
+int		check_rotate_quarter_push(t_data *data);
+int		check_median_push(t_data *data, t_node *stack, int median);
+int		check_ordered(t_node *a);
+int		isnear_head(t_node *stack, t_node *node);
 
 // sort_5.c
 void	sort_2(t_data *data);
@@ -133,11 +129,8 @@ void	push_min_max_chunk(t_data *data, int chunk_order);
 void	final_ordering(t_data *data);
 
 // chunk.c
-int		find_min_in_chunk(t_node *stack, int chunk_order);
-int		find_max_in_chunk(t_node *stack, int chunk_order);
 int		check_has_chunk(t_node *stack, int chunk_order);
-void	set_target_min_max_chunk(t_data *data, int *ismin,
-			int *near_head, int chunk_order);
+void	set_target_chunk(t_data *data, int *ismin, int *isnear_head, int order);
 
 // error.c
 int		notnbr_error(t_data *data, char *argv);
