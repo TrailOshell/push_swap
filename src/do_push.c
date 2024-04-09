@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 12:59:15 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:25:49 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,31 @@ void	set_head_push_pull(t_data *d, char s, t_node ***push, t_node ***pull)
 	}
 }
 
-void	new_head_push_pull(t_node **head_push,
-			t_node **head_pull, t_node **push_node)
+void	new_head_push_pull(t_node *h_push, t_node **h_pull, t_node *push_node)
 {
-	if ((*head_pull)->next == *head_pull)
-		*head_pull = NULL;
+	if ((*h_pull)->next == *h_pull)
+		*h_pull = NULL;
 	else
 	{
-		*head_pull = (*head_pull)->next;
-		(*head_pull)->prev = (*push_node)->prev;
-		(*push_node)->prev->next = *head_pull;
-		(*push_node)->next->prev = (*push_node)->prev;
-		(*push_node)->prev->next = (*push_node)->next;
+		*h_pull = (*h_pull)->next;
+		(*h_pull)->prev = push_node->prev;
+		push_node->prev->next = *h_pull;
+		push_node->next->prev = push_node->prev;
+		push_node->prev->next = push_node->next;
 	}
-	if (!*head_push)
+	if (!h_push)
 	{
-		(*push_node)->next = *push_node;
-		(*push_node)->prev = *push_node;
+		push_node->next = push_node;
+		push_node->prev = push_node;
 	}
 	else
 	{
-		(*head_push)->prev->next = *push_node;
-		(*push_node)->next = *head_push;
-		(*push_node)->prev = (*head_push)->prev;
-		(*head_push)->prev = *push_node;
+		(h_push)->prev->next = push_node;
+		push_node->next = h_push;
+		push_node->prev = (h_push)->prev;
+		(h_push)->prev = push_node;
 	}
-	*head_push = *push_node;
+	h_push = push_node;
 }
 
 void	do_push(t_data *data, char stack)
@@ -64,7 +63,7 @@ void	do_push(t_data *data, char stack)
 	if (!*head_pull)
 		return ;
 	push_node = *head_pull;
-	new_head_push_pull(head_push, head_pull, &push_node);
+	new_head_push_pull(head_push, head_pull, push_node);
 }
 
 void	do_pa(t_data *data)
