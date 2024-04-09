@@ -6,7 +6,7 @@
 #    By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 23:06:09 by tsomchan          #+#    #+#              #
-#    Updated: 2024/04/09 14:45:34 by tsomchan         ###   ########.fr        #
+#    Updated: 2024/04/09 14:48:44 by tsomchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)
 AR		=	ar rc
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror
-CFLAGS	=	-g
+# CFLAGS	+=	-g
 RM		=	rm -f
 RM_RF	= 	rm -rf
 
@@ -91,6 +91,8 @@ clean_more:
 
 #	git
 
+git: git_add push
+
 log: clear
 	@git log --name-status -3
 
@@ -103,8 +105,6 @@ git_add:
 ifdef m
 	@git commit -m "$(m)"
 endif
-
-git: clean_more git_add push
 
 .PHONY += clear norm clean_more log push git_add git
 
