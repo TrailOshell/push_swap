@@ -56,18 +56,18 @@ void	do_rr_till_target_push(t_data *data, t_node *head)
 	data->push(data);
 }
 
-void	do_condition_then_push(t_data *data, t_node **stack, int chunk_order)
+void	do_condition_then_push(t_data *data, t_node *stack, int chunk_order)
 {
 	t_node	*head;
 
-	head = *stack;
-	if (data->target == (*stack))
+	head = stack;
+	if (data->target == (stack))
 		data->push(data);
-	else if (data->target == (*stack)->next)
+	else if (data->target == (stack)->next)
 		do_swap_push(data);
-	else if (isnear_head(*stack, data->target) == 1)
+	else if (isnear_head(stack, data->target) == 1)
 		do_r_till_target_push(data, head);
-	else if (isnear_head(*stack, data->target) == 0)
+	else if (isnear_head(stack, data->target) == 0)
 		do_rr_till_target_push(data, head);
 	data->b->chunk_order = chunk_order;
 }

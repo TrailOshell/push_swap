@@ -59,7 +59,7 @@ void	end_data(t_data *data);
 void	push_swap(char **argv);
 
 // stack.c
-void	input_stack(t_data *data, t_node **stack, char **input);
+void	input_stack(t_data *data, char **input);
 void	dupe_stack(t_node **stack_origin, t_node **stack_dupe);
 t_node	*current_stack_order(t_data *data, t_node *stack);
 
@@ -94,7 +94,7 @@ void	set_operations(t_data *data, t_node *stack);
 void	do_swap_push(t_data *data);
 void	do_r_till_target_push(t_data *data, t_node *head);
 void	do_rr_till_target_push(t_data *data, t_node *head);
-void	do_condition_then_push(t_data *data, t_node **stack, int chunk_order);
+void	do_condition_then_push(t_data *data, t_node *stack, int chunk_order);
 
 // util.c
 int		ps_strcmp(char *s1, char *s2);

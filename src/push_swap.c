@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:31:25 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:45:00 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	push_swap(char **argv)
 
 	data = NULL;
 	data = start_data(data);
-	input_stack(data, &(data->a), ++argv);
+	input_stack(data, ++argv);
 	if (data->iserror)
 		write(1, "Error\n", 6);
 	else

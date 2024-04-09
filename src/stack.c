@@ -6,13 +6,13 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:18:51 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:45:47 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	input_stack(t_data *data, t_node **stack, char **input)
+void	input_stack(t_data *data, char **input)
 {
 	int		num;
 
@@ -23,7 +23,7 @@ void	input_stack(t_data *data, t_node **stack, char **input)
 		num = atoi_push_swap(*input);
 		if (data->a && dupnbr_error(data, num))
 			return ;
-		add_node_last(stack, nodenew(num, 0));
+		add_node_last(&(data->a), nodenew(num, 0));
 		input++;
 	}
 }

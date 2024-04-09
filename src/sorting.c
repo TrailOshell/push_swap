@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:13:04 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:30:56 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:33:48 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push_till_median(t_data *data, int chunk_order)
 	check_median_push(data, data->a, data->median);
 	while (data->target)
 	{
-		do_condition_then_push(data, &(data->a), chunk_order);
+		do_condition_then_push(data, data->a, chunk_order);
 		check_median_push(data, data->a, data->median);
 		if (check_rotate_median_push(data) && data->a != data->target)
 			do_rr(data);
@@ -37,7 +37,7 @@ void	push_till_quarter(t_data *data, int chunk_order)
 	check_median_push(data, data->a, data->quarter);
 	while (data->target)
 	{
-		do_condition_then_push(data, &(data->a), chunk_order);
+		do_condition_then_push(data, data->a, chunk_order);
 		check_median_push(data, data->a, data->quarter);
 		if (check_rotate_quarter_push(data) && data->a != data->target)
 			do_rr(data);
