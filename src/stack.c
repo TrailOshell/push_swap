@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:17:16 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:18:51 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,14 @@ void	dupe_stack(t_node **origin, t_node **dupe)
 	}
 }
 
-void	end_stack(t_data *data)
-{
-	if (!data)
-		return ;
-	while (data->a)
-		nodedel(&data->a);
-	while (data->b)
-		nodedel(&data->b);
-	while (data->order)
-		nodedel(&data->order);
-	free_log(data->log);
-	free(data);
-}
-
-t_node	*current_stack_order(t_data *data, t_node **stack)
+t_node	*current_stack_order(t_data *data, t_node *stack)
 {
 	t_node	*head;
 	t_node	*min_node;
 	t_node	*min_prev;
 	t_node	*tmp;
 
-	dupe_stack(stack, &(data->order));
+	dupe_stack(&stack, &(data->order));
 	min_prev = NULL;
 	head = data->order;
 	while (head->next != data->order)

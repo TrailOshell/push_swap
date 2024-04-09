@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:16:31 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:10:59 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,4 @@ int	atoi_push_swap(char *str)
 		len++;
 	}
 	return (nbr * isnegative);
-}
-
-void	set_operations(t_data *data, t_node *stack)
-{
-	if (stack == data->a)
-	{
-		data->swap = &(do_sa);
-		data->rotate = &(do_ra);
-		data->reverse = &(do_rra);
-		data->push = &(do_pb);
-	}
-	else if (stack == data->b)
-	{
-		data->swap = &(do_sb);
-		data->rotate = &(do_rb);
-		data->reverse = &(do_rrb);
-		data->push = &(do_pa);
-	}
 }

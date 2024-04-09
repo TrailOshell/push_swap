@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 18:10:45 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:31:25 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,20 @@ t_data	*start_data(t_data *data)
 	data->rotate = NULL;
 	data->reverse = NULL;
 	data->push = NULL;
-	data->log = NULL;
 	return (data);
+}
+
+void	end_data(t_data *data)
+{
+	if (!data)
+		return ;
+	while (data->a)
+		nodedel(&data->a);
+	while (data->b)
+		nodedel(&data->b);
+	while (data->order)
+		nodedel(&data->order);
+	free(data);
 }
 
 void	run_sorting(t_data *data)
@@ -40,20 +52,15 @@ void	run_sorting(t_data *data)
 	while (!(check_ordered(data->a)) && count_nodes(data->a) > 5)
 	{
 		if (count_nodes(data->a) <= 100)
-			push_till_median(data, &(data->a), ++chunk_order);
+			push_till_median(data, ++chunk_order);
 		else
-			push_till_quarter(data, &(data->a), ++chunk_order);
-		//while (chunk_order > 1 && data->b->prev->chunk_order == chunk_order)
-		//	do_rrb(data);
+			push_till_quarter(data, ++chunk_order);
 	}
 	if (!(check_ordered(data->a)))
 		sort_in_5(data);
-	//while (count_nodes(data->b))
-	//	push_min_max(data, &(data->b));
-	printf("run\n");
 	while (count_nodes(data->b))
 		push_min_max_chunk(data, chunk_order--);
-	do_rra_till_ordered(data);
+	final_ordering(data);
 }
 
 void	push_swap(char **argv)
@@ -67,14 +74,8 @@ void	push_swap(char **argv)
 		write(1, "Error\n", 6);
 	else
 		run_sorting(data);
-	print_log(data->log); debug_ordered(data);
-	end_stack(data);
+	end_data(data);
 }
-
-/*
-	print_log(data->log);
-	debug_ordered(data);
-*/
 
 int	main(int argc, char **argv)
 {

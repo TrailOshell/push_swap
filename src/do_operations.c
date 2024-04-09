@@ -12,6 +12,24 @@
 
 #include "../inc/push_swap.h"
 
+void	set_operations(t_data *data, t_node *stack)
+{
+	if (stack == data->a)
+	{
+		data->swap = &(do_sa);
+		data->rotate = &(do_ra);
+		data->reverse = &(do_rra);
+		data->push = &(do_pb);
+	}
+	else if (stack == data->b)
+	{
+		data->swap = &(do_sb);
+		data->rotate = &(do_rb);
+		data->reverse = &(do_rrb);
+		data->push = &(do_pa);
+	}
+}
+
 void	do_swap_push(t_data *data)
 {
 	data->swap(data);
@@ -42,7 +60,6 @@ void	do_condition_then_push(t_data *data, t_node **stack, int chunk_order)
 {
 	t_node	*head;
 
-	add_log(data, newlog(data, NULL, "pushing"), 0);
 	head = *stack;
 	if (data->target == (*stack))
 		data->push(data);
@@ -53,14 +70,4 @@ void	do_condition_then_push(t_data *data, t_node **stack, int chunk_order)
 	else if (isnear_head(*stack, data->target) == 0)
 		do_rr_till_target_push(data, head);
 	data->b->chunk_order = chunk_order;
-}
-
-void	do_rra_till_ordered(t_data *data)
-{
-	int	min;
-
-	add_log(data, newlog(data, NULL, "do_rra_till_ordered"), 0);
-	min = find_min(&(data->a));
-	while (data->a->val != min)
-		do_rra(data);
 }

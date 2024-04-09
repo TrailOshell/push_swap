@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/03 17:57:59 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:44:06 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,3 @@ int	dupnbr_error(t_data *data, int num)
 	}
 	return (0);
 }
-
-/*
-	printf("argv = %s$\n", argv);
-		printf("*argv = %c$\n", *argv);
-	printf("run 0\n");
-*/

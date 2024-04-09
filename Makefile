@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+         #
+#    By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 23:06:09 by tsomchan          #+#    #+#              #
-#    Updated: 2024/02/27 23:27:52by tsomchan         ###   ########.fr        #
+#    Updated: 2024/04/09 13:28:43 by tsomchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,9 @@ INC		=	$(addprefix $(INC_PTH), push_swap.h)
 SRC_PTH	=	src/
 #SRC		=	$(addprefix $(SRC_PTH), push_swap.c)
 SRC		=	push_swap.c stack.c node.c util.c error.c  \
-			check.c find_value.c find_target.c \
-			node_linking.c sort_5.c sorting.c \
+			check.c find_value.c chunk.c\
+			sort_5.c sorting.c \
 			do_swap.c do_push.c do_rotate.c do_reverse.c do_operations.c \
-			debug.c log.c
 
 OBJ_PTH	=	obj/
 #OBJ		=	$(SRC:%.c=$(OBJ_PTH)%.o)

@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:05:50 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:17:04 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:08:49 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-//currently not using t_stack *stack
-void	add_node_last(t_node **stack, t_node *add)
-{
-	t_node	**head;
-	t_node	*tmp;
-
-	head = stack;
-	if (!*head)
-	{
-		*head = add;
-		tmp = add;
-	}
-	else
-	{
-		head = stack;
-		tmp = (*head)->prev;
-		tmp->next = add;
-		(*head)->prev = add;
-	}
-	add->next = *head;
-	add->prev = tmp;
-}
 
 t_node	*nodenew(int num, int chunk_order)
 {
@@ -71,6 +48,23 @@ void	nodedel(t_node **node)
 	}
 }
 
+int	count_nodes(t_node *head)
+{
+	t_node	*tmp;
+	int		count;	
+
+	tmp = head;
+	if (!tmp)
+		return (0);
+	count = 1;
+	while (tmp->next != head)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
+}
+
 void	swap_nodes_value(t_node **node_1, t_node **node_2)
 {
 	int		tmp_val;
@@ -80,19 +74,24 @@ void	swap_nodes_value(t_node **node_1, t_node **node_2)
 	(*node_2)->val = tmp_val;
 }
 
-int	count_nodes(t_node *node)
+void	add_node_last(t_node **stack, t_node *add)
 {
+	t_node	**head;
 	t_node	*tmp;
-	int		count;	
 
-	tmp = node;
-	if (!tmp)
-		return (0);
-	count = 1;
-	while (tmp->next != node)
+	head = stack;
+	if (!*head)
 	{
-		tmp = tmp->next;
-		count++;
+		*head = add;
+		tmp = add;
 	}
-	return (count);
+	else
+	{
+		head = stack;
+		tmp = (*head)->prev;
+		tmp->next = add;
+		(*head)->prev = add;
+	}
+	add->next = *head;
+	add->prev = tmp;
 }

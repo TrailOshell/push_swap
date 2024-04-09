@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:23:03 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:11:56 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:19:45 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	sort_3(t_data *data)
 {
 	int	max;
 
-	max = find_max(&(data->a));
+	max = find_max(data->a);
 	if (data->a->val == max)
-		data->rotate(data);
+		do_ra(data);
 	else if (data->a->next->val == max)
-		data->reverse(data);
+		do_rra(data);
 	sort_2(data);
 }
 
@@ -34,7 +34,7 @@ void	sort_4(t_data *data)
 {
 	int	min;
 
-	min = find_min(&(data->a));
+	min = find_min(data->a);
 	while (data->a->val != min)
 	{
 		do_ra(data);
@@ -50,7 +50,7 @@ void	sort_5(t_data *data)
 	int	count;
 
 	count = 5;
-	find_median(data, &(data->a));
+	find_median(data, data->a);
 	while (count > 3)
 	{
 		if (data->a->val < data->median)
@@ -72,7 +72,6 @@ void	sort_in_5(t_data *data)
 {
 	int	count;
 
-	add_log(data, newlog(data, NULL, "sort_in_5"), 0);
 	count = count_nodes(data->a);
 	if (count == 2)
 		sort_2(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
+/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:29:37 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/06 14:15:55 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:59:15 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,34 @@ void	set_head_push_pull(t_data *d, char s, t_node ***push, t_node ***pull)
 	}
 }
 
+void	new_head_push_pull(t_node **head_push,
+			t_node **head_pull, t_node **push_node)
+{
+	if ((*head_pull)->next == *head_pull)
+		*head_pull = NULL;
+	else
+	{
+		*head_pull = (*head_pull)->next;
+		(*head_pull)->prev = (*push_node)->prev;
+		(*push_node)->prev->next = *head_pull;
+		(*push_node)->next->prev = (*push_node)->prev;
+		(*push_node)->prev->next = (*push_node)->next;
+	}
+	if (!*head_push)
+	{
+		(*push_node)->next = *push_node;
+		(*push_node)->prev = *push_node;
+	}
+	else
+	{
+		(*head_push)->prev->next = *push_node;
+		(*push_node)->next = *head_push;
+		(*push_node)->prev = (*head_push)->prev;
+		(*head_push)->prev = *push_node;
+	}
+	*head_push = *push_node;
+}
+
 void	do_push(t_data *data, char stack)
 {
 	t_node	**head_push;
@@ -36,47 +64,17 @@ void	do_push(t_data *data, char stack)
 	if (!*head_pull)
 		return ;
 	push_node = *head_pull;
-	node_new_head_pull(head_pull, &push_node);
-	node_new_head_push(head_push, &push_node);
+	new_head_push_pull(head_push, head_pull, &push_node);
 }
 
 void	do_pa(t_data *data)
 {
 	do_push(data, 'a');
 	write(1, "pa\n", 3);
-	add_log(data, newlog(data, "pa", NULL), 1);
 }
 
 void	do_pb(t_data *data)
 {
 	do_push(data, 'b');
 	write(1, "pb\n", 3);
-	add_log(data, newlog(data, "pb", NULL), 1);
 }
-
-/*
-    t_node *head_a;
-    t_node *head_b
-    t_node *head_a;
-    t_node *head_b;
-    
-    //stack_a make new head
-    head_a->val = data->b->val;
-	//stack_a connect new head to old head
-    head_a->next = data->a->next;
-
-	//stack_b track new head
-	head_b = data->b->next;
-	//stack_b remove old head
-	dellst(data->b);
-    
-    //stack_a make new head
-    head_a->val = data->b->val;
-	//stack_a connect new head to old head
-    head_a->next = data->a->next;
-
-	//stack_b track new head
-	head_b = data->b->next;
-	//stack_b remove old head
-	dellst(data->b);
-*/
