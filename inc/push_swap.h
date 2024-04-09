@@ -60,7 +60,7 @@ void	push_swap(char **argv);
 
 // stack.c
 void	input_stack(t_data *data, char **input);
-void	dupe_stack(t_node **stack_origin, t_node **stack_dupe);
+void	dupe_stack(t_node *stack_origin, t_node **stack_dupe);
 t_node	*current_stack_order(t_data *data, t_node *stack);
 
 // node.c

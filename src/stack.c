@@ -6,7 +6,7 @@
 /*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:56:48 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:05:58 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void	input_stack(t_data *data, char **input)
 	}
 }
 
-void	dupe_stack(t_node **origin, t_node **dupe)
+void	dupe_stack(t_node *origin, t_node **dupe)
 {
 	t_node	*head;
 	t_node	*new;
 
-	head = *origin;
+	head = origin;
 	while (*dupe)
-		nodedel(&(*dupe));
-	while (*origin)
+		nodedel(dupe);
+	while (origin)
 	{
-		new = nodenew((*origin)->val, (*origin)->chunk_order);
+		new = nodenew(origin->val, origin->chunk_order);
 		add_node_last(dupe, new);
-		*origin = (*origin)->next;
-		if (*origin == head)
+		origin = origin->next;
+		if (origin == head)
 			break ;
 	}
 }
@@ -53,7 +53,7 @@ t_node	*current_stack_order(t_data *data, t_node *stack)
 	t_node	*min_prev;
 	t_node	*tmp;
 
-	dupe_stack(&stack, &(data->order));
+	dupe_stack(stack, &(data->order));
 	min_prev = NULL;
 	head = data->order;
 	while (head->next != data->order)
