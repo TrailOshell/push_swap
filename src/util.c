@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 17:10:44 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:37:53 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@ size_t	ps_strlen(char *s)
 	while (*s++)
 		len++;
 	return (len);
-}
-
-int	ps_isnum(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
 }
 
 int	ps_strcmp(char *s1, char *s2)
@@ -65,26 +57,26 @@ long	atoi_push_swap(char *str)
 {
 	long	nbr;
 	int		len;
-	int		isnegative;
+	int		sign;
 
-	if (ps_strcmp(str, "-2147483648"))
-		return (-2147483648);
 	nbr = 0;
 	len = 0;
-	isnegative = 1;
+	sign = 1;
 	while (str[len] == ' ')
 		len++;
 	if (str[len] == '-' || str[len] == '+')
 	{
 		if (str[len] == '-')
-			isnegative = -1;
+			sign = -1;
 		len++;
 	}
 	while (str[len] >= '0' && str[len] <= '9')
 	{
 		nbr = nbr * 10;
 		nbr = nbr + str[len] - '0';
+		if (nbr < -2147483648 || nbr > 2147483647)
+			break ;
 		len++;
 	}
-	return (nbr * isnegative);
+	return (nbr * sign);
 }

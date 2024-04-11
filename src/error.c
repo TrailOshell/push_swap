@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 17:27:32 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:27:09 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,50 @@ void	write_error(void)
 	write(1, RESET_C, 4);
 }
 
-int	input_error(t_data *data, char *argv)
+int	empty_error(t_data *data, char *input)
+{
+	while (*input == ' ')
+		input++;
+	if (*input == '\0')
+		data->iserror = 1;
+	return (data->iserror);
+}
+
+int	input_error(t_data *data, char *input)
 {
 	int	isnbr;
 
 	isnbr = 0;
-	if (*argv == '\0')
-		data->iserror = 1;
-	while (*argv == ' ')
-		argv++;
-	if (*argv == '-' || *argv == '+')
-		argv++;
-	if (*argv >= '0' && *argv <= '9')
+	while (*input == ' ')
+		input++;
+	if (*input == '-' || *input == '+')
+		input++;
+	if (*input >= '0' && *input <= '9')
 		isnbr = 1;
-	while (*argv >= '0' && *argv <= '9')
-		argv++;
-	if (isnbr != 1 || (*argv != ' ' && *argv != '\0'))
+	while (*input >= '0' && *input <= '9')
+		input++;
+	if (isnbr != 1 || (*input != ' ' && *input != '\0'))
 		data->iserror = 1;
 	return (data->iserror);
 }
 
 int	dupnbr_error(t_data *data, int num)
 {
-	t_node	*head;
+	t_node	*last;
 	t_node	*tmp;
 
-	head = data->a;
-	tmp = data->a->prev;
-	while (tmp->next != head->prev)
+	if (count_nodes(data->a) == 1)
+		return (0);
+	last = data->a->prev;
+	tmp = data->a;
+	while (tmp != last)
 	{
-		tmp = tmp->next;
 		if (tmp->val == num)
 		{
 			data->iserror = 1;
 			break ;
 		}
+		tmp = tmp->next;
 	}
 	return (data->iserror);
 }

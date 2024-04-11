@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 17:27:34 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 20:01:59y tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	input_stack(t_data *data, char **input)
 
 	while (*input)
 	{
-		if (input_error(data, *input) == 1)
+		if (empty_error(data, *input) == 1)
 			return ;
 		while (**input)
 		{
@@ -78,30 +78,46 @@ void	dupe_stack(t_node *origin, t_node **dupe)
 	}
 }
 
+t_node	*get_min_node(t_node *head, t_node *min_prev)
+{
+	t_node	*tmp;
+	t_node	*min_next;
+
+	min_next = head;
+	tmp = head;
+	while (tmp)
+	{
+		if (tmp->val < min_next->val && (!min_prev || tmp->val > min_prev->val))
+			min_next = tmp;
+		tmp = tmp->next;
+		if (tmp == head)
+			break ;
+	}
+	return (min_next);
+}
+
 t_node	*current_stack_order(t_data *data, t_node *stack)
 {
 	t_node	*head;
-	t_node	*min_node;
+	t_node	*min_next;
 	t_node	*min_prev;
-	t_node	*tmp;
 
 	dupe_stack(stack, &(data->order));
+	//write_stack(data->order, "order");
 	min_prev = NULL;
 	head = data->order;
-	while (head->next != data->order)
+	while (head)
 	{
-		min_node = head;
-		tmp = head;
-		while (tmp->next != head)
-		{
-			tmp = tmp->next;
-			if (tmp->val < min_node->val
-				&& (!min_prev || tmp->val > min_prev->val))
-				min_node = tmp;
-		}
-		swap_nodes_value(&(min_node), &(head));
+		//write_stack(head, "head");
+		min_next = get_min_node(head, min_prev);
+		//printf("min_next = %d\n", min_next->val);
+		swap_nodes_value(&min_next, &head);
+		//write_stack(data->order, "swapped order");
 		min_prev = head;
+		//printf("min_prev = %d\n", min_prev->val);
 		head = head->next;
+		if (head == data->order)
+			break ;
 	}
 	return (data->order);
 }
