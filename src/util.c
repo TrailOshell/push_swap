@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:10:59 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:12:35 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+size_t	ps_strlen(char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (*s++)
+		len++;
+	return (len);
+}
 
 int	ps_isnum(int c)
 {
@@ -62,12 +72,17 @@ int	atoi_push_swap(char *str)
 	nbr = 0;
 	len = 0;
 	isnegative = 1;
-	if (str[0] == '-')
+	while (str[len] == ' ')
+		len++;
+	if (str[len] == '-')
 	{
 		isnegative = -1;
 		len++;
 	}
-	while (str[len])
+	if (str[len] == '+')
+		len++;
+	//while (str[len])
+	while (str[len] >= '0' && str[len] <= '9')
 	{
 		nbr = nbr * 10;
 		nbr = nbr + str[len] - '0';

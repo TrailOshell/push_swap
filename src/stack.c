@@ -3,27 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 14:12:41 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:13:41 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
+int	nbrlen(char *input)
+{
+	int	len;
+
+	if (ps_strcmp(input, "-2147483648"))
+		return (11);
+	len = 0;
+	while (input[len] == ' ')
+		len++;
+	if (input[len] == '-' || input[len] == '+')
+		len++;
+	while (input[len] >= '0' && input[len] <= '9')
+		len++;
+	while (input[len] == ' ')
+		len++;
+	return (len);
+}
+
 void	input_stack(t_data *data, char **input)
 {
-	int		num;
+	int	num;
+	int	len;
 
 	while (*input)
 	{
-		if (notnbr_error(data, *input))
-			return ;
-		num = atoi_push_swap(*input);
-		if (data->a && dupnbr_error(data, num))
-			return ;
-		add_node_last(&(data->a), nodenew(num, 0));
+		while (**input)
+		{
+			if (nbr_error(data, *input) == 1)
+				return ;
+			len = nbrlen(*input);
+			printf("len = %d\t", len);
+			printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
+			num = atoi_push_swap(*input);
+			if (data->a && dupnbr_error(data, num) == 1)
+				return ;
+			add_node_last(&(data->a), nodenew(num, 0));
+			*input += len;
+		}
 		input++;
 	}
 }

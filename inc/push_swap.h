@@ -59,6 +59,7 @@ void	end_data(t_data *data);
 void	push_swap(char **argv);
 
 // util.c
+size_t	ps_strlen(char *s);
 int		ps_strcmp(char *s1, char *s2);
 char	*ps_strdup(char *str);
 int		atoi_push_swap(char *str);
@@ -133,7 +134,13 @@ int		check_has_chunk(t_node *stack, int chunk_order);
 void	set_target_chunk(t_data *data, int *ismin, int *isnear_head, int order);
 
 // error.c
-int		notnbr_error(t_data *data, char *argv);
+void	write_error(void);
+int		nbr_error(t_data *data, char *argv);
 int		dupnbr_error(t_data *data, int num);
+
+// debug.c
+void	write_stack(t_node *node, char *text);
+void	set_color(char *color);
+void	final_check(t_data *data);
 
 #endif

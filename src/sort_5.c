@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:23:03 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 13:19:45 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:37:25 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	sort_4(t_data *data)
 
 	min = find_min(data->a);
 	while (data->a->val != min)
-	{
 		do_ra(data);
-		data->a = data->a->next;
-	}
 	do_pb(data);
 	sort_3(data);
 	do_pa(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsomchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:09:38 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/09 14:12:08 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:41:56y tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,23 @@ void	push_swap(char **argv)
 	data = start_data(data);
 	input_stack(data, ++argv);
 	if (data->iserror)
-		write(1, "Error\n", 6);
+	{
+		write(1, "post ", 5);
+		write_error();
+	}
 	else
 		run_sorting(data);
+	//write_stack(data->a, "final");
+	final_check(data);	
 	end_data(data);
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
+	{
+		write_error();
 		return (0);
+	}
 	push_swap(argv);
 }
