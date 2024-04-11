@@ -60,6 +60,7 @@ void	push_swap(char **argv);
 
 // util.c
 size_t	ps_strlen(char *s);
+int		ps_isnum(int c);
 int		ps_strcmp(char *s1, char *s2);
 char	*ps_strdup(char *str);
 long	atoi_push_swap(char *str);
@@ -135,12 +136,15 @@ void	set_target_chunk(t_data *data, int *ismin, int *isnear_head, int order);
 
 // error.c
 void	write_error(void);
-int		nbr_error(t_data *data, char *argv);
+int		input_error(t_data *data, char *argv);
 int		dupnbr_error(t_data *data, int num);
+int		overflow_error(t_data *data, long num);
 
 // debug.c
-void	write_stack(t_node *node, char *text);
 void	set_color(char *color);
+void	write_color(char *s, char *color);
+void	ps_itoa(int num);
+void	write_stack(t_node *node, char *text);
 void	final_check(t_data *data);
 
 #endif

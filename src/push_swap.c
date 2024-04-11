@@ -74,10 +74,13 @@ void	push_swap(char **argv)
 		write_error();
 	else
 		run_sorting(data);
-	if (data->iserror == 0)
-		final_check(data);
 	end_data(data);
 }
+
+/*	put before end_data()
+	if (data->iserror == 0)
+		final_check(data);
+*/
 
 int	main(int argc, char **argv)
 {

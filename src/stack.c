@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 16:53:30 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:27:34 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,28 @@ void	input_stack(t_data *data, char **input)
 
 	while (*input)
 	{
-		if (nbr_error(data, *input) == 1)
+		if (input_error(data, *input) == 1)
 			return ;
 		while (**input)
 		{
-			if (nbr_error(data, *input) == 1)
+			if (input_error(data, *input) == 1)
+				return ;
+			num = atoi_push_swap(*input);
+			add_node_last(&(data->a), nodenew(num, 0));
+			if (overflow_error(data, num) == 1 || dupnbr_error(data, num) == 1)
 				return ;
 			len = nbrlen(*input);
-			//printf("len = %d\t", len);
-			//printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
-			num = atoi_push_swap(*input);
-			//printf("%snum = \"%ld\"\n%s", PURPLE, num, RESET_C);
-			if (num < -2147483648 || num > 2147483647)
-			{
-				data->iserror = 1;
-				return ;
-			}
-			add_node_last(&(data->a), nodenew(num, 0));
-			if (data->a && dupnbr_error(data, num) == 1)
-				return ;
 			*input += len;
 		}
 		input++;
 	}
 }
+
+/* input_stack() debug
+	//printf("len = %d\t", len);
+	//printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
+	//printf("%snum = \"%ld\"\n%s", PURPLE, num, RESET_C);
+*/
 
 void	dupe_stack(t_node *origin, t_node **dupe)
 {

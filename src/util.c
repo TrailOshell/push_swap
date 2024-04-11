@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:39:54 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 16:53:36 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:10:44 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ long	atoi_push_swap(char *str)
 	{
 		nbr = nbr * 10;
 		nbr = nbr + str[len] - '0';
-		//printf("nbr = %ld\n", nbr);
 		len++;
 	}
 	return (nbr * isnegative);

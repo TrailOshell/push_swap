@@ -12,7 +12,23 @@
 
 #include "../inc/push_swap.h"
 
-//char	*ps_itoa(int num)
+void	set_color(char *color)
+{
+	int	len;
+
+	len = 7;
+	if (ps_strcmp(color, RESET_C) == 1)
+		len = 4;
+	write(1, color, len);
+}
+
+void	write_color(char *s, char *color)
+{
+	set_color(color);
+	write(1, s, ps_strlen(s));
+	set_color(RESET_C);
+}
+
 void	ps_itoa(int num)
 {
 	char	c;
@@ -61,32 +77,11 @@ void	write_stack(t_node *node, char *text)
 	set_color(RESET_C);
 }
 
-void	set_color(char *color)
-{
-	int	len;
-
-	len = 7;
-	if (ps_strcmp(color, RESET_C) == 1)
-		len = 4;
-	write(1, color, len);
-}
-
-void	write_color(char *s, char *color)
-{
-	set_color(color);
-	write(1, s, ps_strlen(s));
-	set_color(RESET_C);
-}
-
 void	final_check(t_data *data)
 {
 	if (check_ordered(data->a) == 1)
-	{
 		write_color("O- ordered -O ", GREEN);
-	}
 	else
-	{
 		write_color("X- NOT ordered -X ", RED);
-	}
 	write_stack(data->a, "");
 }

@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 16:38:31 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:27:32 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,13 @@ void	write_error(void)
 	write(1, RESET_C, 4);
 }
 
-int	nbr_error(t_data *data, char *argv)
+int	input_error(t_data *data, char *argv)
 {
 	int	isnbr;
 
 	isnbr = 0;
 	if (*argv == '\0')
-	{
 		data->iserror = 1;
-		return (1);
-	}
 	while (*argv == ' ')
 		argv++;
 	if (*argv == '-' || *argv == '+')
@@ -37,24 +34,9 @@ int	nbr_error(t_data *data, char *argv)
 		isnbr = 1;
 	while (*argv >= '0' && *argv <= '9')
 		argv++;
-	if (isnbr == 1 && (*argv == ' ' || *argv == '\0'))
-		return (0);
-	else
-	{
+	if (isnbr != 1 || (*argv != ' ' && *argv != '\0'))
 		data->iserror = 1;
-		return (1);
-	}
-	return (0);
-	//while (*argv)
-	//{
-	//	if (*argv < '0' || *argv > '9')
-	//	{
-	//		data->iserror = 1;
-	//		return (1);
-	//	}
-	//	argv++;
-	//}
-	//return (0);
+	return (data->iserror);
 }
 
 int	dupnbr_error(t_data *data, int num)
@@ -70,8 +52,15 @@ int	dupnbr_error(t_data *data, int num)
 		if (tmp->val == num)
 		{
 			data->iserror = 1;
-			return (1);
+			break ;
 		}
 	}
-	return (0);
+	return (data->iserror);
+}
+
+int	overflow_error(t_data *data, long num)
+{
+	if (num < -2147483648 || num > 2147483647)
+		data->iserror = 1;
+	return (data->iserror);
 }
