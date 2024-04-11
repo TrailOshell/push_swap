@@ -6,7 +6,7 @@
 #    By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 23:06:09 by tsomchan          #+#    #+#              #
-#    Updated: 2024/04/11 16:16:16 by tsomchan         ###   ########.fr        #
+#    Updated: 2024/04/11 16:53:50 by tsomchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -201,23 +201,23 @@ e: all clear
 	./$(NAME) 
 	./$(NAME) ""                    #1 empty arg
 	./$(NAME) "     "               #1 empty arg
-#	./$(NAME) 2 "" 4 3              #has empty arg
-#	./$(NAME) 2 "     " 4 3         #has empty arg
-#	./$(NAME) 2 4 3a                #has non-number
-#	./$(NAME) 4+2 5 1               #has non-number
-#	./$(NAME) 4,2 5 1               #has non-number
-#	./$(NAME) 2 4 ++3               #has non-number
-#	./$(NAME) 2 4 +-0               #has non-number
-#	./$(NAME) 2147483648 12 1 5     #has overflow integer
-#	./$(NAME) -2147483649 12 1 5    #has overflow integer
-#	./$(NAME) 42 000042 5 1         #has duplicate number
-#	./$(NAME) -5 2 -00005 7         #has duplicate number
+	./$(NAME) 2 "" 4 3              #has empty arg
+	./$(NAME) 2 "     " 4 3         #has empty arg
+	./$(NAME) 2 4 3a                #has non-number
+	./$(NAME) 4+2 5 1               #has non-number
+	./$(NAME) 4,2 5 1               #has non-number
+	./$(NAME) 2 4 ++3               #has non-number
+	./$(NAME) 2 4 +-0               #has non-number
+	./$(NAME) 2147483648 12 1 5     #has overflow integer
+	./$(NAME) -2147483649 12 1 5    #has overflow integer
+	./$(NAME) 42 000042 5 1         #has duplicate number
+	./$(NAME) -5 2 -00005 7         #has duplicate number
 
 ok: all clear
-#	./$(NAME) 4 2 5 1
-#	./$(NAME) 4 +2 5 1
-#	./$(NAME) "4" +2 5 "1"
-#	./$(NAME) "  4  " " +2 " "5    1"
-#	./$(NAME) 42 "1 7" 9 "  25   10 "
-#	./$(NAME) 00000 +0002 -2222 "+0000009     -000009"
+	./$(NAME) 4 2 5 1
+	./$(NAME) 4 +2 5 1
+	./$(NAME) "4" +2 5 "1"
+	./$(NAME) "  4  " " +2 " "5    1"
+	./$(NAME) 42 "1 7" 9 "  25   10 "
+	./$(NAME) 00000 +0002 -2222 "+0000009     -000009"
 	./$(NAME) 2147483647 "-2147483648 00000000000000000000000001 +002 -002"

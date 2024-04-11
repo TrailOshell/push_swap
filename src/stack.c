@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:59:05 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 16:13:41 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:53:30 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,30 @@ int	nbrlen(char *input)
 
 void	input_stack(t_data *data, char **input)
 {
-	int	num;
-	int	len;
+	long	num;
+	int		len;
 
 	while (*input)
 	{
+		if (nbr_error(data, *input) == 1)
+			return ;
 		while (**input)
 		{
 			if (nbr_error(data, *input) == 1)
 				return ;
 			len = nbrlen(*input);
-			printf("len = %d\t", len);
-			printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
+			//printf("len = %d\t", len);
+			//printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
 			num = atoi_push_swap(*input);
+			//printf("%snum = \"%ld\"\n%s", PURPLE, num, RESET_C);
+			if (num < -2147483648 || num > 2147483647)
+			{
+				data->iserror = 1;
+				return ;
+			}
+			add_node_last(&(data->a), nodenew(num, 0));
 			if (data->a && dupnbr_error(data, num) == 1)
 				return ;
-			add_node_last(&(data->a), nodenew(num, 0));
 			*input += len;
 		}
 		input++;

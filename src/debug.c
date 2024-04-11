@@ -42,11 +42,14 @@ void	write_stack(t_node *node, char *text)
 
 	head = node;
 	tmp = node;
-	set_color(CYAN);
 	write(1, text, ps_strlen(text));
 	write(1, ": [", 3);
 	while (tmp)
 	{
+		if (tmp->chunk_order % 2 == 0)
+			set_color(BLUE);
+		else
+			set_color(YELLOW);
 		ps_itoa(tmp->val);
 		if (tmp->next != head)
 			write(1, ", ", 2);
@@ -77,13 +80,13 @@ void	write_color(char *s, char *color)
 
 void	final_check(t_data *data)
 {
-	write_stack(data->a, "final");
 	if (check_ordered(data->a) == 1)
 	{
-		write_color("O- ordered -O\n", GREEN);
+		write_color("O- ordered -O ", GREEN);
 	}
 	else
 	{
-		write_color("X- NOT ordered -X\n", RED);
+		write_color("X- NOT ordered -X ", RED);
 	}
+	write_stack(data->a, "");
 }

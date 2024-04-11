@@ -62,7 +62,7 @@ void	push_swap(char **argv);
 size_t	ps_strlen(char *s);
 int		ps_strcmp(char *s1, char *s2);
 char	*ps_strdup(char *str);
-int		atoi_push_swap(char *str);
+long	atoi_push_swap(char *str);
 
 // stack.c
 void	input_stack(t_data *data, char **input);

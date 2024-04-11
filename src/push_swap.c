@@ -71,14 +71,11 @@ void	push_swap(char **argv)
 	data = start_data(data);
 	input_stack(data, ++argv);
 	if (data->iserror)
-	{
-		write(1, "post ", 5);
 		write_error();
-	}
 	else
 		run_sorting(data);
-	//write_stack(data->a, "final");
-	final_check(data);	
+	if (data->iserror == 0)
+		final_check(data);
 	end_data(data);
 }
 
