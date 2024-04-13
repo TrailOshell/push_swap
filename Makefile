@@ -203,12 +203,19 @@ o: ok
 
 ok: all clear
 	./$(NAME) $(input_ok_1)
+	./$(NAME) $(input_ok_1) | wc -l
 	./$(NAME) $(input_ok_2)
+	./$(NAME) $(input_ok_2) | wc -l
 	./$(NAME) $(input_ok_3)
+	./$(NAME) $(input_ok_3) | wc -l
 	./$(NAME) $(input_ok_4)
+	./$(NAME) $(input_ok_4) | wc -l
 	./$(NAME) $(input_ok_5)
+	./$(NAME) $(input_ok_5) | wc -l
 	./$(NAME) $(input_ok_6)
+	./$(NAME) $(input_ok_6) | wc -l
 	./$(NAME) $(input_ok_7)
+	./$(NAME) $(input_ok_7) | wc -l
 
 # input that still give errors
 # 100
@@ -240,9 +247,17 @@ t: test
 test: all
 	clear
 	./$(NAME) $(test_100_1) | ./$(checker_OS) $(test_100_1)
+	./$(NAME) $(test_100_1) | wc -l
 	./$(NAME) $(test_100_2) | ./$(checker_OS) $(test_100_2)
-	./$(NAME) $(test_500_1) | ./$(checker_OS) $(test_500_1)
-	./$(NAME) $(test_500_2) | ./$(checker_OS) $(test_500_2)
+	./$(NAME) $(test_100_2) | wc -l
+#	./$(NAME) $(test_500_1) | ./$(checker_OS) $(test_500_1)
+#	./$(NAME) $(test_500_1) | wc -l
+#	./$(NAME) $(test_500_2) | ./$(checker_OS) $(test_500_2)
+#	./$(NAME) $(test_500_2) | wc -l
+
+t12: all
+	./$(NAME) $(test_100_2)
+	./$(NAME) $(test_100_2) | wc -l
 
 checker_OS = checker_linux
 
@@ -250,20 +265,35 @@ c: check
 
 check:
 	./$(NAME) $(input_basic)     | ./$(checker_OS) $(input_basic)
+	./$(NAME) $(input_basic)     | wc -l
 	./$(NAME) $(input_20)        | ./$(checker_OS) $(input_20)
+	./$(NAME) $(input_20)        | wc -l
 	./$(NAME) $(input_50)        | ./$(checker_OS) $(input_50)
+	./$(NAME) $(input_50)        | wc -l
 	./$(NAME) $(input_100)       | ./$(checker_OS) $(input_100)
+	./$(NAME) $(input_100)       | wc -l
 	./$(NAME) $(input_500)       | ./$(checker_OS) $(input_500)
+	./$(NAME) $(input_500)       | wc -l
 	./$(NAME) $(input_500_2)     | ./$(checker_OS) $(input_500_2)
+	./$(NAME) $(input_500_2)     | wc -l
 	./$(NAME) $(input_500_3)     | ./$(checker_OS) $(input_500_3)
+	./$(NAME) $(input_500_3)     | wc -l
 	./$(NAME) $(input_test)      | ./$(checker_OS) $(input_test)
+	./$(NAME) $(input_test)      | wc -l
 	./$(NAME) $(input_ok_1)      | ./$(checker_OS) $(input_ok_1)
+	./$(NAME) $(input_ok_1)      | wc -l
 	./$(NAME) $(input_ok_2)      | ./$(checker_OS) $(input_ok_2)
+	./$(NAME) $(input_ok_2)      | wc -l
 	./$(NAME) $(input_ok_3)      | ./$(checker_OS) $(input_ok_3)
+	./$(NAME) $(input_ok_3)      | wc -l
 	./$(NAME) $(input_ok_4)      | ./$(checker_OS) $(input_ok_4)
+	./$(NAME) $(input_ok_4)      | wc -l
 	./$(NAME) $(input_ok_5)      | ./$(checker_OS) $(input_ok_5)
+	./$(NAME) $(input_ok_5)      | wc -l
 	./$(NAME) $(input_ok_6)      | ./$(checker_OS) $(input_ok_6)
+	./$(NAME) $(input_ok_6)      | wc -l
 	./$(NAME) $(input_ok_7)      | ./$(checker_OS) $(input_ok_7)
+	./$(NAME) $(input_ok_7)      | wc -l
 	-./$(NAME) $(input_error_1)  | ./$(checker_OS) $(input_error_1) 
 	-./$(NAME) $(input_error_2)  | ./$(checker_OS) $(input_error_2) 
 	-./$(NAME) $(input_error_3)  | ./$(checker_OS) $(input_error_3) 
