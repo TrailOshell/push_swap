@@ -250,10 +250,10 @@ test: all
 	./$(NAME) $(test_100_1) | wc -l
 	./$(NAME) $(test_100_2) | ./$(checker_OS) $(test_100_2)
 	./$(NAME) $(test_100_2) | wc -l
-#	./$(NAME) $(test_500_1) | ./$(checker_OS) $(test_500_1)
-#	./$(NAME) $(test_500_1) | wc -l
-#	./$(NAME) $(test_500_2) | ./$(checker_OS) $(test_500_2)
-#	./$(NAME) $(test_500_2) | wc -l
+	./$(NAME) $(test_500_1) | ./$(checker_OS) $(test_500_1)
+	./$(NAME) $(test_500_1) | wc -l
+	./$(NAME) $(test_500_2) | ./$(checker_OS) $(test_500_2)
+	./$(NAME) $(test_500_2) | wc -l
 
 t12: all
 	./$(NAME) $(test_100_2)
