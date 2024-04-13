@@ -55,9 +55,9 @@ void	input_stack(t_data *data, char **input)
 }
 
 /* input_stack() debug
-	//printf("len = %d\t", len);
-	//printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
-	//printf("%snum = \"%ld\"\n%s", PURPLE, num, RESET_C);
+	printf("len = %d\t", len);
+	printf("%s*input = \"%s\"\n%s", PURPLE, *input, RESET_C);
+	printf("%snum = \"%ld\"\n%s", PURPLE, num, RESET_C);
 */
 
 void	dupe_stack(t_node *origin, t_node **dupe)
@@ -103,21 +103,24 @@ t_node	*current_stack_order(t_data *data, t_node *stack)
 	t_node	*min_prev;
 
 	dupe_stack(stack, &(data->order));
-	//write_stack(data->order, "order");
 	min_prev = NULL;
 	head = data->order;
 	while (head)
 	{
-		//write_stack(head, "head");
 		min_next = get_min_node(head, min_prev);
-		//printf("min_next = %d\n", min_next->val);
 		swap_nodes_value(&min_next, &head);
-		//write_stack(data->order, "swapped order");
 		min_prev = head;
-		//printf("min_prev = %d\n", min_prev->val);
 		head = head->next;
 		if (head == data->order)
 			break ;
 	}
 	return (data->order);
 }
+
+/* current_stack_order() 
+	write_stack(data->order, "order");
+		write_stack(head, "head");
+		printf("min_next = %d\n", min_next->val);
+		write_stack(data->order, "swapped order");
+		printf("min_prev = %d\n", min_prev->val);
+*/

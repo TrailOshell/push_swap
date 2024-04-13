@@ -77,7 +77,7 @@ void	push_swap(char **argv)
 	end_data(data);
 }
 
-/*	put before end_data()
+/*	push_swap() put before end_data()
 	if (data->iserror == 0)
 		final_check(data);
 */
