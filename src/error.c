@@ -6,7 +6,7 @@
 /*   By: tsomchan <tsomchan@student.42bangkok.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:19 by tsomchan          #+#    #+#             */
-/*   Updated: 2024/04/11 18:27:09 by tsomchan         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:54:53 by tsomchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	write_error(void)
 {
-	write(1, YELLOW, 7);
-	write(1, "Error\n", 6);
-	write(1, RESET_C, 4);
+	write(2, YELLOW, 7);
+	write(2, "Error\n", 6);
+	write(2, RESET_C, 4);
 }
 
 int	empty_error(t_data *data, char *input)
